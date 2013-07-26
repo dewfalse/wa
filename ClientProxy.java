@@ -28,9 +28,6 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void preInit() {
 		Minecraft mc = FMLClientHandler.instance().getClient();
-		File f = mc.func_110438_M().func_110612_e();
-		System.out.println(f.getPath());
-		/*
 		File soundDir = new File(mc.getMinecraftDir(), "resources/mod/sound/wa");
 		if (!soundDir.exists() && !soundDir.mkdirs()) {
 			return;
@@ -46,7 +43,6 @@ public class ClientProxy extends CommonProxy {
 			copyResource(Wa.class, "/mods/wa/sound/taiko.ogg", outFile);
 			needReload = true;
 		}
-		*/
 	}
 
 	@Override

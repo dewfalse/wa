@@ -2,7 +2,6 @@ package wa;
 
 import java.util.ArrayList;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityHanging;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -119,10 +118,4 @@ public class EntityKamon extends EntityHanging {
 	    {
 	        this.entityDropItem(new ItemStack(Items.家紋), 0.0F);
 	    }
-
-		@Override
-		public void func_110128_b(Entity entity) {
-			// TODO 自動生成されたメソッド・スタブ
-
-		}
 }

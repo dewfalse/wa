@@ -1,17 +1,13 @@
 package wa;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
-
-import cpw.mods.fml.client.FMLClientHandler;
 
 public class RenderKakejiku extends Render {
 
@@ -21,8 +17,7 @@ public class RenderKakejiku extends Render {
         GL11.glTranslatef((float)par2, (float)par4, (float)par6);
         GL11.glRotatef(par8, 0.0F, 1.0F, 0.0F);
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-        Minecraft mc = FMLClientHandler.instance().getClient();
-        mc.func_110434_K().func_110577_a(func_110775_a(par1EntityKakejiku));
+        this.loadTexture("/mods/wa/textures/kakejiku.png");
         EnumKakejiku motive = par1EntityKakejiku.getMotive();
         if(motive == null) {
         	motive = EnumKakejiku.empty;
@@ -145,9 +140,4 @@ public class RenderKakejiku extends Render {
     {
         this.renderKakejiku((EntityKakejiku)par1Entity, par2, par4, par6, par8, par9);
     }
-
-	@Override
-	protected ResourceLocation func_110775_a(Entity entity) {
-        return new ResourceLocation("wa", "/textures/items/kakejiku");
-	}
 }

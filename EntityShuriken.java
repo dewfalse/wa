@@ -1,7 +1,6 @@
 package wa;
 
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.DamageSource;
@@ -16,7 +15,7 @@ public class EntityShuriken extends EntityThrowable {
 		// TODO 自動生成されたコンストラクター・スタブ
 	}
 
-	public EntityShuriken(World par1World, EntityLivingBase par2EntityLiving) {
+	public EntityShuriken(World par1World, EntityLiving par2EntityLiving) {
 		super(par1World, par2EntityLiving);
 		// TODO 自動生成されたコンストラクター・スタブ
 	}

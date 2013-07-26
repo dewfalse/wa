@@ -1,6 +1,5 @@
 package wa;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderItem;
@@ -10,12 +9,9 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
 import net.minecraft.util.MathHelper;
-import net.minecraft.util.ResourceLocation;
 
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
-
-import cpw.mods.fml.client.FMLClientHandler;
 
 public class RenderObon extends Render {
 
@@ -59,8 +55,7 @@ public class RenderObon extends Render {
         GL11.glTranslatef((float)d0, (float)d1 + 0.05F, (float)d2);
         GL11.glRotatef(f, 1.0f, 0.0F, 0.0F);
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-        Minecraft mc = FMLClientHandler.instance().getClient();
-        mc.func_110434_K().func_110577_a(func_110775_a(entityObon));
+        loadTexture("/mods/wa/textures/obon.png");
         float f2 = 0.0625F;
         GL11.glScalef(f2, f2, f2);
         func_77010_a(entityObon, 16, 16, 0, 0);
@@ -163,9 +158,4 @@ public class RenderObon extends Render {
         float f2 = renderManager.worldObj.getLightBrightness(i, j, k);
         GL11.glColor3f(f2, f2, f2);
     }
-
-	@Override
-	protected ResourceLocation func_110775_a(Entity entity) {
-        return new ResourceLocation("wa", "/textures/items/obon");
-	}
 }

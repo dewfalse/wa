@@ -30,7 +30,7 @@ public class ItemBlockSapling extends ItemBlock {
 
 	@Override
 	public void registerIcons(IconRegister par1IconRegister) {
-		itemIcon = par1IconRegister.registerIcon("wa:sakuraSapling");
+		itemIcon = par1IconRegister.registerIcon(Block.blocksList[_blockID].getUnlocalizedName2());
 	}
 
 }

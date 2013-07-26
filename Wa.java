@@ -2,7 +2,6 @@ package wa;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.ChestGenHooks;
@@ -76,10 +75,8 @@ public class Wa {
 		//天守閣→階段→通路（縦・横）→左右の部屋・通路の折れ曲がり
 
 		倭人取引 = new WaTrade();
-		VillagerRegistry.instance().registerVillagerId(Config.町人ID);
-		VillagerRegistry.instance().registerVillagerSkin(Config.町人ID, new ResourceLocation("/mods/wa/textures/villager.png"));
-		VillagerRegistry.instance().registerVillagerId(Config.刀鍛冶ID);
-		VillagerRegistry.instance().registerVillagerSkin(Config.刀鍛冶ID, new ResourceLocation("/mods/wa/textures/swordsmith.png"));
+		VillagerRegistry.instance().registerVillagerType(Config.町人ID, "/mods/wa/textures/villager.png");
+		VillagerRegistry.instance().registerVillagerType(Config.刀鍛冶ID, "/mods/wa/textures/swordsmith.png");
 		VillagerRegistry.instance().registerVillageTradeHandler(Config.町人ID, 倭人取引);
 		VillagerRegistry.instance().registerVillageTradeHandler(Config.刀鍛冶ID, 倭人取引);
 

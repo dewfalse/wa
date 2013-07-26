@@ -1,6 +1,7 @@
 package wa;
 
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.EnumToolMaterial;
@@ -19,12 +20,12 @@ public class ItemTachi extends ItemSword implements ICraftingHandler {
 	}
 
 	@Override
-	public int getDamage(ItemStack itemStack) {
+	public int getDamageVsEntity(Entity par1Entity, ItemStack itemStack) {
 		if(itemStack.hasDisplayName() && itemStack.getDisplayName().equals("無銘の太刀") == false) {
 			// 銘刀ならダメージ補正あり
-			return super.getDamage(itemStack) + 2;
+			return super.getDamageVsEntity(par1Entity, itemStack) + 2;
 		}
-		return super.getDamage(itemStack);
+		return super.getDamageVsEntity(par1Entity, itemStack);
 	}
 
 	@Override

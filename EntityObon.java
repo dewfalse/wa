@@ -1,6 +1,5 @@
 package wa;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityHanging;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -69,25 +68,29 @@ public class EntityObon extends EntityHanging {
 	}
 
 	@Override
-	public void func_110128_b(Entity entity) {
-		if (this.getDisplayedItem() == null && entity instanceof EntityPlayer) {
-			ItemStack itemstack = ((EntityPlayer)entity).getHeldItem();
+	public boolean interact(EntityPlayer par1EntityPlayer) {
+		if (this.getDisplayedItem() == null) {
+			ItemStack itemstack = par1EntityPlayer.getHeldItem();
 
 			if (itemstack != null && !this.worldObj.isRemote) {
 				this.setDisplayedItem(itemstack);
 
-				if (!((EntityPlayer)entity).capabilities.isCreativeMode
+				if (!par1EntityPlayer.capabilities.isCreativeMode
 						&& --itemstack.stackSize <= 0) {
-					((EntityPlayer)entity).inventory.setInventorySlotContents(
-							((EntityPlayer)entity).inventory.currentItem,
+					par1EntityPlayer.inventory.setInventorySlotContents(
+							par1EntityPlayer.inventory.currentItem,
 							(ItemStack) null);
-					return;
 				}
 			}
 		} else if (!this.worldObj.isRemote) {
 			this.setItemRotation(this.getRotation() + 1);
 		}
 
+		return true;
+	}
+
+	@Override
+	public void dropItemStack() {
 		this.entityDropItem(new ItemStack(Items.お盆), 0.0F);
 		ItemStack itemstack = this.getDisplayedItem();
 

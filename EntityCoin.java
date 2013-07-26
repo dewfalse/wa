@@ -1,7 +1,6 @@
 package wa;
 
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.projectile.EntityThrowable;
@@ -19,7 +18,7 @@ public class EntityCoin extends EntityThrowable {
 		// TODO 自動生成されたコンストラクター・スタブ
 	}
 
-	public EntityCoin(World par1World, EntityLivingBase par2EntityLiving) {
+	public EntityCoin(World par1World, EntityLiving par2EntityLiving) {
 		super(par1World, par2EntityLiving);
 		// TODO 自動生成されたコンストラクター・スタブ
 	}

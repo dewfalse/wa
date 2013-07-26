@@ -2,8 +2,8 @@ package wa;
 
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
+import net.minecraft.client.renderer.RenderEngine;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.world.IBlockAccess;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
@@ -20,13 +20,12 @@ public class RenderNorenBlock implements ISimpleBlockRenderingHandler {
 			Block block, int modelId, RenderBlocks renderer) {
 		Tessellator.instance.draw();
 		Tessellator.instance.startDrawingQuads();
-		//TextureManager engine = FMLClientHandler.instance().getClient().renderEngine;
-		//FMLClientHandler.instance().getClient().func_110434_K().func_110577_a(par1ResourceLocation)
+		RenderEngine engine = FMLClientHandler.instance().getClient().renderEngine;
 		//engine.bindTexture("wa:noren");
 		drawBlock(world, x, y, z, block, modelId, renderer);
 		Tessellator.instance.draw();
 		Tessellator.instance.startDrawingQuads();
-		//engine.bindTexture("/terrain.png");
+		engine.bindTexture("/terrain.png");
 		return false;
 	}
 
