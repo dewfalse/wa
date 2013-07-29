@@ -65,6 +65,7 @@ public class Recipes {
 				'B', Item.feather,
 				'C', new ItemStack(Item.dyePowder, 1, 0));
 		GameRegistry.addSmelting(Blocks.take.blockID, new ItemStack(Items.竹炭, 1, 0), 0.15F);
+		GameRegistry.addSmelting(Blocks.sakuraWood.blockID, new ItemStack(Item.coal, 1, 1), 0.15F);
 		GameRegistry.addShapedRecipe(new ItemStack(Blocks.takezumiBlock),
 				"AAA",
 				"AAA",
