@@ -13,7 +13,12 @@ public class FuelHandler implements IFuelHandler {
 		else if(fuel.itemID == Items.竹炭.itemID) {
 			return 1600;
 		}
-		// TODO 自動生成されたメソッド・スタブ
+		else if(fuel.itemID == Blocks.sakuraWood.blockID) {
+			return 300;
+		}
+		else if(fuel.itemID == Blocks.sakuraSapling.blockID) {
+			return 300;
+		}
 		return 0;
 	}
 
