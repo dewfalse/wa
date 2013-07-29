@@ -112,7 +112,7 @@ public class Recipes {
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.shikui),
 				Block.dirt, Blocks.wara, new ItemStack(Item.dyePowder, 1, 15));
-		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.sakuraWood, 4, 0),
+		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.sakuraPlank, 4, 0),
 				Blocks.sakuraWood);
 	}
 
