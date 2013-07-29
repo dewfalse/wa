@@ -76,6 +76,10 @@ public class Recipes {
 				"AAA",
 				"AAA",
 				'A', new ItemStack(Item.coal, 1, 1));
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.竹炭, 9),
+				Blocks.takezumiBlock);
+		GameRegistry.addShapelessRecipe(new ItemStack(Item.coal, 9, 1),
+				Blocks.charcoalBlock);
 
 		for(int i = 0; i < 16; ++i) {
 			GameRegistry.addRecipe((new ShapelessOreRecipe(new ItemStack(Blocks.colorWood[i]),
