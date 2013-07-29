@@ -15,7 +15,7 @@ public class WorldGenTorii implements IWorldGenerator {
 	public void generate(Random random, int chunkX, int chunkZ, World world,
 			IChunkProvider chunkGenerator, IChunkProvider chunkProvider) {
 		if(world.provider.dimensionId == 0 || world.provider.dimensionId == Config.dimensionID) {
-			if(random.nextInt(1000) > 0) {
+			if(random.nextDouble() * 100.0D > Config.鳥居出現率) {
 				return;
 			}
 
