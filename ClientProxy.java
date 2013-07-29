@@ -34,12 +34,12 @@ public class ClientProxy extends CommonProxy {
 		}
 		boolean needReload = false;
 		File outFile = new File(mc.getMinecraftDir() + "/resources/mod/sound/wa/", "koto.ogg");
-		if (!outFile.exists()) {
+		if (!outFile.exists() || outFile.length() < 10) {
 			copyResource(Wa.class, "/mods/wa/sound/koto.ogg", outFile);
 			needReload = true;
 		}
 		outFile = new File(mc.getMinecraftDir() + "/resources/mod/sound/wa/", "taiko.ogg");
-		if (!outFile.exists()) {
+		if (!outFile.exists() || outFile.length() < 10) {
 			copyResource(Wa.class, "/mods/wa/sound/taiko.ogg", outFile);
 			needReload = true;
 		}
@@ -62,8 +62,9 @@ public class ClientProxy extends CommonProxy {
 			BufferedOutputStream writer = new BufferedOutputStream(new FileOutputStream(outputFile));
 			int size = 0;
 
-			while ((size = reader.read()) != -1) {
-				writer.write(size);
+			byte[] buf = new byte[1024];
+			while ((size = reader.read(buf)) != -1) {
+				writer.write(buf, 0, size);
 			}
 			writer.flush();
 			writer.close();
