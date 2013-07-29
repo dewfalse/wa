@@ -2,7 +2,6 @@ package wa;
 
 import java.util.List;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemBlock;
@@ -12,6 +11,8 @@ import net.minecraft.util.Icon;
 public class ItemBlockSapling extends ItemBlock {
 
 	private int _blockID;
+	Icon[] icons;
+
 	public ItemBlockSapling(int par1) {
 		super(par1);
 		_blockID = par1 + 256;
@@ -25,12 +26,17 @@ public class ItemBlockSapling extends ItemBlock {
 
 	@Override
 	public Icon getIconFromDamage(int par1) {
-		return this.itemIcon;
+		if(_blockID == Blocks.sakuraSapling.blockID) {
+			return this.icons[1];
+		}
+		return this.icons[0];
 	}
 
 	@Override
 	public void registerIcons(IconRegister par1IconRegister) {
-		itemIcon = par1IconRegister.registerIcon("wa:sakuraSapling");
+		icons = new Icon[2];
+		icons[0] = par1IconRegister.registerIcon("wa:takenoko");
+		icons[1] = par1IconRegister.registerIcon("wa:sakuraSapling");
 	}
 
 }
