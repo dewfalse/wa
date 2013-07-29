@@ -40,6 +40,15 @@ public class WorldGenTorii implements IWorldGenerator {
 			else if(blockID == Block.waterStill.blockID && underBlockID == Block.dirt.blockID) {
 
 			}
+			else if(blockID == Block.snow.blockID && underBlockID == Block.grass.blockID) {
+
+			}
+			else if(blockID == Block.snow.blockID && underBlockID == Block.dirt.blockID) {
+
+			}
+			else if(blockID == Block.snow.blockID && underBlockID == Block.blockSnow.blockID) {
+
+			}
 			else {
 				return;
 			}
