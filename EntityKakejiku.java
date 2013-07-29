@@ -3,6 +3,7 @@ package wa;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityHanging;
 import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
@@ -44,24 +45,20 @@ public class EntityKakejiku extends EntityHanging {
 
 
 	@Override
-	public void func_110128_b(Entity entity) {
-		if(entity instanceof EntityLiving) {
-			ItemStack eq = ((EntityLiving)entity).getHeldItem();
+	public boolean func_130002_c(EntityPlayer par1EntityPlayer) {
+		if(getMotive() == EnumKakejiku.empty)
+		{
+			ItemStack eq = par1EntityPlayer.getCurrentEquippedItem();
 			if (eq != null && eq.itemID == Items.毛筆.itemID) {
-				if(getMotive() == EnumKakejiku.empty) {
-					EnumKakejiku motive = EnumKakejiku.values()[1+this.rand.nextInt(EnumKakejiku.values().length-1)];
 
-					if(this.worldObj.isRemote == false) {
-						setMotive(motive);
-					}
+				EnumKakejiku motive = EnumKakejiku.values()[1+this.rand.nextInt(EnumKakejiku.values().length-1)];
+
+				if(this.worldObj.isRemote == false) {
+					setMotive(motive);
 				}
 			}
 		}
-		ItemStack itemStack = new ItemStack(Items.掛け軸);
-		NBTTagCompound tag = new NBTTagCompound();
-		tag.setString("Motive", getMotive().title);
-		itemStack.setTagCompound(tag);
-		entityDropItem(itemStack, 0.0F);
+		return super.func_130002_c(par1EntityPlayer);
 	}
 
 	@Override
@@ -109,5 +106,14 @@ public class EntityKakejiku extends EntityHanging {
 	@Override
 	public int func_82330_g() {
 		return this.getMotive().sizeY;
+	}
+
+	@Override
+	public void func_110128_b(Entity entity) {
+		ItemStack itemStack = new ItemStack(Items.掛け軸);
+		NBTTagCompound tag = new NBTTagCompound();
+		tag.setString("Motive", getMotive().title);
+		itemStack.setTagCompound(tag);
+		entityDropItem(itemStack, 0.0F);
 	}
 }

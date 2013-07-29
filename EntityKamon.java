@@ -112,17 +112,9 @@ public class EntityKamon extends EntityHanging {
 	        return this.kamon.sizeY;
 	    }
 
-	    /**
-	     * Drop the item currently on this item frame.
-	     */
-	    public void dropItemStack()
+	    @Override
+	    public void func_110128_b(Entity entity)
 	    {
 	        this.entityDropItem(new ItemStack(Items.家紋), 0.0F);
 	    }
-
-		@Override
-		public void func_110128_b(Entity entity) {
-			// TODO 自動生成されたメソッド・スタブ
-
-		}
 }

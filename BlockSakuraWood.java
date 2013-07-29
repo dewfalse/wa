@@ -54,8 +54,8 @@ public class BlockSakuraWood extends BlockLog {
 	@Override
 	public void registerIcons(IconRegister par1IconRegister) {
 		icons = new Icon[2];
-		icons[0] = par1IconRegister.registerIcon("tree_top");
-		icons[1] = par1IconRegister.registerIcon("tree_side");
+		icons[0] = par1IconRegister.registerIcon("wa:sakura_top");
+		icons[1] = par1IconRegister.registerIcon("wa:sakura_side");
 	}
 
 }

@@ -1,6 +1,6 @@
 package wa;
 
-import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderItem;
@@ -15,16 +15,9 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import cpw.mods.fml.client.FMLClientHandler;
-
 public class RenderObon extends Render {
 
-	@Override
-	public void doRender(Entity entity, double d0, double d1, double d2,
-			float f, float f1) {
-		renderObon((EntityObon)entity, d0, d1, d2, f, f1);
-
-	}
+    private static final ResourceLocation field_110807_a = new ResourceLocation("wa", "textures/obon.png");
 
 	private void renderDisplayItem(EntityObon par1EntityObon) {
 
@@ -52,22 +45,25 @@ public class RenderObon extends Render {
         }
     }
 
-	private void renderObon(EntityObon entityObon, double d0, double d1, double d2,
-			float f, float f1) {
-
+    public void renderObon(EntityObon par1EntityObon, double par2, double par4, double par6, float par8, float par9)
+    {
         GL11.glPushMatrix();
-        GL11.glTranslatef((float)d0, (float)d1 + 0.05F, (float)d2);
-        GL11.glRotatef(f, 1.0f, 0.0F, 0.0F);
+        GL11.glTranslatef((float)par2, (float)par4 + 0.05F, (float)par6);
+        GL11.glRotatef(par8, 1.0F, 0.0F, 0.0F);
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-        Minecraft mc = FMLClientHandler.instance().getClient();
-        mc.func_110434_K().func_110577_a(func_110775_a(entityObon));
+        this.func_110777_b(par1EntityObon);
         float f2 = 0.0625F;
         GL11.glScalef(f2, f2, f2);
-        func_77010_a(entityObon, 16, 16, 0, 0);
-        renderDisplayItem(entityObon);
-    	GL11.glDisable(GL12.GL_RESCALE_NORMAL);
-    	GL11.glPopMatrix();
-	}
+        this.func_77010_a(par1EntityObon, 16, 16, 0, 0);
+        renderDisplayItem(par1EntityObon);
+        GL11.glDisable(GL12.GL_RESCALE_NORMAL);
+        GL11.glPopMatrix();
+    }
+
+    protected ResourceLocation func_110806_a(EntityObon par1EntityObon)
+    {
+        return field_110807_a;
+    }
 
     private void func_77010_a(EntityObon par1EntityObon, int par2, int par3, int par4, int par5)
     {
@@ -135,37 +131,54 @@ public class RenderObon extends Render {
                 tessellator.draw();
             }
         }
-
     }
 
-
-    private void func_77008_a(EntityObon entityObon, float f, float f1)
+    private void func_77008_a(EntityObon par1EntityObon, float par2, float par3)
     {
-        int i = MathHelper.floor_double(entityObon.posX);
-        int j = MathHelper.floor_double(entityObon.posY + (double)(f1 / 16F));
-        int k = MathHelper.floor_double(entityObon.posZ);
-        if(entityObon.hangingDirection == 0)
+        int i = MathHelper.floor_double(par1EntityObon.posX);
+        int j = MathHelper.floor_double(par1EntityObon.posY + (double)(par3 / 16.0F));
+        int k = MathHelper.floor_double(par1EntityObon.posZ);
+
+        if (par1EntityObon.hangingDirection == 2)
         {
-            i = MathHelper.floor_double(entityObon.posX + (double)(f / 16F));
+            i = MathHelper.floor_double(par1EntityObon.posX + (double)(par2 / 16.0F));
         }
-        if(entityObon.hangingDirection == 1)
+
+        if (par1EntityObon.hangingDirection == 1)
         {
-            k = MathHelper.floor_double(entityObon.posZ - (double)(f / 16F));
+            k = MathHelper.floor_double(par1EntityObon.posZ - (double)(par2 / 16.0F));
         }
-        if(entityObon.hangingDirection == 2)
+
+        if (par1EntityObon.hangingDirection == 0)
         {
-            i = MathHelper.floor_double(entityObon.posX - (double)(f / 16F));
+            i = MathHelper.floor_double(par1EntityObon.posX - (double)(par2 / 16.0F));
         }
-        if(entityObon.hangingDirection == 3)
+
+        if (par1EntityObon.hangingDirection == 3)
         {
-            k = MathHelper.floor_double(entityObon.posZ + (double)(f / 16F));
+            k = MathHelper.floor_double(par1EntityObon.posZ + (double)(par2 / 16.0F));
         }
-        float f2 = renderManager.worldObj.getLightBrightness(i, j, k);
-        GL11.glColor3f(f2, f2, f2);
+
+        int l = this.renderManager.worldObj.getLightBrightnessForSkyBlocks(i, j, k, 0);
+        int i1 = l % 65536;
+        int j1 = l / 65536;
+        OpenGlHelper.setLightmapTextureCoords(OpenGlHelper.lightmapTexUnit, (float)i1, (float)j1);
+        GL11.glColor3f(1.0F, 1.0F, 1.0F);
     }
 
-	@Override
-	protected ResourceLocation func_110775_a(Entity entity) {
-        return new ResourceLocation("wa", "/textures/items/obon");
-	}
+    protected ResourceLocation func_110775_a(Entity par1Entity)
+    {
+        return this.func_110806_a((EntityObon)par1Entity);
+    }
+
+    /**
+     * Actually renders the given argument. This is a synthetic bridge method, always casting down its argument and then
+     * handing it off to a worker function which does the actual work. In all probabilty, the class Render is generic
+     * (Render<T extends Entity) and this method has signature public void doRender(T entity, double d, double d1,
+     * double d2, float f, float f1). But JAD is pre 1.5 so doesn't do that.
+     */
+    public void doRender(Entity par1Entity, double par2, double par4, double par6, float par8, float par9)
+    {
+        this.renderObon((EntityObon)par1Entity, par2, par4, par6, par8, par9);
+    }
 }

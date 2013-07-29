@@ -1,6 +1,5 @@
 package wa;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.Render;
@@ -11,9 +10,9 @@ import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
-import cpw.mods.fml.client.FMLClientHandler;
-
 public class RenderKakejiku extends Render {
+
+    private static final ResourceLocation field_110807_a = new ResourceLocation("wa", "textures/kakejiku.png");
 
     public void renderKakejiku(EntityKakejiku par1EntityKakejiku, double par2, double par4, double par6, float par8, float par9)
     {
@@ -21,8 +20,7 @@ public class RenderKakejiku extends Render {
         GL11.glTranslatef((float)par2, (float)par4, (float)par6);
         GL11.glRotatef(par8, 0.0F, 1.0F, 0.0F);
         GL11.glEnable(GL12.GL_RESCALE_NORMAL);
-        Minecraft mc = FMLClientHandler.instance().getClient();
-        mc.func_110434_K().func_110577_a(func_110775_a(par1EntityKakejiku));
+        this.func_110777_b(par1EntityKakejiku);
         EnumKakejiku motive = par1EntityKakejiku.getMotive();
         if(motive == null) {
         	motive = EnumKakejiku.empty;
@@ -32,6 +30,11 @@ public class RenderKakejiku extends Render {
         this.func_77010_a(par1EntityKakejiku, motive.sizeX, motive.sizeY, motive.offsetX, motive.offsetY);
         GL11.glDisable(GL12.GL_RESCALE_NORMAL);
         GL11.glPopMatrix();
+    }
+
+    protected ResourceLocation func_110806_a(EntityKakejiku par1EntityKakejiku)
+    {
+        return field_110807_a;
     }
 
     private void func_77010_a(EntityKakejiku par1EntityKakejiku, int par2, int par3, int par4, int par5)
@@ -105,7 +108,7 @@ public class RenderKakejiku extends Render {
     private void func_77008_a(EntityKakejiku par1EntityKakejiku, float par2, float par3)
     {
         int i = MathHelper.floor_double(par1EntityKakejiku.posX);
-        int j = MathHelper.floor_double(Math.round(par1EntityKakejiku.posY) -0.5D + (double)(par3 / 16.0F));
+        int j = MathHelper.floor_double(par1EntityKakejiku.posY + (double)(par3 / 16.0F));
         int k = MathHelper.floor_double(par1EntityKakejiku.posZ);
 
         if (par1EntityKakejiku.hangingDirection == 2)
@@ -135,6 +138,11 @@ public class RenderKakejiku extends Render {
         GL11.glColor3f(1.0F, 1.0F, 1.0F);
     }
 
+    protected ResourceLocation func_110775_a(Entity par1Entity)
+    {
+        return this.func_110806_a((EntityKakejiku)par1Entity);
+    }
+
     /**
      * Actually renders the given argument. This is a synthetic bridge method, always casting down its argument and then
      * handing it off to a worker function which does the actual work. In all probabilty, the class Render is generic
@@ -145,9 +153,4 @@ public class RenderKakejiku extends Render {
     {
         this.renderKakejiku((EntityKakejiku)par1Entity, par2, par4, par6, par8, par9);
     }
-
-	@Override
-	protected ResourceLocation func_110775_a(Entity entity) {
-        return new ResourceLocation("wa", "/textures/items/kakejiku");
-	}
 }

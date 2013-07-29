@@ -13,13 +13,22 @@ import cpw.mods.fml.client.FMLClientHandler;
 
 public class RenderShuriken extends Render {
 
+    private static final ResourceLocation field_110807_a = new ResourceLocation("wa", "textures/items/shuriken.png");
+
 	@Override
 	public void doRender(Entity entity, double d0, double d1, double d2,
 			float f, float f1) {
 		doRenderShurken((EntityShuriken) entity, d0, d1, d2, f, f1);
 
 	}
-	void doRenderShurken(EntityShuriken entity, double d0, double d1, double d2,
+
+    protected ResourceLocation func_110806_a(EntityShuriken par1EntityObon)
+    {
+        return field_110807_a;
+
+    }
+
+    void doRenderShurken(EntityShuriken entity, double d0, double d1, double d2,
 			float f, float f1) {
 
         GL11.glPushMatrix();
@@ -52,9 +61,9 @@ public class RenderShuriken extends Render {
         GL11.glPopMatrix();
 	}
 
-	@Override
-	protected ResourceLocation func_110775_a(Entity entity) {
-        return new ResourceLocation("wa", "/textures/items/shuriken");
-	}
+    protected ResourceLocation func_110775_a(Entity par1Entity)
+    {
+        return this.func_110806_a((EntityShuriken)par1Entity);
+    }
 
 }

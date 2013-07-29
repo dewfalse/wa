@@ -52,6 +52,6 @@ public class BlockSakuraPlank extends BlockWood {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerIcons(IconRegister par1IconRegister) {
-		this.blockIcon = par1IconRegister.registerIcon("wood");
+		this.blockIcon = par1IconRegister.registerIcon("wa:sakuraWood");
 	}
 }

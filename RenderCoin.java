@@ -55,11 +55,11 @@ public class RenderCoin extends Render {
 		if(entity instanceof EntityCoin)
         switch(((EntityCoin)entity).getCoinType()) {
         case 0:
-            return new ResourceLocation("wa", "/textures/items/bronze_coin");
+            return new ResourceLocation("wa", "textures/items/bronze_coin.png");
         case 1:
-            return new ResourceLocation("wa", "/textures/items/silver_coin");
+            return new ResourceLocation("wa", "textures/items/silver_coin.png");
         case 2:
-            return new ResourceLocation("wa", "/textures/items/gold_coin");
+            return new ResourceLocation("wa", "textures/items/gold_coin.png");
         }
 		return null;
 	}
