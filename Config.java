@@ -118,7 +118,7 @@ public class Config {
 			achivementID = cfg.get(Configuration.CATEGORY_GENERAL, "achivementID", 21320).getInt();
 			biomeID = cfg.get(Configuration.CATEGORY_GENERAL, "biomeID", 50).getInt();
 			玉鋼出現率 = cfg.get(Configuration.CATEGORY_GENERAL, "玉鋼出現率", 20).getInt();
-			鳥居出現率 = cfg.get(Configuration.CATEGORY_GENERAL, "鳥居出現率", 0.1).getDouble(0.1D);
+			鳥居出現率 = cfg.get(Configuration.CATEGORY_GENERAL, "鳥居出現率", 1.0D).getDouble(1.0D);
 			鍛練回数 = cfg.get(Configuration.CATEGORY_GENERAL, "鍛練回数", 2).getInt();
 			たたら製鉄炉レシピ簡易化 = cfg.get(Configuration.CATEGORY_GENERAL, "たたら製鉄炉レシピ簡易化", false).getBoolean(false);
 			cfg.save();
