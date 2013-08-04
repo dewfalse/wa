@@ -18,9 +18,11 @@ public class BonemealEventHandler {
 			}
 		}
 		else if(event.world.getBlockId(event.X, event.Y, event.Z) == Blocks.takenoko.blockID) {
-			if ((double)event.world.rand.nextFloat() < 0.45D) {
-				event.world.setBlock(event.X, event.Y, event.Z, 0, Blocks.take.blockID, 4);
-				event.setResult(Result.ALLOW);
+			if(event.world.isRemote == false) {
+				if ((double)event.world.rand.nextFloat() < 0.45D) {
+					event.world.setBlock(event.X, event.Y, event.Z, Blocks.take.blockID);
+					event.setResult(Result.ALLOW);
+				}
 			}
 		}
 	}
