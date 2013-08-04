@@ -6,6 +6,9 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLiving;
+import net.minecraft.entity.boss.IBossDisplayData;
+import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
@@ -88,10 +91,18 @@ public class BlockWaPortal extends Block {
 					}
 					else {
 						if (par1World.provider.dimensionId == Config.dimensionID) {
-							//par5Entity.travelToDimension(0);
+							if(par5Entity instanceof EntityLiving || par5Entity instanceof EntityMinecart) {
+								if(par5Entity instanceof IBossDisplayData == false) {
+									TeleporterEx.transferEntityToWorld(par5Entity, 0);
+								}
+							}
 						}
 						else {
-							//par5Entity.travelToDimension(Config.dimensionID);
+							if(par5Entity instanceof EntityLiving || par5Entity instanceof EntityMinecart) {
+								if(par5Entity instanceof IBossDisplayData == false) {
+									TeleporterEx.transferEntityToWorld(par5Entity, Config.dimensionID);
+								}
+							}
 						}
 					}
 					// par5Entity.setInPortal();
