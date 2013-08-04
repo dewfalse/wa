@@ -36,6 +36,8 @@ public class Items {
 	public static Item 米 = new Item(Config.米ID).setUnlocalizedName("wa:kome").func_111206_d("wa:kome").setCreativeTab(Wa.creativeTab);
 	public static Item 種籾 = new ItemSeeds(Config.種籾ID, Blocks.ine.blockID, Block.tilledField.blockID).setUnlocalizedName("wa:tanemomi").func_111206_d("wa:tanemomi").setCreativeTab(Wa.creativeTab);
 	public static Item 稲 = new ItemIne(Config.稲ID).setUnlocalizedName("wa:ine").func_111206_d("wa:ine").setCreativeTab(Wa.creativeTab);
+	public static Item 御鏡 = new ItemMirror(Config.御鏡ID).setUnlocalizedName("wa:mikagami").func_111206_d("wa:mikagami").setCreativeTab(Wa.creativeTab);
+	public static Item 勾玉 = new ItemMagatama(Config.勾玉ID).setUnlocalizedName("wa:magatama").func_111206_d("wa:magatama").setCreativeTab(Wa.creativeTab);
 
 	static Item 家紋;// = new 家紋(Config.家紋ID).setUnlocalizedName("wa:kamon").setCreativeTab(Wa.creativeTab);
 	//static Item 陣笠;
@@ -85,6 +87,8 @@ public class Items {
 		addNameForObject(米, "kome", "米");
 		addNameForObject(稲, "ine", "稲");
 		addNameForObject(種籾, "tanemomi", "種籾");
+		addNameForObject(御鏡, "mikagami", "御鏡");
+		addNameForObject(勾玉, "magatama", "勾玉");
 
 		addKakejikuLocalization();
 	}

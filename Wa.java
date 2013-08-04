@@ -127,6 +127,8 @@ public class Wa {
 			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.貨幣, 1, 0), 1, 16, 40));
 			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.貨幣, 1, 1), 1, 6, 60));
 			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.貨幣, 1, 2), 1, 1, 80));
+			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.勾玉), 1, 1, 100));
+			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.御鏡), 1, 1, 100));
 		}
 	}
 
