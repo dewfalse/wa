@@ -7,10 +7,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.audio.SoundManager;
 import net.minecraft.stats.Achievement;
 import net.minecraft.world.World;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.ObfuscationReflectionHelper;
 
 public class ClientProxy extends CommonProxy {
 
@@ -28,17 +30,18 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void preInit() {
 		Minecraft mc = FMLClientHandler.instance().getClient();
-		File soundDir = new File(mc.mcDataDir, "assets/wa/sound/");
+		File soundDir = ObfuscationReflectionHelper.getPrivateValue(SoundManager.class, mc.sndManager, "field_130085_i");
+
 		if (!soundDir.exists() && !soundDir.mkdirs()) {
 			return;
 		}
 		boolean needReload = false;
-		File outFile = new File(mc.mcDataDir + "/assets/wa/sound/", "koto.ogg");
+		File outFile = new File(soundDir + "/sound/wa/", "koto.ogg");
 		if (!outFile.exists() || outFile.length() < 10) {
 			copyResource(Wa.class, "/assets/wa/sound/koto.ogg", outFile);
 			needReload = true;
 		}
-		outFile = new File(mc.mcDataDir + "/assets/wa/sound/", "taiko.ogg");
+		outFile = new File(soundDir + "/sound/wa/", "taiko.ogg");
 		if (!outFile.exists() || outFile.length() < 10) {
 			copyResource(Wa.class, "/assets/wa/sound/taiko.ogg", outFile);
 			needReload = true;
@@ -57,20 +60,39 @@ public class ClientProxy extends CommonProxy {
 	}
 
 	public static void copyResource(Class c, String res, File outputFile) {
+		BufferedInputStream reader = null;
+		BufferedOutputStream writer = null;
 		try {
-			BufferedInputStream reader = new BufferedInputStream(c.getResourceAsStream(res));
-			BufferedOutputStream writer = new BufferedOutputStream(new FileOutputStream(outputFile));
+			reader = new BufferedInputStream(c.getResourceAsStream(res));
+			writer = new BufferedOutputStream(new FileOutputStream(outputFile));
 			int size = 0;
 
 			byte[] buf = new byte[1024];
 			while ((size = reader.read(buf)) != -1) {
 				writer.write(buf, 0, size);
 			}
-			writer.flush();
-			writer.close();
-			reader.close();
 		} catch (IOException e) {
 			e.printStackTrace();
+		} finally {
+			if(writer != null) {
+				try {
+					writer.flush();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				try {
+					writer.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+			if(reader != null) {
+				try {
+					reader.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
 		}
 	}
 }
