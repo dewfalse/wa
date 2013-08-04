@@ -22,7 +22,7 @@ public class BlockTakenoko extends BlockSapling {
 	@Override
     public void growTree(World par1World, int par2, int par3, int par4, Random par5Random)
     {
-		if(par5Random.nextInt(1000) == 0) {
+		if(par5Random.nextDouble() * 100.0D > Config.筍成長確率) {
 			par1World.setBlock(par2, par3, par4, Blocks.take.blockID);
 		}
     }
