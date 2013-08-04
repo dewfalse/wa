@@ -25,21 +25,21 @@ public class Blocks {
 	public static Block tataraBlock = (new BlockTatara(Config.たたら製鉄炉ID, Material.rock)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("wa:tatara").setCreativeTab(Wa.creativeTab);
 	public static Block portal = new BlockWaPortal(Config.ポータルID, Material.portal).setHardness(-1.0F).setResistance(6000000.0F).setUnlocalizedName("wa:portal").setCreativeTab(Wa.creativeTab);
 	public static Block wara = new Block(Config.藁ID, Material.grass).setHardness(0.2F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("wa:wara").func_111022_d("wa:wara").setCreativeTab(Wa.creativeTab);
-	public  static BlockHalfSlab BlockWaHalfBlock = (BlockHalfSlab)(new BlockWaStep(Config.ハーフブロックID, false)).setHardness(1.0F).setStepSound(Block.soundClothFootstep).setUnlocalizedName("wa:step");
+	public static BlockHalfSlab BlockWaHalfBlock = (BlockHalfSlab)(new BlockWaStep(Config.ハーフブロックID, false)).setHardness(1.0F).setStepSound(Block.soundClothFootstep).setUnlocalizedName("wa:step");
 	public static BlockHalfSlab BlockWaDoubleBlock = (BlockHalfSlab)(new BlockWaStep(Config.ダブルブロックID, true)).setHardness(1.0F).setStepSound(Block.soundClothFootstep).setUnlocalizedName("wa:step");
-	static Block shikui = new BlockShikui(Config.漆喰ID, Material.clay).setHardness(0.6F).setStepSound(Block.soundGravelFootstep).setUnlocalizedName("wa:shikui").setCreativeTab(Wa.creativeTab);
-	static Block sakuraWood = (new BlockSakuraWood(Config.原木ID)).setHardness(2.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("wa:sakuraWood").setCreativeTab(Wa.creativeTab);
-	static BlockLeaves sakuraLeaves = (BlockLeaves)(new BlockSakuraLeaves(Config.葉ID)).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("wa:sakuraLeaves").setCreativeTab(Wa.creativeTab);
-	static Block sakuraPlank = (new BlockSakuraPlank(Config.木材ID)).setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("wa:sakuraLog").setCreativeTab(Wa.creativeTab);
-	static Block noren = (new BlockNoren(Config.暖簾ID, Material.cloth)).setHardness(0.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("wa:noren").setCreativeTab(Wa.creativeTab);
-	static Block sakuraSapling = (new BlockSakuraSapling(Config.苗木ID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("wa:sakuraSapling").setCreativeTab(Wa.creativeTab);
+	static public Block shikui = new BlockShikui(Config.漆喰ID, Material.clay).setHardness(0.6F).setStepSound(Block.soundGravelFootstep).setUnlocalizedName("wa:shikui").setCreativeTab(Wa.creativeTab);
+	static public Block sakuraWood = (new BlockSakuraWood(Config.原木ID)).setHardness(2.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("wa:sakuraWood").setCreativeTab(Wa.creativeTab);
+	static public BlockLeaves sakuraLeaves = (BlockLeaves)(new BlockSakuraLeaves(Config.葉ID)).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("wa:sakuraLeaves").setCreativeTab(Wa.creativeTab);
+	static public Block sakuraPlank = (new BlockSakuraPlank(Config.木材ID)).setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("wa:sakuraLog").setCreativeTab(Wa.creativeTab);
+	static public Block noren = (new BlockNoren(Config.暖簾ID, Material.cloth)).setHardness(0.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("wa:noren").setCreativeTab(Wa.creativeTab);
+	static public Block sakuraSapling = (new BlockSakuraSapling(Config.苗木ID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("wa:sakuraSapling").setCreativeTab(Wa.creativeTab);
 
 	//TODO 入手方法を実装
 
-	static Block take = new BlockTake(Config.竹ID, Material.grass).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("wa:take").func_111022_d("wa:take").setCreativeTab(Wa.creativeTab);
-	static Block ine = new BlockIne(Config.稲ブロックID).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("wa:ine");
-	static Block susuki = new BlockSusuki(Config.すすきID, Material.grass).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("wa:susuki").func_111022_d("wa:susuki").setCreativeTab(Wa.creativeTab);
-	static Block takenoko = new BlockTakenoko(Config.筍ID).setUnlocalizedName("wa:takenoko").setCreativeTab(Wa.creativeTab);
+	static public Block take = new BlockTake(Config.竹ID, Material.grass).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("wa:take").func_111022_d("wa:take").setCreativeTab(Wa.creativeTab);
+	static public Block ine = new BlockIne(Config.稲ブロックID).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("wa:ine");
+	static public Block susuki = new BlockSusuki(Config.すすきID, Material.grass).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("wa:susuki").func_111022_d("wa:susuki").setCreativeTab(Wa.creativeTab);
+	static public Block takenoko = new BlockTakenoko(Config.筍ID).setUnlocalizedName("wa:takenoko").setCreativeTab(Wa.creativeTab);
 	//static Block 家紋 = (new 家紋(Config.家紋ID, Material.cloth)).setHardness(0.2F).setStepSound(Block.soundClothFootstep).setUnlocalizedName("wa:kamon").setCreativeTab(Wa.creativeTab);
 
 	static Block 蓮;
