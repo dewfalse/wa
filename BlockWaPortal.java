@@ -6,10 +6,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.boss.IBossDisplayData;
-import net.minecraft.entity.item.EntityMinecart;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -73,41 +69,7 @@ public class BlockWaPortal extends Block {
 			int par4, Entity par5Entity) {
 		long worldTime = par1World.provider.getWorldTime() % 24000;
 		if(12000 <= worldTime && worldTime <= 13500) {
-			if(!par1World.isRemote && !par5Entity.isDead) {
-				if (par5Entity.ridingEntity == null
-						&& par5Entity.riddenByEntity == null) {
-					if(par5Entity instanceof EntityPlayerMP) {
-
-						EntityPlayerMP thePlayer = (EntityPlayerMP) par5Entity;
-						thePlayer.timeUntilPortal = 10;
-
-						if (par1World.provider.dimensionId == Config.dimensionID) {
-							thePlayer.mcServer.getConfigurationManager()
-							.transferPlayerToDimension(thePlayer, 0, new TeleporterEx(thePlayer.mcServer.worldServerForDimension(0)));
-						} else {
-							thePlayer.mcServer.getConfigurationManager()
-							.transferPlayerToDimension(thePlayer, Config.dimensionID, new TeleporterEx(thePlayer.mcServer.worldServerForDimension(Config.dimensionID)));
-						}
-					}
-					else {
-						if (par1World.provider.dimensionId == Config.dimensionID) {
-							if(par5Entity instanceof EntityLiving || par5Entity instanceof EntityMinecart) {
-								if(par5Entity instanceof IBossDisplayData == false) {
-									TeleporterEx.transferEntityToWorld(par5Entity, 0);
-								}
-							}
-						}
-						else {
-							if(par5Entity instanceof EntityLiving || par5Entity instanceof EntityMinecart) {
-								if(par5Entity instanceof IBossDisplayData == false) {
-									TeleporterEx.transferEntityToWorld(par5Entity, Config.dimensionID);
-								}
-							}
-						}
-					}
-					// par5Entity.setInPortal();
-				}
-			}
+			TeleporterEx.transferEntityToWorld(par5Entity, par1World.provider.dimensionId == Config.dimensionID ? 0 : Config.dimensionID);
 		}
 	}
 
