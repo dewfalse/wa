@@ -4,6 +4,9 @@ import net.minecraft.block.Block;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.storage.DerivedWorldInfo;
+import net.minecraft.world.storage.WorldInfo;
+import cpw.mods.fml.common.ObfuscationReflectionHelper;
 
 public class WorldProviderWa extends WorldProvider {
 
@@ -51,6 +54,15 @@ public class WorldProviderWa extends WorldProvider {
 	@Override
 	public int getAverageGroundLevel() {
 		return 64;
+	}
+
+	@Override
+	public void resetRainAndThunder() {
+		super.resetRainAndThunder();
+
+		WorldInfo worldInfo = ObfuscationReflectionHelper.getPrivateValue(DerivedWorldInfo.class, (DerivedWorldInfo)worldObj.getWorldInfo(), "theWorldInfo", "field_76115_a");
+		long i = worldInfo.getWorldTime() + 24000L;
+		worldInfo.setWorldTime(i - i % 24000L);
 	}
 
 	@Override
