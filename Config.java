@@ -61,6 +61,7 @@ public class Config {
 	public static int 筍ID;
 	public static boolean たたら製鉄炉レシピ簡易化;
 	public static double 鳥居出現率;
+	public static double 筍成長確率;
 
 	public static void preInit(File file) {
 		Configuration cfg = new Configuration(file);
@@ -119,6 +120,7 @@ public class Config {
 			biomeID = cfg.get(Configuration.CATEGORY_GENERAL, "biomeID", 50).getInt();
 			玉鋼出現率 = cfg.get(Configuration.CATEGORY_GENERAL, "玉鋼出現率", 20).getInt();
 			鳥居出現率 = cfg.get(Configuration.CATEGORY_GENERAL, "鳥居出現率", 1.0D).getDouble(1.0D);
+			筍成長確率 = cfg.get(Configuration.CATEGORY_GENERAL, "筍成長確率", 5.0D).getDouble(5.0D);
 			鍛練回数 = cfg.get(Configuration.CATEGORY_GENERAL, "鍛練回数", 2).getInt();
 			たたら製鉄炉レシピ簡易化 = cfg.get(Configuration.CATEGORY_GENERAL, "たたら製鉄炉レシピ簡易化", false).getBoolean(false);
 			cfg.save();
