@@ -10,9 +10,8 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.common.ICraftingHandler;
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.Init;
+import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -41,7 +40,7 @@ public class Wa {
 
 	private WaTrade 倭人取引;
 
-	@PreInit
+	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 
 		Config.preInit(event.getSuggestedConfigurationFile());
@@ -52,7 +51,7 @@ public class Wa {
 
 	}
 
-	@Init
+	@EventHandler
 	public void init(FMLInitializationEvent event) {
 
 		EntityRegistry.registerModEntity(EntityObon.class, "Obon", 0, this, 80, 1, true);
