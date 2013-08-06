@@ -38,6 +38,10 @@ public class Items {
 	public static Item 稲 = new ItemIne(Config.稲ID).setUnlocalizedName("wa:ine").func_111206_d("wa:ine").setCreativeTab(Wa.creativeTab);
 	public static Item 御鏡 = new ItemMirror(Config.御鏡ID).setUnlocalizedName("wa:mikagami").func_111206_d("wa:mikagami").setCreativeTab(Wa.creativeTab);
 	public static Item 勾玉 = new ItemMagatama(Config.勾玉ID).setUnlocalizedName("wa:magatama").func_111206_d("wa:magatama").setCreativeTab(Wa.creativeTab);
+	public static Item ズク = new Item(Config.ズクID).setUnlocalizedName("wa:zuku").func_111206_d("wa:zuku").setCreativeTab(Wa.creativeTab);
+	public static Item ズク破片 = new Item(Config.ズク破片ID).setUnlocalizedName("wa:zukuNugget").func_111206_d("wa:zukuNugget").setCreativeTab(Wa.creativeTab);
+	public static Item 石の金槌 = new ItemKanazuchi(Config.石の金槌ID, 0).setUnlocalizedName("wa:stoneKanaduchi").func_111206_d("wa:stoneKanaduchi").setCreativeTab(Wa.creativeTab);
+	public static Item 左下鉄 = new Item(Config.左下鉄ID).setUnlocalizedName("wa:sagegane").func_111206_d("wa:sagegane").setCreativeTab(Wa.creativeTab);
 
 	static Item 家紋;// = new 家紋(Config.家紋ID).setUnlocalizedName("wa:kamon").setCreativeTab(Wa.creativeTab);
 	//static Item 陣笠;
@@ -65,10 +69,12 @@ public class Items {
 		for(int i = 0; i < EnumCoin.values().length; ++i) {
 			addNameForObject(new ItemStack(貨幣, 1, i), EnumCoin.values()[i].toString(), getStringLocalization(EnumCoin.values()[i].toString(), "ja_JP"));
 		}
+		addNameForObject(石の金槌, "StoneKanaduchi", "石の金槌");
 		addNameForObject(金槌, "kanaduchi", "金槌");
 		addNameForObject(鋼の金槌, "StealKanaduchi", "鋼の金槌");
 
 		//金槌は専用のツールカテゴリに登録する
+		MinecraftForge.setToolClass(石の金槌, "hummer", 1);
 		MinecraftForge.setToolClass(金槌, "hummer", 2);
 		MinecraftForge.setToolClass(鋼の金槌, "hummer", 3);
 
@@ -89,6 +95,9 @@ public class Items {
 		addNameForObject(種籾, "tanemomi", "種籾");
 		addNameForObject(御鏡, "mikagami", "御鏡");
 		addNameForObject(勾玉, "magatama", "勾玉");
+		addNameForObject(ズク, "zuku", "ズク");
+		addNameForObject(ズク破片, "zukuNugget", "ズク破片");
+		addNameForObject(左下鉄, "sagegane", "左下鉄");
 
 		addKakejikuLocalization();
 	}

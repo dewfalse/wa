@@ -20,7 +20,7 @@ public class BlockKera extends Block {
 	public boolean removeBlockByPlayer(World world, EntityPlayer player, int x,
 			int y, int z) {
 		ItemStack eq = player.getCurrentEquippedItem();
-		if(eq != null && (eq.itemID == Items.金槌.itemID || eq.itemID == Items.鋼の金槌.itemID)) {
+		if(eq != null && (eq.itemID == Items.金槌.itemID || eq.itemID == Items.鋼の金槌.itemID || eq.itemID == Items.石の金槌.itemID)) {
 			int metadata = world.getBlockMetadata(x, y, z);
 			if(metadata < Config.鍛練回数) {
 				world.setBlockMetadataWithNotify(x, y, z, metadata + 1, 3);
