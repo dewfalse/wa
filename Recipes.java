@@ -127,6 +127,12 @@ public class Recipes {
 				Block.dirt, Blocks.wara, new ItemStack(Item.dyePowder, 1, 15));
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.sakuraPlank, 4, 0),
 				Blocks.sakuraWood);
+
+		GameRegistry.addShapedRecipe(new ItemStack(Block.torchWood, 4),
+				"X",
+				"#",
+				'X', Items.竹炭,
+				'#', Item.stick);
 	}
 
 	public static void postInit() {
