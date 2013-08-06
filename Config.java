@@ -59,7 +59,6 @@ public class Config {
 	public static int 稲ID;
 	public static int 稲ブロックID;
 	public static int 筍ID;
-	public static boolean たたら製鉄炉レシピ簡易化;
 	public static double 鳥居出現率;
 	public static double 筍成長確率;
 	public static int 御鏡ID;
@@ -135,7 +134,6 @@ public class Config {
 			鳥居出現率 = cfg.get(Configuration.CATEGORY_GENERAL, "鳥居出現率", 1.0D).getDouble(1.0D);
 			筍成長確率 = cfg.get(Configuration.CATEGORY_GENERAL, "筍成長確率", 1.0D).getDouble(1.0D);
 			鍛練回数 = cfg.get(Configuration.CATEGORY_GENERAL, "鍛練回数", 2).getInt();
-			たたら製鉄炉レシピ簡易化 = cfg.get(Configuration.CATEGORY_GENERAL, "たたら製鉄炉レシピ簡易化", false).getBoolean(false);
 			レシピ難易度 = cfg.get(Configuration.CATEGORY_GENERAL, "レシピ難易度", 0).getInt();
 			cfg.save();
 		} catch (Exception e) {

@@ -104,7 +104,7 @@ public class Recipes {
 				"AAA",
 				'A', Blocks.wara);
 
-		if(Config.たたら製鉄炉レシピ簡易化) {
+		if(Config.レシピ難易度 == RecipeDifficulty.VERY_EASY) {
 			GameRegistry.addShapelessRecipe(new ItemStack(Blocks.tataraBlock),
 					Block.sand, new ItemStack(Item.coal, 1, 1), Block.oreIron);
 			GameRegistry.addShapelessRecipe(new ItemStack(Blocks.tataraBlock),
