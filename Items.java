@@ -39,7 +39,7 @@ public class Items {
 	public static Item 御鏡 = new ItemMirror(Config.御鏡ID).setUnlocalizedName("wa:mikagami").setCreativeTab(Wa.creativeTab);
 	public static Item 勾玉 = new ItemMagatama(Config.勾玉ID).setUnlocalizedName("wa:magatama").setCreativeTab(Wa.creativeTab);
 	public static Item ズク = new Item(Config.ズクID).setUnlocalizedName("wa:zuku").setCreativeTab(Wa.creativeTab);
-	public static Item ズク破片 = new Item(Config.ズク破片ID).setUnlocalizedName("wa:zukuNugget").setCreativeTab(Wa.creativeTab);
+	public static Item ズク破片 = new Item(Config.ズク破片ID).setUnlocalizedName("wa:zukuDust").setCreativeTab(Wa.creativeTab);
 	public static Item 石の金槌 = new ItemKanazuchi(Config.石の金槌ID, 0).setUnlocalizedName("wa:stoneKanaduchi").setCreativeTab(Wa.creativeTab);
 	public static Item 左下鉄 = new Item(Config.左下鉄ID).setUnlocalizedName("wa:sagegane").setCreativeTab(Wa.creativeTab);
 
@@ -96,7 +96,7 @@ public class Items {
 		addNameForObject(御鏡, "mikagami", "御鏡");
 		addNameForObject(勾玉, "magatama", "勾玉");
 		addNameForObject(ズク, "zuku", "ズク");
-		addNameForObject(ズク破片, "zukuNugget", "ズク破片");
+		addNameForObject(ズク破片, "zukuDust", "ズク破片");
 		addNameForObject(左下鉄, "sagegane", "左下鉄");
 
 		addKakejikuLocalization();
