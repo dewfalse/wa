@@ -16,7 +16,7 @@ import cpw.mods.fml.common.registry.LanguageRegistry;
 
 public class Items {
 
-	public static EnumToolMaterial tamahagane = EnumHelper.addToolMaterial("tamahagane", 2, 157, 6.0F, 3, 18);
+	public static EnumToolMaterial tamahagane = EnumHelper.addToolMaterial("tamahagane", Config.玉鋼強度 < 5 ? 2 : 3, 57 + Config.玉鋼強度 * 40, Config.玉鋼強度 * 0.3F + 4.0F, 3, 18);
 	public static Item 刀 = new ItemSword(Config.刀ID, tamahagane).setUnlocalizedName("wa:katana").setCreativeTab(Wa.creativeTab);
 	public static Item 太刀 = new ItemTachi(Config.太刀ID, tamahagane).setUnlocalizedName("wa:tachi").setCreativeTab(Wa.creativeTab);
 	public static Item 玉鋼 = new Item(Config.玉鋼ID).setUnlocalizedName("wa:tamahagane").setCreativeTab(Wa.creativeTab);
