@@ -64,6 +64,7 @@ public class Config {
 	public static int 御鏡ID;
 	public static int 勾玉ID;
 	public static int レシピ難易度;
+	public static int 玉鋼強度;
 	public static int 石の金槌ID;
 	public static int ズクID;
 	public static int ズク破片ID;
@@ -135,6 +136,7 @@ public class Config {
 			筍成長確率 = cfg.get(Configuration.CATEGORY_GENERAL, "筍成長確率", 1.0D).getDouble(1.0D);
 			鍛練回数 = cfg.get(Configuration.CATEGORY_GENERAL, "鍛練回数", 2).getInt();
 			レシピ難易度 = cfg.get(Configuration.CATEGORY_GENERAL, "レシピ難易度", 0).getInt();
+			玉鋼強度 = cfg.get(Configuration.CATEGORY_GENERAL, "玉鋼強度", 10).getInt();
 			cfg.save();
 		} catch (Exception e) {
 			FMLLog.log(Level.SEVERE, e, Wa.modid + " load config exception");
