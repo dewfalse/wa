@@ -1,8 +1,11 @@
 package wa;
 
+import java.util.Map;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -127,7 +130,39 @@ public class Recipes {
 	}
 
 	public static void postInit() {
-		// TODO 自動生成されたメソッド・スタブ
+
+		/*
+		 * ULTRA_HARDはズク破片→ズク→左下鉄→鉄インゴット
+		 * VERY_HARDはズク→左下鉄→鉄インゴット
+		 * HARDは左下鉄→鉄インゴット
+		 */
+		if(Config.レシピ難易度 <= RecipeDifficulty.HARD) {
+			Item replace = Items.左下鉄;
+			if(Config.レシピ難易度 == RecipeDifficulty.VERY_HARD) {
+				replace = Items.ズク;
+			}
+			else if(Config.レシピ難易度 == RecipeDifficulty.ULTRA_HARD) {
+				replace = Items.ズク破片;
+			}
+			for(Object e : FurnaceRecipes.smelting().getSmeltingList().entrySet()) {
+				int id = ((Map.Entry<Integer, ItemStack>)e).getKey();
+				ItemStack result = ((Map.Entry<Integer, ItemStack>)e).getValue();
+				if(result.itemID == Item.ingotIron.itemID) {
+					FurnaceRecipes.smelting().getSmeltingList().put(id, new ItemStack(replace));
+				}
+			}
+		}
+
+		GameRegistry.addShapedRecipe(new ItemStack(Items.ズク),
+				"AAA",
+				"AAA",
+				"AAA",
+				'A', Items.ズク破片);
+		GameRegistry.addShapedRecipe(new ItemStack(Items.左下鉄),
+				"AA",
+				"AA",
+				'A', Items.ズク);
+		GameRegistry.addSmelting(Items.左下鉄.itemID, new ItemStack(Item.ingotIron), 0.7F);
 
 	}
 
