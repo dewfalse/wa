@@ -9,6 +9,9 @@ public class LivingDeathEventHandler {
 
 	@ForgeSubscribe
 	public void onLivingDeathEvent(LivingDeathEvent event) {
+		if(event.entityLiving.worldObj.isRemote) {
+			return;
+		}
 		if(event.entityLiving.dimension == Config.dimensionID) {
 			if(event.entityLiving instanceof EntityZombie || event.entityLiving instanceof EntitySkeleton) {
 				if(event.entityLiving.worldObj.rand.nextInt(10) == 0) {
