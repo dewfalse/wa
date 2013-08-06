@@ -126,4 +126,7 @@ public class Recipes {
 				Blocks.sakuraWood);
 	}
 
+	public static void postInit() {
+	}
+
 }

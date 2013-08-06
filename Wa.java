@@ -14,6 +14,7 @@ import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.EntityRegistry;
@@ -93,6 +94,7 @@ public class Wa {
 		MinecraftForge.EVENT_BUS.register(new LivingDeathEventHandler());
 		GameRegistry.registerWorldGenerator(new WorldGenTakenoko());
 		GameRegistry.registerCraftingHandler((ICraftingHandler) Items.太刀);
+		GameRegistry.registerCraftingHandler((ICraftingHandler) new CraftingHandler());
 
 		String[] categories = {
 				ChestGenHooks.MINESHAFT_CORRIDOR,
@@ -130,4 +132,8 @@ public class Wa {
 		}
 	}
 
+	@EventHandler
+	public void init(FMLPostInitializationEvent event) {
+		Recipes.postInit();
+	}
 }
