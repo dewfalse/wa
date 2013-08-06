@@ -92,7 +92,6 @@ public class Wa {
 		MinecraftForge.EVENT_BUS.register(new EntityJoinWorldEventHandler());
 		MinecraftForge.EVENT_BUS.register(new LivingDeathEventHandler());
 		GameRegistry.registerWorldGenerator(new WorldGenTakenoko());
-		GameRegistry.registerCraftingHandler((ICraftingHandler) Items.稲);
 		GameRegistry.registerCraftingHandler((ICraftingHandler) Items.太刀);
 
 		String[] categories = {
