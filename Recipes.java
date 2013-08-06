@@ -126,4 +126,9 @@ public class Recipes {
 				Blocks.sakuraWood);
 	}
 
+	public static void postInit() {
+		// TODO 自動生成されたメソッド・スタブ
+
+	}
+
 }
