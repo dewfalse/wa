@@ -55,6 +55,11 @@ public class Recipes {
 				" P ",
 				'I', Item.ingotIron,
 				'P', Item.stick);
+		GameRegistry.addShapedRecipe(new ItemStack(Items.石の金槌),
+				"III",
+				" P ",
+				'I', Block.cobblestone,
+				'P', Item.stick);
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.掛け軸),
 				Item.painting);
 		GameRegistry.addShapedRecipe(new ItemStack(Items.毛筆),
