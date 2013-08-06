@@ -65,6 +65,10 @@ public class Config {
 	public static int 御鏡ID;
 	public static int 勾玉ID;
 	public static int レシピ難易度;
+	public static int 石の金槌ID;
+	public static int ズクID;
+	public static int ズク破片ID;
+	public static int 左下鉄ID;
 
 	public static void preInit(File file) {
 		Configuration cfg = new Configuration(file);
@@ -116,6 +120,10 @@ public class Config {
 			稲ID = cfg.getItem("稲ID", 5118).getInt();
 			御鏡ID = cfg.getItem("御鏡ID", 5119).getInt();
 			勾玉ID = cfg.getItem("勾玉ID", 5120).getInt();
+			石の金槌ID = cfg.getItem("石の金槌ID", 5121).getInt();
+			ズクID = cfg.getItem("ズクID", 5122).getInt();
+			ズク破片ID = cfg.getItem("ズク破片ID", 5123).getInt();
+			左下鉄ID = cfg.getItem("左下鉄ID", 5124).getInt();
 
 			町人ID = cfg.get(Configuration.CATEGORY_GENERAL, "町人ID", 8).getInt();
 			刀鍛冶ID = cfg.get(Configuration.CATEGORY_GENERAL, "刀鍛冶ID", 9).getInt();
