@@ -38,9 +38,26 @@ public class BlockKera extends Block {
 				Wa.proxy.addStat(Achievements.tatara, 1);
 				return Items.玉鋼.itemID;
 			}
+			if(Config.レシピ難易度 == RecipeDifficulty.HARD) {
+				return Items.左下鉄.itemID;
+			}
+			else if(Config.レシピ難易度 == RecipeDifficulty.VERY_HARD) {
+				return Items.ズク.itemID;
+			}
+			else if(Config.レシピ難易度 <= RecipeDifficulty.ULTRA_HARD) {
+				return Items.ズク破片.itemID;
+			}
 			return Item.ingotIron.itemID;
 		}
 		return 0;
 	}
 
+	@Override
+	protected void dropBlockAsItem_do(World par1World, int par2, int par3,
+			int par4, ItemStack par5ItemStack) {
+		if(par5ItemStack.itemID == Items.ズク破片.itemID) {
+			par5ItemStack.stackSize = 5 + par1World.rand.nextInt(10);
+		}
+		super.dropBlockAsItem_do(par1World, par2, par3, par4, par5ItemStack);
+	}
 }
