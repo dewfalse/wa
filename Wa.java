@@ -105,29 +105,29 @@ public class Wa {
 				ChestGenHooks.DUNGEON_CHEST,
 				};
 		for(String category : categories) {
-			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.刀), 1, 1, 100));
-			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.太刀), 1, 1, 100));
-			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.玉鋼), 1, 4, 80));
-			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.金槌), 1, 1, 60));
-			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.鋼の斧), 1, 1, 80));
-			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.鋼のツルハシ), 1, 1, 80));
-			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.鋼のシャベル), 1, 1, 80));
-			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.鋼のクワ), 1, 1, 80));
-			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.お盆), 1, 1, 30));
-			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.手裏剣), 1, 16, 30));
-			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.毛筆), 1, 1, 30));
-			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.掛け軸), 1, 1, 30));
-			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.竹炭), 1, 16, 30));
-			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Blocks.taiko), 1, 1, 70));
-			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Blocks.noren), 1, 1, 70));
-			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Blocks.sakuraSapling), 1, 16, 40));
-			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Blocks.takenoko), 1, 16, 40));
-			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.種籾), 1, 16, 40));
-			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.貨幣, 1, 0), 1, 16, 40));
-			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.貨幣, 1, 1), 1, 6, 60));
-			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.貨幣, 1, 2), 1, 1, 80));
-			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.勾玉), 1, 1, 100));
-			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.御鏡), 1, 1, 100));
+			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.刀), 1, 1, 3));
+			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.太刀), 1, 1, 3));
+			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.玉鋼), 1, 1, 4));
+			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.金槌), 1, 1, 3));
+			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.鋼の斧), 1, 1, 3));
+			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.鋼のツルハシ), 1, 1, 3));
+			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.鋼のシャベル), 1, 1, 3));
+			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.鋼のクワ), 1, 1, 3));
+			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.お盆), 1, 1, 3));
+			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.手裏剣), 1, 1, 10));
+			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.毛筆), 1, 1, 3));
+			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.掛け軸), 1, 1, 3));
+			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.竹炭), 1, 4, 10));
+			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Blocks.taiko), 1, 1, 3));
+			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Blocks.noren), 1, 1, 3));
+			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Blocks.sakuraSapling), 1, 4, 10));
+			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Blocks.takenoko), 1, 4, 10));
+			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.種籾), 1, 4, 10));
+			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.貨幣, 1, 0), 1, 4, 10));
+			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.貨幣, 1, 1), 1, 1, 3));
+			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.貨幣, 1, 2), 1, 1, 3));
+			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.勾玉), 1, 1, 3));
+			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.御鏡), 1, 1, 3));
 		}
 	}
 
