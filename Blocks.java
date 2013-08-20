@@ -83,7 +83,7 @@ public class Blocks {
 		registerBlock(shikui, "shikui", "漆喰");
 		registerBlock(wara, "wara", "藁");
 		registerBlock(ine, "ine", "稲");
-		registerBlock(susuki, "sususki", "すすき");
+		registerBlock(susuki, "susuki", "すすき");
 		registerBlock(take, "take", "竹");
 		registerBlock(takenoko, "takenoko", "筍");
 		ItemBlock itemBlockTakenoko = (ItemBlock) new ItemBlockSapling(takenoko.blockID - 256).setUnlocalizedName("wa:takenoko");

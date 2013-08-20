@@ -71,7 +71,7 @@ public class Items {
 		}
 		addNameForObject(石の金槌, "StoneKanaduchi", "石の金槌");
 		addNameForObject(金槌, "kanaduchi", "金槌");
-		addNameForObject(鋼の金槌, "StealKanaduchi", "鋼の金槌");
+		addNameForObject(鋼の金槌, "SteelKanaduchi", "鋼の金槌");
 
 		//金槌は専用のツールカテゴリに登録する
 		MinecraftForge.setToolClass(石の金槌, "hummer", 1);
@@ -80,10 +80,10 @@ public class Items {
 
         addNameForObject(太刀, "tachi", "太刀");
 		addNameForObject(刀, "katana", "刀");
-		addNameForObject(鋼の斧, "stealAxe", "鋼の斧");
-		addNameForObject(鋼のツルハシ, "stealPickaxe", "鋼のツルハシ");
-		addNameForObject(鋼のシャベル, "stealShovel", "鋼のシャベル");
-		addNameForObject(鋼のクワ, "stealHoe", "鋼のクワ");
+		addNameForObject(鋼の斧, "steelAxe", "鋼の斧");
+		addNameForObject(鋼のツルハシ, "steelPickaxe", "鋼のツルハシ");
+		addNameForObject(鋼のシャベル, "steelShovel", "鋼のシャベル");
+		addNameForObject(鋼のクワ, "steelHoe", "鋼のクワ");
 		//addNameForObject(家紋, "kamon", "家紋");
 		addNameForObject(竹炭, "takezumi", "竹炭");
 		addNameForObject(お盆, "obon", "お盆");
