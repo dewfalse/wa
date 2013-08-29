@@ -34,13 +34,18 @@ public class Blocks {
 	public static Block noren = (new BlockNoren(Config.暖簾ID, Material.cloth)).setHardness(0.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("wa:noren").setCreativeTab(Wa.creativeTab);
 	public static Block sakuraSapling = (new BlockSakuraSapling(Config.苗木ID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("wa:sakuraSapling").setCreativeTab(Wa.creativeTab);
 
-	//TODO 入手方法を実装
-
 	public static Block take = new BlockTake(Config.竹ID, Material.grass).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("wa:take").setCreativeTab(Wa.creativeTab);
 	public static Block ine = new BlockIne(Config.稲ブロックID).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("wa:ine");
 	public static Block susuki = new BlockSusuki(Config.すすきID, Material.grass).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("wa:susuki").setCreativeTab(Wa.creativeTab);
 	public static Block takenoko = new BlockTakenoko(Config.筍ID).setUnlocalizedName("wa:takenoko").setCreativeTab(Wa.creativeTab);
 	//static Block 家紋 = (new 家紋(Config.家紋ID, Material.cloth)).setHardness(0.2F).setStepSound(Block.soundClothFootstep).setUnlocalizedName("wa:kamon").setCreativeTab(Wa.creativeTab);
+
+	public static Block umeWood = (new BlockUmeWood(Config.梅原木ID)).setHardness(2.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("wa:umeWood").setCreativeTab(Wa.creativeTab);
+	public static Block umeSapling = (new BlockUmeSapling(Config.梅苗木ID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("wa:umeSapling").setCreativeTab(Wa.creativeTab);
+
+	public static Block brewingBarrel = new BlockBrewingBarrel(Config.醸造樽ID, Material.wood).setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("wa:brewingBarrel").setCreativeTab(Wa.creativeTab);
+
+	//TODO 入手方法を実装
 
 	static Block 蓮;
 	static Block 囲炉裏;
@@ -69,6 +74,10 @@ public class Blocks {
 		registerBlock(sakuraSapling, "sakuraSapling", "桜苗木");
 		ItemBlock itemBlockSapling = (ItemBlock) new ItemBlockSapling(sakuraSapling.blockID - 256).setUnlocalizedName("wa:sakuraSapling");
 		GameRegistry.registerItem(itemBlockSapling, "WaSakuraSapling");
+        registerBlock(umeWood, "umeWood", "梅原木");
+		registerBlock(umeSapling, "umeSapling", "梅苗木");
+		ItemBlock itemBlockUmeSapling = (ItemBlock) new ItemBlockUmeSapling(umeSapling.blockID - 256).setUnlocalizedName("wa:umeSapling");
+		GameRegistry.registerItem(itemBlockUmeSapling, "WaUmeSapling");
 		//registerBlock(家紋, "kamon", "家紋");
 		/*GameRegistry.registerBlock(家紋, 家紋アイテムブロック.class, "家紋", Wa.modid);
 		LanguageRegistry.addName(new ItemStack(家紋, 1, 0), "oda");
@@ -95,6 +104,9 @@ public class Blocks {
 		registerBlock(portal, "portal", "ポータル");
 		GameRegistry.registerTileEntity(TileEntityTatara.class, "tatara");
 
+		registerBlock(brewingBarrel, "brewingBarrel", "醸造樽");
+		GameRegistry.registerTileEntity(TileEntityBrewingBarrel.class, "BrewingBarrel");
+
 		colorWood = new Block[16];
 		for(int i = 0; i < 16; ++i) {
 			colorWood[i] = (new BlockColorWood(Config.色付き木材ID + i, i)).setHardness(2.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("wa:paintedWood"+ ItemDye.dyeColorNames[i]).setCreativeTab(Wa.creativeTab);
@@ -110,6 +122,7 @@ public class Blocks {
 
 		OreDictionary.registerOre("logWood", new ItemStack(sakuraWood, 1, 0));
 		OreDictionary.registerOre("plankWood", new ItemStack(sakuraPlank, 1, 0));
+		OreDictionary.registerOre("logWood", new ItemStack(umeWood, 1, 0));
 	}
 
 	private static void registerBlock(Block block, String name, String 名前) {

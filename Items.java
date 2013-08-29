@@ -42,6 +42,9 @@ public class Items {
 	public static Item ズク破片 = new Item(Config.ズク破片ID).setUnlocalizedName("wa:zukuDust").setCreativeTab(Wa.creativeTab);
 	public static Item 石の金槌 = new ItemKanazuchi(Config.石の金槌ID, 0).setUnlocalizedName("wa:stoneKanaduchi").setCreativeTab(Wa.creativeTab);
 	public static Item 左下鉄 = new Item(Config.左下鉄ID).setUnlocalizedName("wa:sagegane").setCreativeTab(Wa.creativeTab);
+	public static Item 梅の実 = new ItemUmenomi(Config.梅の実ID).setUnlocalizedName("wa:umenomi").setCreativeTab(Wa.creativeTab);
+	public static Item 梅干し = new ItemUmeboshi(Config.梅干しID).setUnlocalizedName("wa:umeboshi").setCreativeTab(Wa.creativeTab);
+	public static Item 梅酒 = new ItemUmeshu(Config.梅酒ID).setUnlocalizedName("wa:umeshu").setCreativeTab(Wa.creativeTab);
 
 	static Item 家紋;// = new 家紋(Config.家紋ID).setUnlocalizedName("wa:kamon").setCreativeTab(Wa.creativeTab);
 	//static Item 陣笠;
@@ -98,6 +101,9 @@ public class Items {
 		addNameForObject(ズク, "zuku", "ズク");
 		addNameForObject(ズク破片, "zukuDust", "ズク破片");
 		addNameForObject(左下鉄, "sagegane", "左下鉄");
+		addNameForObject(梅の実, "umenomi", "梅の実");
+		addNameForObject(梅干し, "umeboshi", "梅干し");
+		addNameForObject(梅酒, "umeshu", "梅酒");
 
 		addKakejikuLocalization();
 	}
