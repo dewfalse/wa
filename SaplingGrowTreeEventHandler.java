@@ -12,6 +12,10 @@ public class SaplingGrowTreeEventHandler {
 			(new WorldGeneratorSakuraTrees(true)).generate(event.world, event.rand, event.x, event.y, event.z);
 			event.setResult(Result.DENY);
 		}
+		else if(event.world.getBlockId(event.x, event.y, event.z) == Blocks.umeSapling.blockID) {
+			(new WorldGeneratorUmeTrees(true)).generate(event.world, event.rand, event.x, event.y, event.z);
+			event.setResult(Result.DENY);
+		}
 
 	}
 }

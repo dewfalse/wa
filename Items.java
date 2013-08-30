@@ -36,12 +36,19 @@ public class Items {
 	public static Item 米 = new Item(Config.米ID).setUnlocalizedName("wa:kome").func_111206_d("wa:kome").setCreativeTab(Wa.creativeTab);
 	public static Item 種籾 = new ItemSeeds(Config.種籾ID, Blocks.ine.blockID, Block.tilledField.blockID).setUnlocalizedName("wa:tanemomi").func_111206_d("wa:tanemomi").setCreativeTab(Wa.creativeTab);
 	public static Item 稲 = new ItemIne(Config.稲ID).setUnlocalizedName("wa:ine").func_111206_d("wa:ine").setCreativeTab(Wa.creativeTab);
+	public static Item 厄除けの御札;//mobが避ける
+	public static Item 憑物落としの御札;//mobのターゲティングを解除する
+	public static Item 清めの御札;//mobのスポーンを阻害する
+	public static Item 究極の御札;
 	public static Item 御鏡 = new ItemMirror(Config.御鏡ID).setUnlocalizedName("wa:mikagami").func_111206_d("wa:mikagami").setCreativeTab(Wa.creativeTab);
 	public static Item 勾玉 = new ItemMagatama(Config.勾玉ID).setUnlocalizedName("wa:magatama").func_111206_d("wa:magatama").setCreativeTab(Wa.creativeTab);
 	public static Item ズク = new Item(Config.ズクID).setUnlocalizedName("wa:zuku").func_111206_d("wa:zuku").setCreativeTab(Wa.creativeTab);
 	public static Item ズク破片 = new Item(Config.ズク破片ID).setUnlocalizedName("wa:zukuDust").func_111206_d("wa:zukuDust").setCreativeTab(Wa.creativeTab);
 	public static Item 石の金槌 = new ItemKanazuchi(Config.石の金槌ID, 0).setUnlocalizedName("wa:stoneKanaduchi").func_111206_d("wa:stoneKanaduchi").setCreativeTab(Wa.creativeTab);
 	public static Item 左下鉄 = new Item(Config.左下鉄ID).setUnlocalizedName("wa:sagegane").func_111206_d("wa:sagegane").setCreativeTab(Wa.creativeTab);
+	public static Item 梅の実 = new ItemUmenomi(Config.梅の実ID).setUnlocalizedName("wa:umenomi").func_111206_d("wa:umenomi").setCreativeTab(Wa.creativeTab);
+	public static Item 梅干し = new ItemUmeboshi(Config.梅干しID).setUnlocalizedName("wa:umeboshi").func_111206_d("wa:umeboshi").setCreativeTab(Wa.creativeTab);
+	public static Item 梅酒 = new ItemUmeshu(Config.梅酒ID).setUnlocalizedName("wa:umeshu").func_111206_d("wa:umeshu").setCreativeTab(Wa.creativeTab);
 
 	static Item 家紋;// = new 家紋(Config.家紋ID).setUnlocalizedName("wa:kamon").setCreativeTab(Wa.creativeTab);
 	//static Item 陣笠;
@@ -98,6 +105,9 @@ public class Items {
 		addNameForObject(ズク, "zuku", "ズク");
 		addNameForObject(ズク破片, "zukuDust", "ズク破片");
 		addNameForObject(左下鉄, "sagegane", "左下鉄");
+		addNameForObject(梅の実, "umenomi", "梅の実");
+		addNameForObject(梅干し, "umeboshi", "梅干し");
+		addNameForObject(梅酒, "umeshu", "梅酒");
 
 		addKakejikuLocalization();
 	}

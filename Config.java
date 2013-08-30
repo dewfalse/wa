@@ -69,6 +69,13 @@ public class Config {
 	public static int ズクID;
 	public static int ズク破片ID;
 	public static int 左下鉄ID;
+	public static int 梅の実ID;
+	public static int 梅干しID;
+	public static int 梅酒ID;
+	public static int 梅原木ID;
+	public static int 梅苗木ID;
+	public static int 醸造樽ID;
+	public static int 醸造樽GUIID;
 
 	public static void preInit(File file) {
 		Configuration cfg = new Configuration(file);
@@ -96,6 +103,9 @@ public class Config {
 			たたら製鉄炉ID = cfg.getBlock("たたら製鉄炉ID", 3541).getInt();
 			漆喰ID = cfg.getBlock("漆喰ID", 3542).getInt();
 			筍ID = cfg.getBlock("筍ID", 3543).getInt();
+			梅原木ID = cfg.getBlock("梅原木ID", 3544).getInt();
+			梅苗木ID = cfg.getBlock("梅苗木ID", 3545).getInt();
+			醸造樽ID = cfg.getBlock("醸造樽ID", 3546).getInt();
 
 			色付き木材ID = cfg.getBlock("色付き木材ID", 3560).getInt();
 
@@ -124,6 +134,9 @@ public class Config {
 			ズクID = cfg.getItem("ズクID", 5122).getInt();
 			ズク破片ID = cfg.getItem("ズク破片ID", 5123).getInt();
 			左下鉄ID = cfg.getItem("左下鉄ID", 5124).getInt();
+			梅の実ID = cfg.getItem("梅の実ID", 5125).getInt();
+			梅干しID = cfg.getItem("梅干しID", 5126).getInt();
+			梅酒ID = cfg.getItem("梅酒ID", 5127).getInt();
 
 			町人ID = cfg.get(Configuration.CATEGORY_GENERAL, "町人ID", 8).getInt();
 			刀鍛冶ID = cfg.get(Configuration.CATEGORY_GENERAL, "刀鍛冶ID", 9).getInt();
@@ -137,6 +150,7 @@ public class Config {
 			鍛練回数 = cfg.get(Configuration.CATEGORY_GENERAL, "鍛練回数", 2).getInt();
 			レシピ難易度 = cfg.get(Configuration.CATEGORY_GENERAL, "レシピ難易度", 0).getInt();
 			玉鋼強度 = cfg.get(Configuration.CATEGORY_GENERAL, "玉鋼強度", 10).getInt();
+			醸造樽GUIID = cfg.get(Configuration.CATEGORY_GENERAL, "醸造樽GUIID", 17).getInt();
 			cfg.save();
 		} catch (Exception e) {
 			FMLLog.log(Level.SEVERE, e, Wa.modid + " load config exception");

@@ -8,8 +8,10 @@ import java.io.IOException;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundManager;
+import net.minecraft.src.ModLoader;
 import net.minecraft.stats.Achievement;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.ObfuscationReflectionHelper;
@@ -26,6 +28,11 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityShuriken.class, new RenderShuriken());
 		RenderingRegistry.registerEntityRenderingHandler(EntityKakejiku.class, new RenderKakejiku());
 		RenderingRegistry.registerEntityRenderingHandler(EntityCoin.class, new RenderCoin());
+
+		BlockUmeWood.renderID = RenderingRegistry.getNextAvailableRenderId();
+		RenderingRegistry.registerBlockHandler(new RenderUmeWood());
+
+		MinecraftForge.EVENT_BUS.register(new Particles());
 	}
 	@Override
 	public void preInit() {

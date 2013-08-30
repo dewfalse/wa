@@ -7,9 +7,9 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.util.Icon;
 import net.minecraft.world.IBlockAccess;
 
-public class BlockSakuraSapling extends BlockSapling {
+public class BlockUmeSapling extends BlockSapling {
 
-	protected BlockSakuraSapling(int par1) {
+	protected BlockUmeSapling(int par1) {
 		super(par1);
 	}
 
@@ -20,23 +20,23 @@ public class BlockSakuraSapling extends BlockSapling {
 
 	@Override
 	public void registerIcons(IconRegister par1IconRegister) {
-		this.blockIcon = par1IconRegister.registerIcon("wa:sakuraSapling");
+		this.blockIcon = par1IconRegister.registerIcon("wa:umeSapling");
 	}
 
 	@Override
 	public int getBlockColor() {
-		return Color.WHITE.getRGB();
+		return Color.PINK.getRGB();
 	}
 
 	@Override
 	public int getRenderColor(int par1) {
-		return Color.WHITE.getRGB();
+		return Color.PINK.getRGB();
 	}
 
 	@Override
 	public int colorMultiplier(IBlockAccess par1iBlockAccess, int par2,
 			int par3, int par4) {
-		return Color.WHITE.getRGB();
+		return Color.PINK.getRGB();
 	}
 
 }

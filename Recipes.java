@@ -6,6 +6,7 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -74,6 +75,7 @@ public class Recipes {
 				'C', new ItemStack(Item.dyePowder, 1, 0));
 		GameRegistry.addSmelting(Blocks.take.blockID, new ItemStack(Items.竹炭, 1, 0), 0.15F);
 		GameRegistry.addSmelting(Blocks.sakuraWood.blockID, new ItemStack(Item.coal, 1, 1), 0.15F);
+		GameRegistry.addSmelting(Blocks.umeWood.blockID, new ItemStack(Item.coal, 1, 1), 0.15F);
 		GameRegistry.addShapedRecipe(new ItemStack(Blocks.takezumiBlock),
 				"AAA",
 				"AAA",
@@ -127,12 +129,25 @@ public class Recipes {
 				Block.dirt, Blocks.wara, new ItemStack(Item.dyePowder, 1, 15));
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.sakuraPlank, 4, 0),
 				Blocks.sakuraWood);
+		GameRegistry.addShapelessRecipe(new ItemStack(Item.stick, 8, 0),
+				Blocks.umeWood);
 
 		GameRegistry.addShapedRecipe(new ItemStack(Block.torchWood, 4),
 				"X",
 				"#",
 				'X', Items.竹炭,
 				'#', Item.stick);
+
+		//梅干し
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.梅干し, 1, 0),
+				Items.梅の実);
+		//醸造樽
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.brewingBarrel, 1, 0),
+				"ABA",
+				"A A",
+				"ABA",
+				'A', "logWood",
+				'B', "slabWood"));
 	}
 
 	public static void postInit() {
