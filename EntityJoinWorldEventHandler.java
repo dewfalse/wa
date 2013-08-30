@@ -20,7 +20,7 @@ public class EntityJoinWorldEventHandler {
 			EntityZombie entity = (EntityZombie)event.entity;
 			ItemStack itemStack = entity.getCurrentItemOrArmor(0);
 			if(itemStack == null) {
-				if(event.world.rand.nextDouble() < 0.1D) {
+				if(event.world.rand.nextDouble() < 0.03D) {
 					entity.setCurrentItemOrArmor(0, new ItemStack(Items.刀));
 				}
 			}
