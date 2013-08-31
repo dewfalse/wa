@@ -8,7 +8,6 @@ import java.io.IOException;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.audio.SoundManager;
-import net.minecraft.src.ModLoader;
 import net.minecraft.stats.Achievement;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
@@ -31,6 +30,9 @@ public class ClientProxy extends CommonProxy {
 
 		BlockUmeWood.renderID = RenderingRegistry.getNextAvailableRenderId();
 		RenderingRegistry.registerBlockHandler(new RenderUmeWood());
+
+		BlockKawara.renderID = RenderingRegistry.getNextAvailableRenderId();
+		RenderingRegistry.registerBlockHandler(new RenderKawaraBlock());
 
 		MinecraftForge.EVENT_BUS.register(new Particles());
 	}

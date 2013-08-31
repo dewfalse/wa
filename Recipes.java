@@ -148,6 +148,11 @@ public class Recipes {
 				"ABA",
 				'A', "logWood",
 				'B', "slabWood"));
+		GameRegistry.addShapedRecipe(new ItemStack(Blocks.kawara, 3, 0),
+				"  A",
+				" AA",
+				"AA ",
+				'A', Item.brick);
 	}
 
 	public static void postInit() {

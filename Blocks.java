@@ -44,6 +44,7 @@ public class Blocks {
 	public static Block umeSapling = (new BlockUmeSapling(Config.梅苗木ID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("wa:umeSapling").setCreativeTab(Wa.creativeTab);
 
 	public static Block brewingBarrel = new BlockBrewingBarrel(Config.醸造樽ID, Material.wood).setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("wa:brewingBarrel").setCreativeTab(Wa.creativeTab);
+	public static Block kawara = (new BlockKawara(Config.瓦ID, Material.rock)).setHardness(1.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("wa:kawara").setCreativeTab(Wa.creativeTab);
 
 	//TODO 入手方法を実装
 
@@ -106,6 +107,8 @@ public class Blocks {
 
 		registerBlock(brewingBarrel, "brewingBarrel", "醸造樽");
 		GameRegistry.registerTileEntity(TileEntityBrewingBarrel.class, "BrewingBarrel");
+
+		registerBlock(kawara, "kawara", "瓦");
 
 		colorWood = new Block[16];
 		for(int i = 0; i < 16; ++i) {
