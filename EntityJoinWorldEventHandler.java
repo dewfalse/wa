@@ -26,10 +26,14 @@ public class EntityJoinWorldEventHandler {
 			}
 		}
 		if(event.entity instanceof EntityVillager && event.entity.dimension == Config.dimensionID) {
-			if(event.entity.worldObj.rand.nextInt(4) == 0) {
+			switch(event.entity.worldObj.rand.nextInt(5)) {
+			case 0:
 				((EntityVillager)event.entity).setProfession(Config.刀鍛冶ID);
-			}
-			else {
+				break;
+			case 1:
+				((EntityVillager)event.entity).setProfession(Config.茶人ID);
+				break;
+			default:
 				((EntityVillager)event.entity).setProfession(Config.町人ID);
 			}
 		}

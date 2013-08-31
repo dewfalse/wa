@@ -76,6 +76,9 @@ public class Config {
 	public static int 梅苗木ID;
 	public static int 醸造樽ID;
 	public static int 醸造樽GUIID;
+	public static int 茶碗ID;
+	public static int お茶ID;
+	public static int 茶人ID;
 
 	public static void preInit(File file) {
 		Configuration cfg = new Configuration(file);
@@ -137,9 +140,12 @@ public class Config {
 			梅の実ID = cfg.getItem("梅の実ID", 5125).getInt();
 			梅干しID = cfg.getItem("梅干しID", 5126).getInt();
 			梅酒ID = cfg.getItem("梅酒ID", 5127).getInt();
+			茶碗ID = cfg.getItem("茶碗ID", 5128).getInt();
+			お茶ID = cfg.getItem("お茶ID", 5129).getInt();
 
 			町人ID = cfg.get(Configuration.CATEGORY_GENERAL, "町人ID", 8).getInt();
 			刀鍛冶ID = cfg.get(Configuration.CATEGORY_GENERAL, "刀鍛冶ID", 9).getInt();
+			茶人ID = cfg.get(Configuration.CATEGORY_GENERAL, "茶人ID", 10).getInt();
 			dimensionID = cfg.get(Configuration.CATEGORY_GENERAL, "dimensionID", 9).getInt();
 			providerType = cfg.get(Configuration.CATEGORY_GENERAL, "providerType", 9).getInt();
 			achivementID = cfg.get(Configuration.CATEGORY_GENERAL, "achivementID", 21320).getInt();

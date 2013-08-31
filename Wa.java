@@ -80,8 +80,10 @@ public class Wa {
 		倭人取引 = new WaTrade();
 		VillagerRegistry.instance().registerVillagerType(Config.町人ID, "/mods/wa/textures/villager.png");
 		VillagerRegistry.instance().registerVillagerType(Config.刀鍛冶ID, "/mods/wa/textures/swordsmith.png");
+		VillagerRegistry.instance().registerVillagerType(Config.茶人ID, "/mods/wa/textures/teaMaster.png");
 		VillagerRegistry.instance().registerVillageTradeHandler(Config.町人ID, 倭人取引);
 		VillagerRegistry.instance().registerVillageTradeHandler(Config.刀鍛冶ID, 倭人取引);
+		VillagerRegistry.instance().registerVillageTradeHandler(Config.茶人ID, 倭人取引);
 
 		BiomeManager.addVillageBiome(WorldChunkManagerWa.spring, true);
 		BiomeManager.addVillageBiome(WorldChunkManagerWa.summer, true);
