@@ -81,8 +81,11 @@ public class Wa {
 		VillagerRegistry.instance().registerVillagerSkin(Config.町人ID, new ResourceLocation("wa", "textures/villager.png"));
 		VillagerRegistry.instance().registerVillagerId(Config.刀鍛冶ID);
 		VillagerRegistry.instance().registerVillagerSkin(Config.刀鍛冶ID, new ResourceLocation("wa","textures/swordsmith.png"));
+		VillagerRegistry.instance().registerVillagerId(Config.茶人ID);
+		VillagerRegistry.instance().registerVillagerSkin(Config.茶人ID, new ResourceLocation("wa","textures/teaMaster.png"));
 		VillagerRegistry.instance().registerVillageTradeHandler(Config.町人ID, 倭人取引);
 		VillagerRegistry.instance().registerVillageTradeHandler(Config.刀鍛冶ID, 倭人取引);
+		VillagerRegistry.instance().registerVillageTradeHandler(Config.茶人ID, 倭人取引);
 
 		BiomeManager.addVillageBiome(WorldChunkManagerWa.spring, true);
 		BiomeManager.addVillageBiome(WorldChunkManagerWa.summer, true);

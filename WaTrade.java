@@ -75,6 +75,17 @@ public class WaTrade implements IVillageTradeHandler {
 			//銀貨1→手裏剣1～4
 			recipeList.add(new MerchantRecipe( new ItemStack(Items.貨幣.itemID, 1, 1), new ItemStack(Items.手裏剣, 1 + random.nextInt(4))));
 		}
+		else if(villager.getProfession() == Config.茶人ID) {
+
+			//金貨1～10→茶碗
+			recipeList.add(new MerchantRecipe( new ItemStack(Items.貨幣.itemID, 1, 2), new ItemStack(Items.茶碗)));
+
+			//茶碗→お茶
+			recipeList.add(new MerchantRecipe( new ItemStack(Items.茶碗.itemID, 1, 0), new ItemStack(Items.お茶)));
+
+			//茶碗＋銀貨1～10→お茶
+			recipeList.add(new MerchantRecipe( new ItemStack(Items.茶碗.itemID, 1, 0), new ItemStack(Items.貨幣.itemID, 1 + random.nextInt(10), 1), new ItemStack(Items.お茶)));
+		}
 	}
 
 }

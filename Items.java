@@ -49,6 +49,8 @@ public class Items {
 	public static Item 梅の実 = new ItemUmenomi(Config.梅の実ID).setUnlocalizedName("wa:umenomi").func_111206_d("wa:umenomi").setCreativeTab(Wa.creativeTab);
 	public static Item 梅干し = new ItemUmeboshi(Config.梅干しID).setUnlocalizedName("wa:umeboshi").func_111206_d("wa:umeboshi").setCreativeTab(Wa.creativeTab);
 	public static Item 梅酒 = new ItemUmeshu(Config.梅酒ID).setUnlocalizedName("wa:umeshu").func_111206_d("wa:umeshu").setCreativeTab(Wa.creativeTab);
+	public static Item 茶碗 = new Item(Config.茶碗ID).setUnlocalizedName("wa:teaEmpty").func_111206_d("wa:teaEmpty").setCreativeTab(Wa.creativeTab);
+	public static Item お茶 = new ItemTea(Config.お茶ID).setUnlocalizedName("wa:tea").func_111206_d("wa:tea").setCreativeTab(Wa.creativeTab);
 
 	static Item 家紋;// = new 家紋(Config.家紋ID).setUnlocalizedName("wa:kamon").setCreativeTab(Wa.creativeTab);
 	//static Item 陣笠;
@@ -108,6 +110,8 @@ public class Items {
 		addNameForObject(梅の実, "umenomi", "梅の実");
 		addNameForObject(梅干し, "umeboshi", "梅干し");
 		addNameForObject(梅酒, "umeshu", "梅酒");
+		addNameForObject(茶碗, "chawan", "茶碗");
+		addNameForObject(お茶, "ocha", "お茶");
 
 		addKakejikuLocalization();
 	}
