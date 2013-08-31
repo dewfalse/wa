@@ -32,6 +32,9 @@ public class ClientProxy extends CommonProxy {
 		BlockUmeWood.renderID = RenderingRegistry.getNextAvailableRenderId();
 		RenderingRegistry.registerBlockHandler(new RenderUmeWood());
 
+		BlockKawara.renderID = RenderingRegistry.getNextAvailableRenderId();
+		RenderingRegistry.registerBlockHandler(new RenderKawaraBlock());
+
 		MinecraftForge.EVENT_BUS.register(new Particles());
 	}
 	@Override
