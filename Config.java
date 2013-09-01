@@ -80,6 +80,9 @@ public class Config {
 	public static int お茶ID;
 	public static int 茶人ID;
 	public static int 瓦ID;
+	public static int 御札ID;
+	public static int echantmentBaseID;
+	public static int 神官ID;
 
 	public static void preInit(File file) {
 		Configuration cfg = new Configuration(file);
@@ -111,6 +114,7 @@ public class Config {
 			梅苗木ID = cfg.getBlock("梅苗木ID", 3545).getInt();
 			醸造樽ID = cfg.getBlock("醸造樽ID", 3546).getInt();
 			瓦ID = cfg.getBlock("瓦ID", 3547).getInt();
+			御札ID = cfg.getBlock("御札ID", 3548).getInt();
 
 			色付き木材ID = cfg.getBlock("色付き木材ID", 3560).getInt();
 
@@ -148,6 +152,7 @@ public class Config {
 			町人ID = cfg.get(Configuration.CATEGORY_GENERAL, "町人ID", 8).getInt();
 			刀鍛冶ID = cfg.get(Configuration.CATEGORY_GENERAL, "刀鍛冶ID", 9).getInt();
 			茶人ID = cfg.get(Configuration.CATEGORY_GENERAL, "茶人ID", 10).getInt();
+			神官ID = cfg.get(Configuration.CATEGORY_GENERAL, "神官ID", 11).getInt();
 			dimensionID = cfg.get(Configuration.CATEGORY_GENERAL, "dimensionID", 9).getInt();
 			providerType = cfg.get(Configuration.CATEGORY_GENERAL, "providerType", 9).getInt();
 			achivementID = cfg.get(Configuration.CATEGORY_GENERAL, "achivementID", 21320).getInt();
@@ -159,6 +164,7 @@ public class Config {
 			レシピ難易度 = cfg.get(Configuration.CATEGORY_GENERAL, "レシピ難易度", 0).getInt();
 			玉鋼強度 = cfg.get(Configuration.CATEGORY_GENERAL, "玉鋼強度", 10).getInt();
 			醸造樽GUIID = cfg.get(Configuration.CATEGORY_GENERAL, "醸造樽GUIID", 17).getInt();
+			echantmentBaseID = cfg.get(Configuration.CATEGORY_GENERAL, "echantmentBaseID", 70).getInt();
 			cfg.save();
 		} catch (Exception e) {
 			FMLLog.log(Level.SEVERE, e, Wa.modid + " load config exception");

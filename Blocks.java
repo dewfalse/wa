@@ -46,6 +46,10 @@ public class Blocks {
 	public static Block brewingBarrel = new BlockBrewingBarrel(Config.醸造樽ID, Material.wood).setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("wa:brewingBarrel").setCreativeTab(Wa.creativeTab);
 	public static Block kawara = (new BlockKawara(Config.瓦ID, Material.rock)).setHardness(1.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("wa:kawara").setCreativeTab(Wa.creativeTab);
 
+	public static Block charm = (new BlockCharm(Config.御札ID, Material.cloth)).setHardness(1.0F).setStepSound(Block.soundStoneFootstep).setUnlocalizedName("wa:ofuda").func_111022_d("wa:ofuda").setCreativeTab(Wa.creativeTab);
+	public static ItemBlock itemBlockCharm = (ItemBlock) new ItemBlockCharm(charm.blockID - 256).setUnlocalizedName("wa:ofuda").func_111206_d("wa:ofuda");
+
+
 	//TODO 入手方法を実装
 
 	static Block 蓮;
@@ -109,6 +113,13 @@ public class Blocks {
 		GameRegistry.registerTileEntity(TileEntityBrewingBarrel.class, "BrewingBarrel");
 
 		registerBlock(kawara, "kawara", "瓦");
+
+		//registerBlock(charm, "charm", "御札");
+		GameRegistry.registerBlock(charm, ItemBlockCharm.class, "ofuda");
+		GameRegistry.registerTileEntity(TileEntityCharm.class, "ofuda");
+		GameRegistry.registerItem(itemBlockCharm, "WaOfuda");
+		LanguageRegistry.instance().addNameForObject(itemBlockCharm, "en_US", "ofuda");
+		LanguageRegistry.instance().addNameForObject(itemBlockCharm, "ja_JP", "御札");
 
 		colorWood = new Block[16];
 		for(int i = 0; i < 16; ++i) {

@@ -24,6 +24,9 @@ public class ClientProxy extends CommonProxy {
 		BlockNoren.renderID = RenderingRegistry.getNextAvailableRenderId();
 		RenderingRegistry.registerBlockHandler(new RenderNorenBlock());
 
+		BlockCharm.renderID = RenderingRegistry.getNextAvailableRenderId();
+		RenderingRegistry.registerBlockHandler(new RenderCharmBlock());
+
 		RenderingRegistry.registerEntityRenderingHandler(EntityShuriken.class, new RenderShuriken());
 		RenderingRegistry.registerEntityRenderingHandler(EntityKakejiku.class, new RenderKakejiku());
 		RenderingRegistry.registerEntityRenderingHandler(EntityCoin.class, new RenderCoin());

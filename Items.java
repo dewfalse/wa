@@ -36,10 +36,6 @@ public class Items {
 	public static Item 米 = new Item(Config.米ID).setUnlocalizedName("wa:kome").func_111206_d("wa:kome").setCreativeTab(Wa.creativeTab);
 	public static Item 種籾 = new ItemSeeds(Config.種籾ID, Blocks.ine.blockID, Block.tilledField.blockID).setUnlocalizedName("wa:tanemomi").func_111206_d("wa:tanemomi").setCreativeTab(Wa.creativeTab);
 	public static Item 稲 = new ItemIne(Config.稲ID).setUnlocalizedName("wa:ine").func_111206_d("wa:ine").setCreativeTab(Wa.creativeTab);
-	public static Item 厄除けの御札;//mobが避ける
-	public static Item 憑物落としの御札;//mobのターゲティングを解除する
-	public static Item 清めの御札;//mobのスポーンを阻害する
-	public static Item 究極の御札;
 	public static Item 御鏡 = new ItemMirror(Config.御鏡ID).setUnlocalizedName("wa:mikagami").func_111206_d("wa:mikagami").setCreativeTab(Wa.creativeTab);
 	public static Item 勾玉 = new ItemMagatama(Config.勾玉ID).setUnlocalizedName("wa:magatama").func_111206_d("wa:magatama").setCreativeTab(Wa.creativeTab);
 	public static Item ズク = new Item(Config.ズクID).setUnlocalizedName("wa:zuku").func_111206_d("wa:zuku").setCreativeTab(Wa.creativeTab);
