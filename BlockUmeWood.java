@@ -24,12 +24,12 @@ public class BlockUmeWood extends BlockLog {
 
 	@Override
 	public int idDropped(int par1, Random par2Random, int par3) {
-		return Blocks.umeWood.blockID;
+		return Blocks.umeLog.blockID;
 	}
 
 	@Override
 	public int damageDropped(int par1) {
-		return 0;
+		return par1;
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public class BlockUmeWood extends BlockLog {
 				}
 			}
 
-			if ((par5 & 3) == 1 && par1World.rand.nextInt(j1) == 0) {
+			if ((this.blockID == Blocks.umeWood.blockID) && par1World.rand.nextInt(j1) == 0) {
 				this.dropBlockAsItem_do(par1World, par2, par3, par4,
 						new ItemStack(Items.梅の実, 1+par1World.rand.nextInt(4), 0));
 			}

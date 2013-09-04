@@ -131,6 +131,8 @@ public class Recipes {
 				Blocks.sakuraWood);
 		GameRegistry.addShapelessRecipe(new ItemStack(Item.stick, 8, 0),
 				Blocks.umeWood);
+		GameRegistry.addShapelessRecipe(new ItemStack(Item.stick, 8, 0),
+				Blocks.umeLog);
 
 		GameRegistry.addShapedRecipe(new ItemStack(Block.torchWood, 4),
 				"X",

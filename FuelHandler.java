@@ -19,6 +19,9 @@ public class FuelHandler implements IFuelHandler {
 		else if(fuel.itemID == Blocks.umeWood.blockID) {
 			return 300;
 		}
+		else if(fuel.itemID == Blocks.umeLog.blockID) {
+			return 300;
+		}
 		else if(fuel.itemID == Blocks.sakuraSapling.blockID) {
 			return 300;
 		}

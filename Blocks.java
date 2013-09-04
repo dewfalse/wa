@@ -41,6 +41,7 @@ public class Blocks {
 	//static Block 家紋 = (new 家紋(Config.家紋ID, Material.cloth)).setHardness(0.2F).setStepSound(Block.soundClothFootstep).setUnlocalizedName("wa:kamon").setCreativeTab(Wa.creativeTab);
 
 	public static Block umeWood = (new BlockUmeWood(Config.梅原木ID)).setHardness(2.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("wa:umeWood").setCreativeTab(Wa.creativeTab);
+	public static Block umeLog = (new BlockUmeWood(Config.梅木材ID)).setHardness(2.0F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("wa:umeLog").setCreativeTab(Wa.creativeTab);
 	public static Block umeSapling = (new BlockUmeSapling(Config.梅苗木ID)).setHardness(0.0F).setStepSound(Block.soundGrassFootstep).setUnlocalizedName("wa:umeSapling").setCreativeTab(Wa.creativeTab);
 
 	public static Block brewingBarrel = new BlockBrewingBarrel(Config.醸造樽ID, Material.wood).setHardness(0.5F).setStepSound(Block.soundWoodFootstep).setUnlocalizedName("wa:brewingBarrel").setCreativeTab(Wa.creativeTab);
@@ -80,6 +81,7 @@ public class Blocks {
 		ItemBlock itemBlockSapling = (ItemBlock) new ItemBlockSapling(sakuraSapling.blockID - 256).setUnlocalizedName("wa:sakuraSapling");
 		GameRegistry.registerItem(itemBlockSapling, "WaSakuraSapling");
         registerBlock(umeWood, "umeWood", "梅原木");
+        registerBlock(umeLog, "umeLog", "梅木材");
 		registerBlock(umeSapling, "umeSapling", "梅苗木");
 		ItemBlock itemBlockUmeSapling = (ItemBlock) new ItemBlockUmeSapling(umeSapling.blockID - 256).setUnlocalizedName("wa:umeSapling");
 		GameRegistry.registerItem(itemBlockUmeSapling, "WaUmeSapling");
@@ -136,7 +138,8 @@ public class Blocks {
 
 		OreDictionary.registerOre("logWood", new ItemStack(sakuraWood, 1, 0));
 		OreDictionary.registerOre("plankWood", new ItemStack(sakuraPlank, 1, 0));
-		OreDictionary.registerOre("logWood", new ItemStack(umeWood, 1, 0));
+		OreDictionary.registerOre("logWood", new ItemStack(umeWood));
+		OreDictionary.registerOre("logWood", new ItemStack(umeLog));
 	}
 
 	private static void registerBlock(Block block, String name, String 名前) {

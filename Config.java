@@ -83,6 +83,7 @@ public class Config {
 	public static int 御札ID;
 	public static int echantmentBaseID;
 	public static int 神官ID;
+	public static int 梅木材ID;
 
 	public static void preInit(File file) {
 		Configuration cfg = new Configuration(file);
@@ -115,6 +116,7 @@ public class Config {
 			醸造樽ID = cfg.getBlock("醸造樽ID", 3546).getInt();
 			瓦ID = cfg.getBlock("瓦ID", 3547).getInt();
 			御札ID = cfg.getBlock("御札ID", 3548).getInt();
+			梅木材ID = cfg.getBlock("梅木材ID", 3549).getInt();
 
 			色付き木材ID = cfg.getBlock("色付き木材ID", 3560).getInt();
 
