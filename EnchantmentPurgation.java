@@ -34,6 +34,11 @@ public class EnchantmentPurgation extends Enchantment {
 	}
 
 	@Override
+	public boolean canApplyAtEnchantingTable(ItemStack stack) {
+		return stack.itemID == Blocks.charm.blockID || stack.itemID == Blocks.itemBlockCharm.itemID;
+	}
+
+	@Override
 	public boolean canApplyTogether(Enchantment par1Enchantment) {
 		return false;
 	}
