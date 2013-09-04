@@ -254,7 +254,7 @@ public class TileEntityBrewingBarrel extends TileEntity implements IInventory {
 			}
 
 		}
-		if(b1 && b2 && waterLevel > 0) {
+		if(b1 && b2 && b3 && waterLevel > 0) {
 			return new ItemStack(Items.梅酒, 1, 0);
 		}
 		return null;
