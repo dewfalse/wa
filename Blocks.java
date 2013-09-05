@@ -81,7 +81,7 @@ public class Blocks {
 		ItemBlock itemBlockSapling = (ItemBlock) new ItemBlockSapling(sakuraSapling.blockID - 256).setUnlocalizedName("wa:sakuraSapling");
 		GameRegistry.registerItem(itemBlockSapling, "WaSakuraSapling");
         registerBlock(umeWood, "umeWood", "梅原木");
-        registerBlock(umeLog, "umeLog", "梅木材");
+        registerBlock(umeLog, "umeLog", "梅原木");
 		registerBlock(umeSapling, "umeSapling", "梅苗木");
 		ItemBlock itemBlockUmeSapling = (ItemBlock) new ItemBlockUmeSapling(umeSapling.blockID - 256).setUnlocalizedName("wa:umeSapling");
 		GameRegistry.registerItem(itemBlockUmeSapling, "WaUmeSapling");
