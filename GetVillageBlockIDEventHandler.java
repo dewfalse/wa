@@ -12,7 +12,7 @@ public class GetVillageBlockIDEventHandler {
 	public void getVillageBlockID(BiomeEvent.GetVillageBlockID event) {
 
 		boolean found = false;
-		for(BiomeGenBase biome : WorldChunkManagerWa.biomeList) {
+		for(BiomeGenBase biome : WorldChunkManagerWa.waBiomeList) {
 			if(event.biome.biomeID == biome.biomeID) {
 				found = true;
 				break;

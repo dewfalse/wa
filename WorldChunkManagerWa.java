@@ -10,7 +10,6 @@ import static net.minecraft.world.biome.BiomeGenBase.frozenRiver;
 import static net.minecraft.world.biome.BiomeGenBase.iceMountains;
 import static net.minecraft.world.biome.BiomeGenBase.icePlains;
 import static net.minecraft.world.biome.BiomeGenBase.ocean;
-import static net.minecraft.world.biome.BiomeGenBase.plains;
 import static net.minecraft.world.biome.BiomeGenBase.river;
 import static net.minecraft.world.biome.BiomeGenBase.swampland;
 import static net.minecraft.world.biome.BiomeGenBase.taiga;
@@ -42,9 +41,12 @@ public class WorldChunkManagerWa extends WorldChunkManager {
 	public static final BiomeGenBase autumn = (new BiomeGenAutumn(Config.biomeID+2)).setColor(0xFF692D).setTemperatureRainfall(0.7F, 0.8F).setBiomeName("Autumn");
 	public static final BiomeGenBase winter = (new BiomeGenWinter(Config.biomeID+3)).setColor(0xEDEFFF).setEnableSnow().setMinMaxHeight(0.3F, 1.3F).setTemperatureRainfall(0.0F, 0.5F).setBiomeName("Winter");
     public static final BiomeGenBase wadesert = (new BiomeGenDesert(Config.biomeID+4)).setColor(16421912).setBiomeName("Desert").setDisableRain().setTemperatureRainfall(2.0F, 0.0F).setMinMaxHeight(0.1F, 0.2F);
+    public static final BiomeGenBase waplains = (new BiomeGenWaPlains(Config.biomeID+5)).setColor(9286496).setBiomeName("Plains").setTemperatureRainfall(0.8F, 0.4F);
+
+    public static final BiomeGenBase[] waBiomeList = {spring, summer, autumn, winter, wadesert, waplains};
 
 
-    public static ArrayList<BiomeGenBase> allowedBiomes = new ArrayList<BiomeGenBase>(Arrays.asList(forest, plains, taiga, taigaHills, forestHills));
+    public static ArrayList<BiomeGenBase> allowedBiomes = new ArrayList<BiomeGenBase>(Arrays.asList(forest, taiga, taigaHills, forestHills));
     private GenLayer genBiomes;
 
     /** A GenLayer containing the indices into BiomeGenBase.biomeList[] */
