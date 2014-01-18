@@ -8,10 +8,10 @@ import net.minecraft.world.World;
 
 public class EntityUmeLeavesFX extends EntityFX {
 
-	private float portalParticleScale;
-	private double blockPosX;
-	private double blockPosY;
-	private double blockPosZ;
+	private final float portalParticleScale;
+	private final double blockPosX;
+	private final double blockPosY;
+	private final double blockPosZ;
 
 	public EntityUmeLeavesFX(World par1World, double par2, double par4,
 			double par6) {
@@ -61,16 +61,16 @@ public class EntityUmeLeavesFX extends EntityFX {
 
 		// GL11.glEnable (GL11.GL_BLEND);
 		// GL11.glBlendFunc (GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_DST_ALPHA);
-		ModLoader.getMinecraftInstance().func_110434_K().func_110577_a(new ResourceLocation("wa", "textures/ume.png"));
+		ModLoader.getMinecraftInstance().getTextureManager().bindTexture(new ResourceLocation("wa", "textures/ume.png"));
 		float f6 = 0f;
 		float f7 = 1.0f;
 
 		float f8 = 0f;// (float)(func_40100_q() / 16) / 16F;
 		float f9 = 1f; // f8 + 0.0624375F;
 		float f10 = 0.1F * particleScale;
-		float f11 = (float) ((prevPosX + (posX - prevPosX) * (double) f) - interpPosX);
-		float f12 = (float) ((prevPosY + (posY - prevPosY) * (double) f) - interpPosY);
-		float f13 = (float) ((prevPosZ + (posZ - prevPosZ) * (double) f) - interpPosZ);
+		float f11 = (float) ((prevPosX + (posX - prevPosX) * f) - interpPosX);
+		float f12 = (float) ((prevPosY + (posY - prevPosY) * f) - interpPosY);
+		float f13 = (float) ((prevPosZ + (posZ - prevPosZ) * f) - interpPosZ);
 		float f14 = 1.0F;
 
 		tessellator.setColorOpaque_F(particleRed * f14, particleGreen * f14,
