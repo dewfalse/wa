@@ -2,7 +2,6 @@ package wa;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.WeightedRandomChestContent;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.ChestGenHooks;
@@ -79,13 +78,9 @@ public class Wa {
 
 		倭人取引 = new WaTrade();
 		VillagerRegistry.instance().registerVillagerId(Config.町人ID);
-		VillagerRegistry.instance().registerVillagerSkin(Config.町人ID, new ResourceLocation("wa", "textures/villager.png"));
 		VillagerRegistry.instance().registerVillagerId(Config.刀鍛冶ID);
-		VillagerRegistry.instance().registerVillagerSkin(Config.刀鍛冶ID, new ResourceLocation("wa","textures/swordsmith.png"));
 		VillagerRegistry.instance().registerVillagerId(Config.茶人ID);
-		VillagerRegistry.instance().registerVillagerSkin(Config.茶人ID, new ResourceLocation("wa","textures/teaMaster.png"));
 		VillagerRegistry.instance().registerVillagerId(Config.神官ID);
-		VillagerRegistry.instance().registerVillagerSkin(Config.神官ID, new ResourceLocation("wa","textures/priest.png"));
 		VillagerRegistry.instance().registerVillageTradeHandler(Config.町人ID, 倭人取引);
 		VillagerRegistry.instance().registerVillageTradeHandler(Config.刀鍛冶ID, 倭人取引);
 		VillagerRegistry.instance().registerVillageTradeHandler(Config.茶人ID, 倭人取引);
@@ -100,20 +95,21 @@ public class Wa {
 		MinecraftForge.EVENT_BUS.register(new BonemealEventHandler());
 		MinecraftForge.EVENT_BUS.register(new EntityJoinWorldEventHandler());
 		MinecraftForge.EVENT_BUS.register(new LivingDeathEventHandler());
+		MinecraftForge.EVENT_BUS.register(new SoundLoadEventHandler());
 		GameRegistry.registerWorldGenerator(new WorldGenTakenoko());
 		GameRegistry.registerCraftingHandler((ICraftingHandler) Items.太刀);
-		GameRegistry.registerCraftingHandler((ICraftingHandler) new CraftingHandler());
-		NetworkRegistry.instance().registerGuiHandler(instance,  proxy);
+		GameRegistry.registerCraftingHandler(new CraftingHandler());
+		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
 
 		String[] categories = {
-				ChestGenHooks.MINESHAFT_CORRIDOR,
-				ChestGenHooks.PYRAMID_DESERT_CHEST,
-				ChestGenHooks.PYRAMID_JUNGLE_CHEST,
-				ChestGenHooks.STRONGHOLD_CORRIDOR,
-				ChestGenHooks.STRONGHOLD_LIBRARY,
-				ChestGenHooks.STRONGHOLD_CROSSING,
-				ChestGenHooks.DUNGEON_CHEST,
-				};
+			ChestGenHooks.MINESHAFT_CORRIDOR,
+			ChestGenHooks.PYRAMID_DESERT_CHEST,
+			ChestGenHooks.PYRAMID_JUNGLE_CHEST,
+			ChestGenHooks.STRONGHOLD_CORRIDOR,
+			ChestGenHooks.STRONGHOLD_LIBRARY,
+			ChestGenHooks.STRONGHOLD_CROSSING,
+			ChestGenHooks.DUNGEON_CHEST,
+			};
 		for(String category : categories) {
 			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.刀), 1, 1, 3));
 			ChestGenHooks.addItem(category, new WeightedRandomChestContent(new ItemStack(Items.太刀), 1, 1, 3));

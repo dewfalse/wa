@@ -6,14 +6,13 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.audio.SoundManager;
 import net.minecraft.stats.Achievement;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.ObfuscationReflectionHelper;
+import cpw.mods.fml.common.registry.VillagerRegistry;
 
 public class ClientProxy extends CommonProxy {
 
@@ -38,26 +37,14 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerBlockHandler(new RenderKawaraBlock());
 
 		MinecraftForge.EVENT_BUS.register(new Particles());
+
+		VillagerRegistry.instance().registerVillagerSkin(Config.町人ID, new ResourceLocation("wa", "textures/villager.png"));
+		VillagerRegistry.instance().registerVillagerSkin(Config.刀鍛冶ID, new ResourceLocation("wa", "textures/swordsmith.png"));
+		VillagerRegistry.instance().registerVillagerSkin(Config.茶人ID, new ResourceLocation("wa", "textures/teaMaster.png"));
+		VillagerRegistry.instance().registerVillagerSkin(Config.神官ID, new ResourceLocation("wa", "textures/priest.png"));
 	}
 	@Override
 	public void preInit() {
-		Minecraft mc = FMLClientHandler.instance().getClient();
-		File soundDir = ObfuscationReflectionHelper.getPrivateValue(SoundManager.class, mc.sndManager, "field_130085_i");
-
-		if (!soundDir.exists() && !soundDir.mkdirs()) {
-			return;
-		}
-		boolean needReload = false;
-		File outFile = new File(soundDir + "/sound/wa/", "koto.ogg");
-		if (!outFile.exists() || outFile.length() < 10) {
-			copyResource(Wa.class, "/assets/wa/sound/koto.ogg", outFile);
-			needReload = true;
-		}
-		outFile = new File(soundDir + "/sound/wa/", "taiko.ogg");
-		if (!outFile.exists() || outFile.length() < 10) {
-			copyResource(Wa.class, "/assets/wa/sound/taiko.ogg", outFile);
-			needReload = true;
-		}
 	}
 
 	@Override
