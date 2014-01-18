@@ -2,7 +2,6 @@ package wa;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityHanging;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -45,7 +44,7 @@ public class EntityKakejiku extends EntityHanging {
 
 
 	@Override
-	public boolean func_130002_c(EntityPlayer par1EntityPlayer) {
+	public boolean interactFirst(EntityPlayer par1EntityPlayer) {
 		if(getMotive() == EnumKakejiku.empty)
 		{
 			ItemStack eq = par1EntityPlayer.getCurrentEquippedItem();
@@ -58,7 +57,7 @@ public class EntityKakejiku extends EntityHanging {
 				}
 			}
 		}
-		return super.func_130002_c(par1EntityPlayer);
+		return super.interactFirst(par1EntityPlayer);
 	}
 
 	@Override
@@ -99,17 +98,17 @@ public class EntityKakejiku extends EntityHanging {
 	}
 
 	@Override
-	public int func_82329_d() {
+	public int getWidthPixels() {
 		return this.getMotive().sizeX;
 	}
 
 	@Override
-	public int func_82330_g() {
+	public int getHeightPixels() {
 		return this.getMotive().sizeY;
 	}
 
 	@Override
-	public void func_110128_b(Entity entity) {
+	public void onBroken(Entity entity) {
 		ItemStack itemStack = new ItemStack(Items.掛け軸);
 		NBTTagCompound tag = new NBTTagCompound();
 		tag.setString("Motive", getMotive().title);
