@@ -59,17 +59,17 @@ public class EntityObon extends EntityHanging {
 	}
 
 	@Override
-	public int func_82329_d() {
+	public int getWidthPixels() {
 		return 16;
 	}
 
 	@Override
-	public int func_82330_g() {
+	public int getHeightPixels() {
 		return 16;
 	}
 
 	@Override
-	public boolean func_130002_c(EntityPlayer par1EntityPlayer) {
+	public boolean interactFirst(EntityPlayer par1EntityPlayer) {
 		if (this.getDisplayedItem() == null) {
 			ItemStack itemstack = par1EntityPlayer.getHeldItem();
 
@@ -91,7 +91,7 @@ public class EntityObon extends EntityHanging {
 	}
 
 	@Override
-	public void func_110128_b(Entity entity) {
+	public void onBroken(Entity entity) {
 		this.entityDropItem(new ItemStack(Items.お盆), 0.0F);
 		ItemStack itemstack = this.getDisplayedItem();
 
