@@ -29,7 +29,7 @@ public class RenderCoin extends Render {
         GL11.glScalef(f2 / 1.0F, f2 / 1.0F, f2 / 1.0F);
         int i = 32;//Item.snowball.getIconFromDamage(0);
         Minecraft mc = FMLClientHandler.instance().getClient();
-        mc.func_110434_K().func_110577_a(func_110775_a(entity));
+        mc.getTextureManager().bindTexture(getEntityTexture(entity));
         Tessellator tessellator = Tessellator.instance;
         float f3 = 0F;//(float)((i % 8) * 8 + 0) / 256F;
         float f4 = 1F;//(float)((i % 8) * 8 + 8) / 256F;
@@ -51,7 +51,7 @@ public class RenderCoin extends Render {
         GL11.glPopMatrix();
 	}
 	@Override
-	protected ResourceLocation func_110775_a(Entity entity) {
+	protected ResourceLocation getEntityTexture(Entity entity) {
 		if(entity instanceof EntityCoin)
         switch(((EntityCoin)entity).getCoinType()) {
         case 0:

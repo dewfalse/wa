@@ -21,7 +21,7 @@ public class GuiBrewingBarrel extends GuiContainer {
 	@Override
 	protected void drawGuiContainerBackgroundLayer(float f, int i, int j) {
 		GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-		mc.renderEngine.func_110577_a(TEXTURE);
+		mc.renderEngine.bindTexture(TEXTURE);
 		short h = 165;
 		int var4 = h - 108;
 		int x = (width - xSize) / 2;

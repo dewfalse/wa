@@ -38,7 +38,7 @@ public class RenderShuriken extends Render {
         GL11.glScalef(f2 / 1.0F, f2 / 1.0F, f2 / 1.0F);
         int i = 32;//Item.snowball.getIconFromDamage(0);
         Minecraft mc = FMLClientHandler.instance().getClient();
-        mc.func_110434_K().func_110577_a(func_110775_a(entity));
+        mc.getTextureManager().bindTexture(getEntityTexture(entity));
         Tessellator tessellator = Tessellator.instance;
         float f3 = 0F;//(float)((i % 8) * 8 + 0) / 256F;
         float f4 = 1F;//(float)((i % 8) * 8 + 8) / 256F;
@@ -61,9 +61,10 @@ public class RenderShuriken extends Render {
         GL11.glPopMatrix();
 	}
 
-    protected ResourceLocation func_110775_a(Entity par1Entity)
+    @Override
+    protected ResourceLocation getEntityTexture(Entity par1Entity)
     {
-        return this.func_110806_a((EntityShuriken)par1Entity);
+        return this.func_110806_a((EntityShuriken) par1Entity);
     }
 
 }
