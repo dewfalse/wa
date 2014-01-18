@@ -126,7 +126,7 @@ public class BlockUmeWood extends BlockLog {
 				double d5 = 0.0D;
 
 				EntityUmeLeavesFX entityFX = new EntityUmeLeavesFX(par1World, d0, d1, d2, d3, d4, d5);
-				entityFX.func_110125_a(Particles.getInstance().getIcon("wa:ume"));
+				entityFX.setParticleIcon(Particles.getInstance().getIcon("wa:ume"));
 				FMLClientHandler.instance().getClient().effectRenderer.addEffect(entityFX);
 			}
 	}
