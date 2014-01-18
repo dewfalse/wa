@@ -13,6 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathPoint;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 
@@ -22,6 +23,12 @@ public class EntityJoinWorldEventHandler {
 
 	@ForgeSubscribe
 	public void onEntityJoinWorldEvent(EntityJoinWorldEvent event) {
+		if(event.isCanceled()) {
+			return;
+		}
+		if(event.getResult() != Result.DEFAULT) {
+			return;
+		}
 		if(event.entity instanceof IMob) {
 			if(event.entity instanceof IBossDisplayData == false) {
 				Set<PathPoint> list = charmsInDim.get(event.entity.dimension);
@@ -31,7 +38,7 @@ public class EntityJoinWorldEventHandler {
 							TileEntity tile = event.world.getBlockTileEntity(point.xCoord, point.yCoord, point.zCoord);
 							if(tile != null && tile instanceof TileEntityCharm) {
 								if(((TileEntityCharm)tile).charmLevel < 5) {
-									((TileEntityCharm)tile).damage += ((EntityLiving)event.entity).func_110138_aP() / ((TileEntityCharm)tile).charmLevel;
+									((TileEntityCharm)tile).damage += ((EntityLiving)event.entity).getMaxHealth() / ((TileEntityCharm)tile).charmLevel;
 								}
 							}
 							event.setCanceled(true);
@@ -70,6 +77,7 @@ public class EntityJoinWorldEventHandler {
 			default:
 				((EntityVillager)event.entity).setProfession(Config.町人ID);
 			}
+			event.setResult(Result.ALLOW);
 		}
 	}
 }
