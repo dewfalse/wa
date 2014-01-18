@@ -5,12 +5,17 @@ import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.terraingen.BiomeEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class GetVillageBlockIDEventHandler {
 
 	@ForgeSubscribe
 	public void getVillageBlockID(BiomeEvent.GetVillageBlockID event) {
 
+		if (event.biome == null) {
+			return;
+		}
 		boolean found = false;
 		for(BiomeGenBase biome : WorldChunkManagerWa.waBiomeList) {
 			if(event.biome.biomeID == biome.biomeID) {
@@ -66,6 +71,9 @@ public class GetVillageBlockIDEventHandler {
 	@ForgeSubscribe
 	public void getVillageBlockID(BiomeEvent.GetVillageBlockMeta event) {
 
+		if (event.biome == null) {
+			return;
+		}
 		boolean found = false;
 		for(BiomeGenBase biome : WorldChunkManagerWa.biomeList) {
 			if(event.biome.biomeID == biome.biomeID) {
