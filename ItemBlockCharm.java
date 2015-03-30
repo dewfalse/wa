@@ -1,42 +1,42 @@
 package wa;
 
-import java.util.List;
-
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
+
+import java.util.List;
 
 public class ItemBlockCharm extends ItemBlock {
 
-	private int _blockID;
-	public ItemBlockCharm(int par1) {
+	public ItemBlockCharm(Block par1) {
 		super(par1);
-		_blockID = par1 + 256;
 		this.setMaxStackSize(1);
 		this.setMaxDamage(1600);
 		this.setCreativeTab(Wa.creativeTab);
 	}
 
 	@Override
-	public void getSubItems(int par1, CreativeTabs par2CreativeTabs,
+	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs,
 			List par3List) {
 		par3List.add(new ItemStack(par1, 1, 0));
 	}
 
 	@Override
-	public Icon getIconFromDamage(int par1) {
+	public IIcon getIconFromDamage(int par1) {
 		return this.itemIcon;
 	}
 
 	@Override
-	public void registerIcons(IconRegister par1IconRegister) {
+	public void registerIcons(IIconRegister par1IconRegister) {
 		itemIcon = par1IconRegister.registerIcon("wa:ofuda");
 	}
 
@@ -48,12 +48,12 @@ public class ItemBlockCharm extends ItemBlock {
 	}
 
 	@Override
-	public String getItemDisplayName(ItemStack par1ItemStack) {
+	public String getItemStackDisplayName(ItemStack par1ItemStack) {
 		if(par1ItemStack.hasTagCompound()) {
 			NBTTagList list = par1ItemStack.getEnchantmentTagList();
 			if(list != null) {
 				for(int i = 0; i < list.tagCount(); ++i) {
-					short id = ((NBTTagCompound)list.tagAt(i)).getShort("id");
+					short id = ((NBTTagCompound)list.getCompoundTagAt(i)).getShort("id");
 					if (Enchantment.enchantmentsList[id] != null) {
 						if(id == Enchantments.purgation.effectId) {
 							return "清めの御札";
@@ -63,7 +63,7 @@ public class ItemBlockCharm extends ItemBlock {
 			}
 		}
 
-		return super.getItemDisplayName(par1ItemStack);
+		return super.getItemStackDisplayName(par1ItemStack);
 	}
 
 	@Override

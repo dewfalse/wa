@@ -1,18 +1,20 @@
-package wa;
-
-import java.util.Random;
+package wa.block;
 
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import wa.Items;
+import wa.TileEntityTatara;
+
+import java.util.Random;
 
 //たたら製鉄システム
 //たたら製鉄は砂＋鉄ブロック＋木炭ブロックで製鉄炉ブロックを作成する
@@ -26,14 +28,14 @@ public class BlockTatara extends BlockContainer {
 	// メタデータ2:たたら製鉄炉に火が入った
 	// メタデータ3:たたら製鉄が終わった
 
-	private Icon[] icons;
+	private IIcon[] icons;
 
-	public BlockTatara(int par1, Material par2Material) {
-		super(par1, par2Material);
+	public BlockTatara(Material par2Material) {
+		super(par2Material);
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World world) {
+	public TileEntity createNewTileEntity(World world, int par2) {
 		return new TileEntityTatara();
 	}
 
@@ -42,12 +44,12 @@ public class BlockTatara extends BlockContainer {
 			int par4, EntityPlayer par5EntityPlayer, int par6, float par7,
 			float par8, float par9) {
 		ItemStack eq = par5EntityPlayer.getCurrentEquippedItem();
-		if(eq != null && eq.itemID == Item.flintAndSteel.itemID) {
+		if(eq != null && eq.getItem() == Items.flint_and_steel) {
 
 			int metadata = par1World.getBlockMetadata(par2, par3, par4);
 			if(metadata == 1) {
 				par1World.setBlockMetadataWithNotify(par2, par3, par4, 2, 3);
-				TileEntityTatara tile = (TileEntityTatara) par1World.getBlockTileEntity(par2, par3, par4);
+				TileEntityTatara tile = (TileEntityTatara) par1World.getTileEntity(par2, par3, par4);
 				tile.burnTime = 3600;
 			}
 		}
@@ -65,13 +67,13 @@ public class BlockTatara extends BlockContainer {
 	}
 
 	@Override
-	public Icon getIcon(int par1, int par2) {
+	public IIcon getIcon(int par1, int par2) {
 		return icons[par2];
 	}
 
 	@Override
-	public void registerIcons(IconRegister par1IconRegister) {
-		icons = new Icon[4];
+	public void registerBlockIcons(IIconRegister par1IconRegister) {
+		icons = new IIcon[4];
 		for(int i = 0; i < icons.length; ++i) {
 			icons[i] = par1IconRegister.registerIcon("wa:tatara" + String.valueOf(i));
 		}
@@ -80,7 +82,7 @@ public class BlockTatara extends BlockContainer {
 	@Override
 	public void randomDisplayTick(World par1World, int par2, int par3,
 			int par4, Random par5Random) {
-		TileEntityTatara tile = (TileEntityTatara) par1World.getBlockTileEntity(par2, par3, par4);
+		TileEntityTatara tile = (TileEntityTatara) par1World.getTileEntity(par2, par3, par4);
 		if(tile.isBurning()) {
 			for(int i = 0; i < 4; ++i) {
 				double d0 = (double) ((float) par2 + par5Random.nextFloat());
@@ -95,11 +97,11 @@ public class BlockTatara extends BlockContainer {
 	}
 
 	@Override
-	public int idDropped(int par1, Random par2Random, int par3) {
+	public Item getItemDropped(int par1, Random par2Random, int par3) {
 		if(par1 != 3) {
-			return this.blockID;
+			return Item.getItemFromBlock(this);
 		}
-		return Blocks.kera.blockID;
+		return Item.getItemFromBlock(Blocks.kera);
 	}
 
 	@Override
@@ -107,7 +109,7 @@ public class BlockTatara extends BlockContainer {
     {
         super.dropBlockAsItemWithChance(par1World, par2, par3, par4, par5, par6, par7);
 
-        if (this.idDropped(par5, par1World.rand, par7) != this.blockID)
+        if (this.getItemDropped(par5, par1World.rand, par7) != Item.getItemFromBlock(this))
         {
             int j1 = MathHelper.getRandomIntegerInRange(par1World.rand, 2, 5);
 

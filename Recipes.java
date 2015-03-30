@@ -1,14 +1,17 @@
 package wa;
 
-import java.util.Map;
-
-import net.minecraft.block.Block;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
-import cpw.mods.fml.common.registry.GameRegistry;
+import wa.block.Blocks;
+
+import java.util.List;
+import java.util.Map;
 
 public class Recipes {
 
@@ -18,64 +21,64 @@ public class Recipes {
 				"I",
 				"P",
 				'I', Items.玉鋼,
-				'P', Item.stick);
+				'P', Items.stick);
 		GameRegistry.addShapedRecipe(new ItemStack(Items.太刀),
 				"II",
 				"II",
 				"PP",
 				'I', Items.玉鋼,
-				'P', Item.stick);
+				'P', Items.stick);
 		GameRegistry.addShapedRecipe(new ItemStack(Items.鋼のクワ),
 				"II",
 				"P ",
 				"P ",
 				'I', Items.玉鋼,
-				'P', Item.stick);
+				'P', Items.stick);
 		GameRegistry.addShapedRecipe(new ItemStack(Items.鋼のシャベル),
 				"I",
 				"P",
 				"P",
 				'I', Items.玉鋼,
-				'P', Item.stick);
+				'P', Items.stick);
 		GameRegistry.addShapedRecipe(new ItemStack(Items.鋼のツルハシ),
 				"III",
 				" P ",
 				" P ",
 				'I', Items.玉鋼,
-				'P', Item.stick);
+				'P', Items.stick);
 		GameRegistry.addShapedRecipe(new ItemStack(Items.鋼の斧),
 				"II",
 				"PI",
 				"P ",
 				'I', Items.玉鋼,
-				'P', Item.stick);
+				'P', Items.stick);
 		GameRegistry.addShapedRecipe(new ItemStack(Items.鋼の金槌),
 				"III",
 				" P ",
 				'I', Items.玉鋼,
-				'P', Item.stick);
+				'P', Items.stick);
 		GameRegistry.addShapedRecipe(new ItemStack(Items.金槌),
 				"III",
 				" P ",
-				'I', Item.ingotIron,
-				'P', Item.stick);
+				'I', Items.iron_ingot,
+				'P', Items.stick);
 		GameRegistry.addShapedRecipe(new ItemStack(Items.石の金槌),
 				"III",
 				" P ",
-				'I', Block.cobblestone,
-				'P', Item.stick);
+				'I', Blocks.cobblestone,
+				'P', Items.stick);
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.掛け軸),
-				Item.painting);
+				Items.painting);
 		GameRegistry.addShapedRecipe(new ItemStack(Items.毛筆),
 				"A",
 				"B",
 				"C",
-				'A', Item.stick,
-				'B', Item.feather,
-				'C', new ItemStack(Item.dyePowder, 1, 0));
-		GameRegistry.addSmelting(Blocks.take.blockID, new ItemStack(Items.竹炭, 1, 0), 0.15F);
-		GameRegistry.addSmelting(Blocks.sakuraWood.blockID, new ItemStack(Item.coal, 1, 1), 0.15F);
-		GameRegistry.addSmelting(Blocks.umeWood.blockID, new ItemStack(Item.coal, 1, 1), 0.15F);
+				'A', Items.stick,
+				'B', Items.feather,
+				'C', new ItemStack(Items.dye, 1, 0));
+		GameRegistry.addSmelting(Blocks.take, new ItemStack(Items.竹炭, 1, 0), 0.15F);
+		GameRegistry.addSmelting(Blocks.sakuraWood, new ItemStack(Items.coal, 1, 1), 0.15F);
+		GameRegistry.addSmelting(Blocks.umeWood, new ItemStack(Items.coal, 1, 1), 0.15F);
 		GameRegistry.addShapedRecipe(new ItemStack(Blocks.takezumiBlock),
 				"AAA",
 				"AAA",
@@ -85,21 +88,21 @@ public class Recipes {
 				"AAA",
 				"AAA",
 				"AAA",
-				'A', new ItemStack(Item.coal, 1, 1));
+				'A', new ItemStack(Items.coal, 1, 1));
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.竹炭, 9),
 				Blocks.takezumiBlock);
-		GameRegistry.addShapelessRecipe(new ItemStack(Item.coal, 9, 1),
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.coal, 9, 1),
 				Blocks.charcoalBlock);
 
 		for(int i = 0; i < 16; ++i) {
 			GameRegistry.addRecipe((new ShapelessOreRecipe(new ItemStack(Blocks.colorWood[i]),
-					"logWood", new ItemStack(Item.dyePowder, 1, i))));
+					"logWood", new ItemStack(Items.dye, 1, i))));
 		}
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.お盆),
-				Block.woodSingleSlab);
+				Blocks.wooden_slab);
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.米),
 				Items.稲);
-		GameRegistry.addShapedRecipe(new ItemStack(Items.食べ物.itemID, 1, EnumFood.onigiri.ordinal()),
+		GameRegistry.addShapedRecipe(new ItemStack(Items.食べ物, 1, EnumFood.onigiri.ordinal()),
 				" A ",
 				"AAA",
 				'A', Items.米);
@@ -111,34 +114,34 @@ public class Recipes {
 
 		if(Config.レシピ難易度 == RecipeDifficulty.VERY_EASY) {
 			GameRegistry.addShapelessRecipe(new ItemStack(Blocks.tataraBlock),
-					Block.sand, new ItemStack(Item.coal, 1, 1), Block.oreIron);
+					Blocks.sand, new ItemStack(Items.coal, 1, 1), Blocks.iron_ore);
 			GameRegistry.addShapelessRecipe(new ItemStack(Blocks.tataraBlock),
-					Block.sand, Items.竹炭, Block.oreIron);
+					Blocks.sand, Items.竹炭, Blocks.iron_ore);
 		}
 		else {
 			GameRegistry.addShapelessRecipe(new ItemStack(Blocks.tataraBlock),
-					Block.sand, Blocks.charcoalBlock, Block.oreIron);
+					Blocks.sand, Blocks.charcoalBlock, Blocks.iron_ore);
 			GameRegistry.addShapelessRecipe(new ItemStack(Blocks.tataraBlock),
-					Block.sand, Blocks.takezumiBlock, Block.oreIron);
+					Blocks.sand, Blocks.takezumiBlock, Blocks.iron_ore);
 
 		}
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.手裏剣, 16, 0),
 				Items.玉鋼, Items.玉鋼);
 
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.shikui),
-				Block.dirt, Blocks.wara, new ItemStack(Item.dyePowder, 1, 15));
+				Blocks.dirt, Blocks.wara, new ItemStack(Items.dye, 1, 15));
 		GameRegistry.addShapelessRecipe(new ItemStack(Blocks.sakuraPlank, 4, 0),
 				Blocks.sakuraWood);
-		GameRegistry.addShapelessRecipe(new ItemStack(Item.stick, 8, 0),
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 8, 0),
 				Blocks.umeWood);
-		GameRegistry.addShapelessRecipe(new ItemStack(Item.stick, 8, 0),
+		GameRegistry.addShapelessRecipe(new ItemStack(Items.stick, 8, 0),
 				Blocks.umeLog);
 
-		GameRegistry.addShapedRecipe(new ItemStack(Block.torchWood, 4),
+		GameRegistry.addShapedRecipe(new ItemStack(Blocks.torch, 4),
 				"X",
 				"#",
 				'X', Items.竹炭,
-				'#', Item.stick);
+				'#', Items.stick);
 
 		//梅干し
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.梅干し, 1, 0),
@@ -150,11 +153,18 @@ public class Recipes {
 				"ABA",
 				'A', "logWood",
 				'B', "slabWood"));
-		GameRegistry.addShapedRecipe(new ItemStack(Blocks.kawara, 3, 0),
-				"  A",
-				" AA",
-				"AA ",
-				'A', Item.brick);
+        GameRegistry.addShapedRecipe(new ItemStack(Blocks.kawara, 3, 0),
+                "  A",
+                " AA",
+                "AA ",
+                'A', Items.brick);
+        GameRegistry.addShapedRecipe(new ItemStack(Items.磁石, 1, 5000),
+                "M M",
+                "M M",
+                "MMM",
+                'M', Items.磁鉄鉱インゴット);
+
+        GameRegistry.addSmelting(Blocks.oreMagnetite, new ItemStack(Items.磁鉄鉱インゴット), 0.7F);
 	}
 
 	public static void postInit() {
@@ -172,13 +182,32 @@ public class Recipes {
 			else if(Config.レシピ難易度 == RecipeDifficulty.ULTRA_HARD) {
 				replace = Items.ズク破片;
 			}
+
 			for(Object e : FurnaceRecipes.smelting().getSmeltingList().entrySet()) {
-				int id = ((Map.Entry<Integer, ItemStack>)e).getKey();
+				ItemStack input = ((Map.Entry<ItemStack, ItemStack>)e).getKey();
 				ItemStack result = ((Map.Entry<Integer, ItemStack>)e).getValue();
-				if(result.itemID == Item.ingotIron.itemID) {
-					FurnaceRecipes.smelting().getSmeltingList().put(id, new ItemStack(replace));
+				if(result.getItem() == Items.iron_ingot) {
+					FurnaceRecipes.smelting().getSmeltingList().put(input, new ItemStack(replace));
 				}
 			}
+            List list =  CraftingManager.getInstance().getRecipeList();
+            for(int i = 0; i < list.size(); ++i) {
+                Object o = list.get(i);
+                if(o instanceof ShapedRecipes) {
+                    ShapedRecipes recipe = (ShapedRecipes)o;
+                    ItemStack output = recipe.getRecipeOutput();
+                    if(recipe.recipeItems.length == 1 && recipe.recipeItems[0].getItem() == Item.getItemFromBlock(Blocks.iron_block)) {
+                    }
+                    else if(output.getItem() == Items.iron_ingot) {
+                        if(Config.レシピ難易度 <= RecipeDifficulty.HARD) {
+                            list.set(i, new ShapedRecipes(recipe.recipeWidth, recipe.recipeHeight, recipe.recipeItems, new ItemStack(Items.ズク破片, output.stackSize, output.getItemDamage())));
+                        }
+                        else if(Config.レシピ難易度 == RecipeDifficulty.NORMAL) {
+                            list.set(i, new ShapedRecipes(recipe.recipeWidth, recipe.recipeHeight, recipe.recipeItems, new ItemStack(Items.ズク, output.stackSize, output.getItemDamage())));
+                        }
+                    }
+                }
+            }
 		}
 
 		GameRegistry.addShapedRecipe(new ItemStack(Items.ズク),
@@ -190,7 +219,7 @@ public class Recipes {
 				"AA",
 				"AA",
 				'A', Items.ズク);
-		GameRegistry.addSmelting(Items.左下鉄.itemID, new ItemStack(Item.ingotIron), 0.7F);
+		GameRegistry.addSmelting(Items.左下鉄, new ItemStack(Items.iron_ingot), 0.7F);
 
 	}
 

@@ -1,25 +1,7 @@
 package wa;
 
-import static net.minecraft.world.biome.BiomeGenBase.beach;
-import static net.minecraft.world.biome.BiomeGenBase.desertHills;
-import static net.minecraft.world.biome.BiomeGenBase.extremeHillsEdge;
-import static net.minecraft.world.biome.BiomeGenBase.forest;
-import static net.minecraft.world.biome.BiomeGenBase.forestHills;
-import static net.minecraft.world.biome.BiomeGenBase.frozenOcean;
-import static net.minecraft.world.biome.BiomeGenBase.frozenRiver;
-import static net.minecraft.world.biome.BiomeGenBase.iceMountains;
-import static net.minecraft.world.biome.BiomeGenBase.icePlains;
-import static net.minecraft.world.biome.BiomeGenBase.ocean;
-import static net.minecraft.world.biome.BiomeGenBase.river;
-import static net.minecraft.world.biome.BiomeGenBase.swampland;
-import static net.minecraft.world.biome.BiomeGenBase.taiga;
-import static net.minecraft.world.biome.BiomeGenBase.taigaHills;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
@@ -29,8 +11,13 @@ import net.minecraft.world.biome.BiomeGenDesert;
 import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
+import static net.minecraft.world.biome.BiomeGenBase.*;
 
 public class WorldChunkManagerWa extends WorldChunkManager {
 
@@ -39,8 +26,8 @@ public class WorldChunkManagerWa extends WorldChunkManager {
 	public static final BiomeGenBase spring = (new BiomeGenSpring(Config.biomeID)).setColor(0xFFB2E4).setTemperatureRainfall(0.8F, 0.4F).setBiomeName("Spring");
 	public static final BiomeGenBase summer = (new BiomeGenSummer(Config.biomeID+1)).setColor(0x234BFF).setTemperatureRainfall(1.2F, 0.9F).setBiomeName("Summer");
 	public static final BiomeGenBase autumn = (new BiomeGenAutumn(Config.biomeID+2)).setColor(0xFF692D).setTemperatureRainfall(0.7F, 0.8F).setBiomeName("Autumn");
-	public static final BiomeGenBase winter = (new BiomeGenWinter(Config.biomeID+3)).setColor(0xEDEFFF).setEnableSnow().setMinMaxHeight(0.3F, 1.3F).setTemperatureRainfall(0.0F, 0.5F).setBiomeName("Winter");
-    public static final BiomeGenBase wadesert = (new BiomeGenDesert(Config.biomeID+4)).setColor(16421912).setBiomeName("Desert").setDisableRain().setTemperatureRainfall(2.0F, 0.0F).setMinMaxHeight(0.1F, 0.2F);
+	public static final BiomeGenBase winter = (new BiomeGenWinter(Config.biomeID+3, 1)).setColor(0xEDEFFF).setEnableSnow().setHeight(new BiomeGenBase.Height(0.3F, 1.3F)).setTemperatureRainfall(0.0F, 0.5F).setBiomeName("Winter");
+    public static final BiomeGenBase wadesert = (new BiomeGenDesert(Config.biomeID+4)).setColor(16421912).setBiomeName("Desert").setDisableRain().setTemperatureRainfall(2.0F, 0.0F).setHeight(new BiomeGenBase.Height(0.1F, 0.2F));
     public static final BiomeGenBase waplains = (new BiomeGenWaPlains(Config.biomeID+5)).setColor(9286496).setBiomeName("Plains").setTemperatureRainfall(0.8F, 0.4F);
 
     public static final BiomeGenBase[] waBiomeList = {spring, summer, autumn, winter, wadesert, waplains};
@@ -161,7 +148,7 @@ public class WorldChunkManagerWa extends WorldChunkManager {
 
         for (int var7 = 0; var7 < par4 * par5; ++var7)
         {
-            float var8 = (float)biomeList[var6[var7]].getIntTemperature() / 65536.0F;
+            float var8 = (float)biomeList[var6[var7]].getFloatTemperature(par2, 64, par3) / 65536.0F;
 
             if (var8 > 1.0F)
             {

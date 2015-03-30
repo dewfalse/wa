@@ -1,24 +1,25 @@
-package wa;
-
-import java.util.Random;
+package wa.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
 
+import java.util.Random;
+
 public class BlockSusuki extends Block {
 
-	public BlockSusuki(int par1, Material par2Material) {
-		super(par1, par2Material);
+	public BlockSusuki(Material par2Material) {
+		super(par2Material);
 		float f = 0.375F;
 		this.setBlockBounds(0.5F - f, 0.0F, 0.5F - f, 0.5F + f, 1.0F, 0.5F + f);
 	}
 
 	@Override
 	public boolean canPlaceBlockAt(World par1World, int par2, int par3, int par4) {
-		int blockID = par1World.getBlockId(par2, par3 - 1, par4);
-		if(blockID == this.blockID || blockID == Block.dirt.blockID || blockID == Block.grass.blockID) {
+		Block block = par1World.getBlock(par2, par3 - 1, par4);
+		if(block == this || block == Blocks.dirt || block == Blocks.grass) {
 			return true;
 		}
 		return false;
@@ -26,7 +27,7 @@ public class BlockSusuki extends Block {
 
 	@Override
 	public void onNeighborBlockChange(World par1World, int par2, int par3,
-			int par4, int par5) {
+			int par4, Block par5) {
 		if (!this.canBlockStay(par1World, par2, par3, par4)) {
 			this.dropBlockAsItem(par1World, par2, par3, par4, par1World.getBlockMetadata(par2, par3, par4), 0);
 			par1World.setBlockToAir(par2, par3, par4);
@@ -45,8 +46,8 @@ public class BlockSusuki extends Block {
 	}
 
 	@Override
-	public int idDropped(int par1, Random par2Random, int par3) {
-		return Blocks.susuki.blockID;
+	public Item getItemDropped(int par1, Random par2Random, int par3) {
+		return Item.getItemFromBlock(Blocks.susuki);
 	}
 
 	@Override
@@ -65,7 +66,7 @@ public class BlockSusuki extends Block {
 	}
 
 	@Override
-	public int idPicked(World par1World, int par2, int par3, int par4) {
-		return Blocks.susuki.blockID;
+	public Item getItem(World par1World, int par2, int par3, int par4) {
+		return Item.getItemFromBlock(Blocks.susuki);
 	}
 }

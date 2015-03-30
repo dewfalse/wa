@@ -1,8 +1,8 @@
 package wa;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.EntityFX;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.src.ModLoader;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
@@ -61,7 +61,7 @@ public class EntityUmeLeavesFX extends EntityFX {
 
 		// GL11.glEnable (GL11.GL_BLEND);
 		// GL11.glBlendFunc (GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_DST_ALPHA);
-		ModLoader.getMinecraftInstance().getTextureManager().bindTexture(new ResourceLocation("wa", "textures/ume.png"));
+		Minecraft.getMinecraft().getTextureManager().bindTexture(new ResourceLocation("wa", "textures/ume.png"));
 		float f6 = 0f;
 		float f7 = 1.0f;
 

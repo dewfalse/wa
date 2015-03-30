@@ -1,23 +1,25 @@
-package wa;
-
-import java.awt.Color;
-import java.util.List;
-import java.util.Random;
+package wa.block;
 
 import net.minecraft.block.BlockLeaves;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
+import java.awt.*;
+import java.util.List;
+import java.util.Random;
+
 public class BlockSakuraLeaves extends BlockLeaves {
 
-	Icon theIcon;
+	IIcon theIcon;
+    public static final String[] name = new String[] {"sakura"};
 
-	protected BlockSakuraLeaves(int par1) {
-		super(par1);
+	protected BlockSakuraLeaves() {
+		super();
 	}
 
 	@Override
@@ -37,12 +39,17 @@ public class BlockSakuraLeaves extends BlockLeaves {
 	}
 
 	@Override
-	public Icon getIcon(int par1, int par2) {
+	public IIcon getIcon(int par1, int par2) {
 		return theIcon;
 	}
 
-	@Override
-	public void registerIcons(IconRegister par1IconRegister) {
+    @Override
+    public String[] func_150125_e() {
+        return name;
+    }
+
+    @Override
+	public void registerBlockIcons(IIconRegister par1IconRegister) {
 		theIcon = par1IconRegister.registerIcon("wa:sakuraLeaves");
 	}
 
@@ -51,15 +58,15 @@ public class BlockSakuraLeaves extends BlockLeaves {
 			int par4, int par5, float par6, int par7) {
 		if (!par1World.isRemote) {
 			if (par1World.rand.nextInt(20) == 0) {
-				dropBlockAsItem_do(par1World, par2, par3, par4, new ItemStack(
-						Blocks.sakuraSapling));
+				dropBlockAsItem(par1World, par2, par3, par4, new ItemStack(
+                        Blocks.sakuraSapling));
 			}
 		}
 	}
 
 	@Override
-	public int idDropped(int par1, Random par2Random, int par3) {
-		return Blocks.sakuraSapling.blockID;
+	public Item getItemDropped(int par1, Random par2Random, int par3) {
+		return Item.getItemFromBlock(Blocks.sakuraSapling);
 	}
 
 	public boolean isOpaqueCube() {
@@ -67,7 +74,7 @@ public class BlockSakuraLeaves extends BlockLeaves {
 	}
 
 	@Override
-	public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs,
+	public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs,
 			List par3List) {
 		par3List.add(new ItemStack(par1, 1, 0));
 	}

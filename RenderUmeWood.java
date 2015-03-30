@@ -1,15 +1,14 @@
 package wa;
 
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.world.IBlockAccess;
-
 import org.lwjgl.opengl.GL11;
-
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import wa.block.BlockUmeWood;
 
 public class RenderUmeWood implements ISimpleBlockRenderingHandler {
 
@@ -76,13 +75,13 @@ public class RenderUmeWood implements ISimpleBlockRenderingHandler {
 
 	boolean renderBlock(IBlockAccess world, int x, int y, int z, Block block,
 			int modelId, RenderBlocks renderer) {
-		int blockID = world.getBlockId(x, y, z);
-		boolean[] nbr = { world.getBlockId(x, y + 1, z) == blockID,
-				world.getBlockId(x, y - 1, z) == blockID,
-				world.getBlockId(x + 1, y, z) == blockID,
-				world.getBlockId(x, y, z + 1) == blockID,
-				world.getBlockId(x - 1, y, z) == blockID,
-				world.getBlockId(x, y, z - 1) == blockID, };
+		Block theblock = world.getBlock(x, y, z);
+		boolean[] nbr = { world.getBlock(x, y + 1, z) == theblock,
+				world.getBlock(x, y - 1, z) == theblock,
+				world.getBlock(x + 1, y, z) == theblock,
+				world.getBlock(x, y, z + 1) == theblock,
+				world.getBlock(x - 1, y, z) == theblock,
+				world.getBlock(x, y, z - 1) == theblock, };
 		int srnd = 0;
 		for (int i = 2; i < 6; ++i) {
 			if (nbr[i]) {
@@ -120,7 +119,7 @@ public class RenderUmeWood implements ISimpleBlockRenderingHandler {
 	}
 
 	@Override
-	public boolean shouldRender3DInInventory() {
+	public boolean shouldRender3DInInventory(int par1) {
 		return true;
 	}
 

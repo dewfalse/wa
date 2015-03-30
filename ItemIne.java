@@ -2,15 +2,16 @@ package wa;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import wa.block.Blocks;
 
 public class ItemIne extends Item {
 
-	public ItemIne(int par1) {
-		super(par1);
+	public ItemIne() {
+		super();
 	}
 
 	@Override
-	public ItemStack getContainerItemStack(ItemStack itemStack) {
+	public ItemStack getContainerItem(ItemStack itemStack) {
 		return new ItemStack(Blocks.wara);
 	}
 

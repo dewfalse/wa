@@ -1,9 +1,12 @@
 package wa;
 
+import net.minecraft.block.Block;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.packet.Packet;
+import net.minecraft.network.Packet;
+import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
+import wa.block.Blocks;
 
 public class TileEntityTatara extends TileEntity {
     public int burnTime = 0;
@@ -47,7 +50,7 @@ public class TileEntityTatara extends TileEntity {
         		this.worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 3, 3);
         	}
         }
-		int blockID = this.worldObj.getBlockId(xCoord, yCoord, zCoord);
+		Block block = this.worldObj.getBlock(xCoord, yCoord, zCoord);
 		boolean isTatara = true;
 		for(int i = -1; i <= 1; ++i) {
 			for(int j = -1; j <= 1; ++j) {
@@ -55,7 +58,7 @@ public class TileEntityTatara extends TileEntity {
 					if(isTatara == false) {
 						break;
 					}
-					if(this.worldObj.getBlockId(xCoord + i, yCoord + j, zCoord + k) != blockID) {
+					if(this.worldObj.getBlock(xCoord + i, yCoord + j, zCoord + k) != block) {
 						isTatara = false;
 						break;
 					}
@@ -70,7 +73,7 @@ public class TileEntityTatara extends TileEntity {
 			for(int i = -1; i <= 1; ++i) {
 				for(int j = -1; j <= 1; ++j) {
 					for(int k = -1; k <= 1; ++k) {
-						TileEntityTatara tile = (TileEntityTatara) worldObj.getBlockTileEntity(xCoord, yCoord, zCoord);
+						TileEntityTatara tile = (TileEntityTatara) worldObj.getTileEntity(xCoord, yCoord, zCoord);
 						if(tile == null) {
 							continue;
 						}
@@ -87,9 +90,9 @@ public class TileEntityTatara extends TileEntity {
 		if(worldObj.getBlockMetadata(xCoord, yCoord, zCoord) == 1) {
 			ForgeDirection[] dirs = {ForgeDirection.NORTH, ForgeDirection.EAST, ForgeDirection.WEST, ForgeDirection.SOUTH, ForgeDirection.DOWN, ForgeDirection.UP};
 			for(ForgeDirection dir : dirs) {
-				int id = worldObj.getBlockId(xCoord + dir.offsetX, yCoord + dir.offsetY, zCoord + dir.offsetZ);
+				Block theBlcok = worldObj.getBlock(xCoord + dir.offsetX, yCoord + dir.offsetY, zCoord + dir.offsetZ);
 				int meta = worldObj.getBlockMetadata(xCoord + dir.offsetX, yCoord + dir.offsetY, zCoord + dir.offsetZ);
-				if(id == blockID && meta == 2) {
+				if(theBlcok == Blocks.tataraBlock && meta == 2) {
 					burnTime = 3600;
 					worldObj.setBlockMetadataWithNotify(xCoord, yCoord, zCoord, 2, 3);
 					break;
@@ -101,7 +104,9 @@ public class TileEntityTatara extends TileEntity {
 
 	@Override
 	public Packet getDescriptionPacket() {
-		return PacketHandler.getPacket(this);
+        NBTTagCompound nbttagcompound = new NBTTagCompound();
+        this.writeToNBT(nbttagcompound);
+        return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 1, nbttagcompound);
 	}
 
 }

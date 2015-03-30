@@ -8,8 +8,8 @@ import net.minecraft.world.World;
 
 public class ItemObon extends Item {
 
-	public ItemObon(int par1) {
-		super(par1);
+	public ItemObon() {
+		super();
 	}
 
 	@Override

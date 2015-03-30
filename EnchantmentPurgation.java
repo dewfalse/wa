@@ -2,8 +2,10 @@ package wa;
 
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.StatCollector;
+import wa.block.Blocks;
 
 public class EnchantmentPurgation extends Enchantment {
 
@@ -35,7 +37,7 @@ public class EnchantmentPurgation extends Enchantment {
 
 	@Override
 	public boolean canApplyAtEnchantingTable(ItemStack stack) {
-		return stack.itemID == Blocks.charm.blockID || stack.itemID == Blocks.itemBlockCharm.itemID;
+		return stack.getItem() == Item.getItemFromBlock(Blocks.charm) || stack.getItem() == Blocks.itemBlockCharm;
 	}
 
 	@Override
@@ -45,6 +47,6 @@ public class EnchantmentPurgation extends Enchantment {
 
 	@Override
 	public boolean canApply(ItemStack par1ItemStack) {
-		return par1ItemStack.itemID == Blocks.charm.blockID || par1ItemStack.itemID == Blocks.itemBlockCharm.itemID;
+		return par1ItemStack.getItem() == Item.getItemFromBlock(Blocks.charm) || par1ItemStack.getItem() == Blocks.itemBlockCharm;
 	}
 }

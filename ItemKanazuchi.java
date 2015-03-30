@@ -1,13 +1,18 @@
 package wa;
 
+import com.google.common.collect.Sets;
 import net.minecraft.block.Block;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemTool;
+import wa.block.Blocks;
+
+import java.util.Set;
 
 public class ItemKanazuchi extends ItemTool {
-	static Block[] blocks = {Blocks.kera};
+	static final Set blocks = Sets.newHashSet(new Block[]{Blocks.kera});
 
-	public ItemKanazuchi(int par1, int par2) {
-		super(par1, par2, Items.tamahagane, blocks);
+	public ItemKanazuchi(Item.ToolMaterial material) {
+		super(0, material, blocks);
 	}
 
 }

@@ -26,13 +26,13 @@ public class TeleporterEx extends Teleporter {
 		WorldServer world = MinecraftServer.getServer().worldServerForDimension(par1Entity.dimension);
 		int j = y;
 		for (; j < 255; ++j) {
-			if (world.getBlockId(x, j, z) != 0) continue;
-			if (world.getBlockId(x, j + 1, z) != 0) continue;
-			if (world.getBlockId(x, j + 2, z) != 0) continue;
+			if (world.isAirBlock(x, j, z) == false) continue;
+			if (world.isAirBlock(x, j + 1, z) == false) continue;
+			if (world.isAirBlock(x, j + 2, z) == false) continue;
 			break;
 		}
 		for (; j > 0; --j) {
-			if (world.getBlockId(x, j, z) == 0) continue;
+			if (world.isAirBlock(x, j, z)) continue;
 			break;
 		}
 		par1Entity.setLocationAndAngles(x, j + 1, z, 0, 0);
@@ -81,13 +81,13 @@ public class TeleporterEx extends Teleporter {
 				int z = (int) par1Entity.posZ;
 				int j = y;
 				for (; j < 255; ++j) {
-					if (worldserver1.getBlockId(x, j, z) != 0) continue;
-					if (worldserver1.getBlockId(x, j + 1, z) != 0) continue;
-					if (worldserver1.getBlockId(x, j + 2, z) != 0) continue;
+					if (worldserver1.isAirBlock(x, j, z) == false) continue;
+					if (worldserver1.isAirBlock(x, j + 1, z) == false) continue;
+					if (worldserver1.isAirBlock(x, j + 2, z) == false) continue;
 					break;
 				}
 				for (; j > 0; --j) {
-					if (worldserver1.getBlockId(x, j, z) == 0) continue;
+					if (worldserver1.isAirBlock(x, j, z)) continue;
 					break;
 				}
 				par1Entity.setLocationAndAngles(x, j + 1, z, 0, 0);

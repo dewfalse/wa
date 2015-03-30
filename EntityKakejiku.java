@@ -1,13 +1,13 @@
 package wa;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityHanging;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class EntityKakejiku extends EntityHanging {
 
@@ -48,7 +48,7 @@ public class EntityKakejiku extends EntityHanging {
 		if(getMotive() == EnumKakejiku.empty)
 		{
 			ItemStack eq = par1EntityPlayer.getCurrentEquippedItem();
-			if (eq != null && eq.itemID == Items.毛筆.itemID) {
+			if (eq != null && eq.getItem() == Items.毛筆) {
 
 				EnumKakejiku motive = EnumKakejiku.values()[1+this.rand.nextInt(EnumKakejiku.values().length-1)];
 

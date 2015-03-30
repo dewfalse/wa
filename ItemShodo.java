@@ -1,22 +1,22 @@
 package wa;
 
-import java.util.List;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.Direction;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
+import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
-import cpw.mods.fml.common.registry.LanguageRegistry;
+
+import java.util.List;
 
 public class ItemShodo extends Item {
 
-	private static Icon[] icons;
+	private static IIcon[] icons;
 
-	public ItemShodo(int par1) {
-		super(par1);
+	public ItemShodo() {
+		super();
 	}
 
 	@Override
@@ -27,7 +27,7 @@ public class ItemShodo extends Item {
 			NBTTagCompound tag = par1ItemStack.getTagCompound();
 			if(tag.hasKey("Motive")) {
 				title = tag.getString("Motive");
-				String name = LanguageRegistry.instance().getStringLocalization(title, "ja_JP");
+                String name = StatCollector.translateToLocal("wa:Motive." + title + ".name");
 				par3List.add(name);
 			}
 		}

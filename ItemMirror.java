@@ -8,8 +8,8 @@ import net.minecraft.item.ItemStack;
 
 public class ItemMirror extends Item {
 
-	public ItemMirror(int par1) {
-		super(par1);
+	public ItemMirror() {
+		super();
 		setMaxDamage(14);
 	}
 

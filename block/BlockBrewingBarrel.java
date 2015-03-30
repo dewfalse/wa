@@ -1,25 +1,29 @@
-package wa;
+package wa.block;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import wa.Config;
+import wa.TileEntityBrewingBarrel;
+import wa.Wa;
 
 public class BlockBrewingBarrel extends BlockContainer {
 
-	Icon[] icons;
+    IIcon[] icons;
 
-	public BlockBrewingBarrel(int par1, Material par2Material) {
-		super(par1, par2Material);
+	public BlockBrewingBarrel(Material par2Material) {
+		super(par2Material);
 	}
 
 	@Override
-	public Icon getIcon(int par1, int par2) {
+	public IIcon getIcon(int par1, int par2) {
 		if(par1 == 0 || par1 == 1) {
 			return icons[0];
 		}
@@ -27,21 +31,21 @@ public class BlockBrewingBarrel extends BlockContainer {
 	}
 
 	@Override
-	public void registerIcons(IconRegister par1IconRegister) {
-		icons = new Icon[2];
+	public void registerBlockIcons(IIconRegister par1IconRegister) {
+		icons = new IIcon[2];
 		icons[0] = par1IconRegister.registerIcon("wa:brewingBarrel_top");
 		icons[1] = par1IconRegister.registerIcon("wa:brewingBarrel_side");
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World world) {
+	public TileEntity createNewTileEntity(World world, int var2) {
 		return new TileEntityBrewingBarrel();
 	}
 
 	@Override
 	public void breakBlock(World par1World, int par2, int par3, int par4,
-			int par5, int par6) {
-		TileEntity tile = par1World.getBlockTileEntity(par2, par3, par4);
+			Block par5, int par6) {
+		TileEntity tile = par1World.getTileEntity(par2, par3, par4);
 		if(tile instanceof TileEntityBrewingBarrel) {
 			TileEntityBrewingBarrel brewingBarrel = (TileEntityBrewingBarrel)tile;
 			for(int i = 0; i < brewingBarrel.getSizeInventory(); ++i) {
@@ -67,7 +71,7 @@ public class BlockBrewingBarrel extends BlockContainer {
 			return true;
 		}
 
-		TileEntity tile = par1World.getBlockTileEntity(par2, par3, par4);
+		TileEntity tile = par1World.getTileEntity(par2, par3, par4);
 
 		if (tile != null) {
 			par5EntityPlayer.openGui(Wa.instance, Config.醸造樽GUIID, par1World, par2, par3, par4);

@@ -1,20 +1,21 @@
 package wa;
 
-import net.minecraftforge.event.Event.Result;
-import net.minecraftforge.event.ForgeSubscribe;
+import cpw.mods.fml.common.eventhandler.Event;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.event.terraingen.SaplingGrowTreeEvent;
+import wa.block.Blocks;
 
 public class SaplingGrowTreeEventHandler {
 
-	@ForgeSubscribe
+	@SubscribeEvent
 	public void onSaplingGrowTreeEvent(SaplingGrowTreeEvent event) {
-		if(event.world.getBlockId(event.x, event.y, event.z) == Blocks.sakuraSapling.blockID) {
+		if(event.world.getBlock(event.x, event.y, event.z) == Blocks.sakuraSapling) {
 			(new WorldGeneratorSakuraTrees(true)).generate(event.world, event.rand, event.x, event.y, event.z);
-			event.setResult(Result.DENY);
+			event.setResult(Event.Result.DENY);
 		}
-		else if(event.world.getBlockId(event.x, event.y, event.z) == Blocks.umeSapling.blockID) {
+		else if(event.world.getBlock(event.x, event.y, event.z) == Blocks.umeSapling) {
 			(new WorldGeneratorUmeTrees(true)).generate(event.world, event.rand, event.x, event.y, event.z);
-			event.setResult(Result.DENY);
+			event.setResult(Event.Result.DENY);
 		}
 
 	}

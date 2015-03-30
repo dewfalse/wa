@@ -8,8 +8,8 @@ import net.minecraft.world.World;
 
 public class ItemMagatama extends Item {
 
-	public ItemMagatama(int par1) {
-		super(par1);
+	public ItemMagatama() {
+		super();
 		setMaxDamage(14);
 	}
 

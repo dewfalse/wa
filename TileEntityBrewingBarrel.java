@@ -4,16 +4,14 @@ import net.minecraft.block.Block;
 import net.minecraft.crash.CrashReportCategory;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagList;
-import net.minecraft.network.INetworkManager;
-import net.minecraft.network.packet.Packet;
-import net.minecraft.network.packet.Packet132TileEntityData;
+import net.minecraft.network.Packet;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
+import net.minecraftforge.common.util.Constants;
 
 public class TileEntityBrewingBarrel extends TileEntity implements IInventory {
 
@@ -83,12 +81,12 @@ public class TileEntityBrewingBarrel extends TileEntity implements IInventory {
 	}
 
 	@Override
-	public String getInvName() {
+	public String getInventoryName() {
 		return invName;
 	}
 
 	@Override
-	public boolean isInvNameLocalized() {
+	public boolean hasCustomInventoryName() {
 		// TODO 自動生成されたメソッド・スタブ
 		return false;
 	}
@@ -104,23 +102,23 @@ public class TileEntityBrewingBarrel extends TileEntity implements IInventory {
 	}
 
 	@Override
-	public void openChest() {
+	public void openInventory() {
 	}
 
 	@Override
-	public void closeChest() {
+	public void closeInventory() {
 	}
 
 	@Override
 	public boolean isItemValidForSlot(int i, ItemStack itemstack) {
 		if(0 <= i && i <= 2) {
-			if(itemstack.itemID == Item.bucketWater.itemID) {
+			if(itemstack.getItem() == Items.water_bucket) {
 				return true;
 			}
-			if(itemstack.itemID == Item.sugar.itemID) {
+			if(itemstack.getItem() == Items.sugar) {
 				return true;
 			}
-			if(itemstack.itemID == Items.梅の実.itemID) {
+			if(itemstack.getItem() == Items.梅の実) {
 				return true;
 			}
 		}
@@ -148,11 +146,11 @@ public class TileEntityBrewingBarrel extends TileEntity implements IInventory {
 	@Override
 	public void readFromNBT(NBTTagCompound par1nbtTagCompound) {
 		super.readFromNBT(par1nbtTagCompound);
-		NBTTagList var2 = par1nbtTagCompound.getTagList("Items");
+		NBTTagList var2 = par1nbtTagCompound.getTagList("Items", Constants.NBT.TAG_COMPOUND);
 		this.contents = new ItemStack[this.getSizeInventory()];
 
 		for (int var3 = 0; var3 < var2.tagCount(); ++var3) {
-			NBTTagCompound var4 = (NBTTagCompound) var2.tagAt(var3);
+			NBTTagCompound var4 = (NBTTagCompound) var2.getCompoundTagAt(var3);
 			byte var5 = var4.getByte("Slot");
 
 			if (var5 >= 0 && var5 < this.contents.length) {
@@ -185,7 +183,7 @@ public class TileEntityBrewingBarrel extends TileEntity implements IInventory {
 			for(int i = 0; i < 3; ++i) {
 				if(contents[i] != null) {
 					--contents[i].stackSize;
-					ItemStack is = contents[i].getItem().getContainerItemStack(contents[i]);
+					ItemStack is = contents[i].getItem().getContainerItem(contents[i]);
 					if(is != null) {
 						addItemStackToResultSlot(is);
 					}
@@ -199,7 +197,7 @@ public class TileEntityBrewingBarrel extends TileEntity implements IInventory {
 			this.progressTime = 0;
 			this.waterLevel -= 1;
 			contents[6] = getBrewResult();
-			this.onInventoryChanged();
+			this.markDirty();
 		}
 		else if(this.processTime > 0) {
 			if(this.progressTime >= processTime) {
@@ -211,15 +209,15 @@ public class TileEntityBrewingBarrel extends TileEntity implements IInventory {
 			else {
 				++this.progressTime;
 			}
-			this.onInventoryChanged();
+			this.markDirty();
 		}
 	}
 
 	private void updateWaterLevel() {
 		for(int i = 0; i < 3; ++i) {
-			if(contents[i] != null && contents[i].itemID == Item.bucketWater.itemID) {
+			if(contents[i] != null && contents[i].getItem() == Items.water_bucket) {
 				--contents[i].stackSize;
-				ItemStack is = contents[i].getItem().getContainerItemStack(contents[i]);
+				ItemStack is = contents[i].getItem().getContainerItem(contents[i]);
 				if(is != null) {
 					addItemStackToResultSlot(is);
 				}
@@ -243,13 +241,13 @@ public class TileEntityBrewingBarrel extends TileEntity implements IInventory {
 			if(contents[i] == null) {
 				break;
 			}
-			if(contents[i].itemID == Item.sugar.itemID) {
+			if(contents[i].getItem() == Items.sugar) {
 				b1 = true;
 			}
-			if(contents[i].itemID == Items.梅の実.itemID) {
+			if(contents[i].getItem() == Items.梅の実) {
 				b2 = true;
 			}
-			if(contents[i].itemID == Item.glassBottle.itemID) {
+			if(contents[i].getItem() == Items.glass_bottle) {
 				b3 = true;
 			}
 
@@ -290,9 +288,9 @@ public class TileEntityBrewingBarrel extends TileEntity implements IInventory {
 	}
 
 	@Override
-	public void onInventoryChanged() {
+	public void markDirty() {
 		// TODO 自動生成されたメソッド・スタブ
-		super.onInventoryChanged();
+		super.markDirty();
 	}
 
 	@Override
@@ -350,9 +348,9 @@ public class TileEntityBrewingBarrel extends TileEntity implements IInventory {
 	}
 
 	@Override
-	public void func_85027_a(CrashReportCategory par1CrashReportCategory) {
+	public void func_145828_a(CrashReportCategory par1CrashReportCategory) {
 		// TODO 自動生成されたメソッド・スタブ
-		super.func_85027_a(par1CrashReportCategory);
+		super.func_145828_a(par1CrashReportCategory);
 	}
 
 	@Override
@@ -362,19 +360,13 @@ public class TileEntityBrewingBarrel extends TileEntity implements IInventory {
 	}
 
 	@Override
-	public void onDataPacket(INetworkManager net, Packet132TileEntityData pkt) {
-		// TODO 自動生成されたメソッド・スタブ
-		super.onDataPacket(net, pkt);
-	}
-
-	@Override
 	public void onChunkUnload() {
 		// TODO 自動生成されたメソッド・スタブ
 		super.onChunkUnload();
 	}
 
 	@Override
-	public boolean shouldRefresh(int oldID, int newID, int oldMeta,
+	public boolean shouldRefresh(Block oldID, Block newID, int oldMeta,
 			int newMeta, World world, int x, int y, int z) {
 		// TODO 自動生成されたメソッド・スタブ
 		return super.shouldRefresh(oldID, newID, oldMeta, newMeta, world, x, y, z);

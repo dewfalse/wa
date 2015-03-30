@@ -1,21 +1,24 @@
-package wa;
-
-import java.util.Random;
+package wa.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
+import wa.Config;
+import wa.TeleporterEx;
+
+import java.util.Random;
 
 public class BlockWaPortal extends Block {
 	ForgeDirection[] dirs = {ForgeDirection.DOWN, ForgeDirection.UP, ForgeDirection.EAST,ForgeDirection.WEST, ForgeDirection.NORTH, ForgeDirection.SOUTH};
 
-	public BlockWaPortal(int par1, Material par2Material) {
-		super(par1, par2Material);
+	public BlockWaPortal(Material par2Material) {
+		super(par2Material);
 	}
 
 	@Override
@@ -42,11 +45,11 @@ public class BlockWaPortal extends Block {
 
 	@Override
 	public void onNeighborBlockChange(World par1World, int par2, int par3,
-			int par4, int par5) {
+			int par4, Block par5) {
 		boolean found = false;
 		for(ForgeDirection dir : dirs) {
-			int blockID = par1World.getBlockId(par2 + dir.offsetX, par3 + dir.offsetY, par4 + dir.offsetZ);
-			if(blockID == Blocks.colorWood[1].blockID) {
+			Block block = par1World.getBlock(par2 + dir.offsetX, par3 + dir.offsetY, par4 + dir.offsetZ);
+			if(block == Blocks.colorWood[1]) {
 				return;
 			}
 		}
@@ -101,8 +104,8 @@ public class BlockWaPortal extends Block {
 				d4 = ((double) par5Random.nextFloat() - 0.5D) * 0.5D;
 				d5 = ((double) par5Random.nextFloat() - 0.5D) * 0.5D;
 
-				if (par1World.getBlockId(par2 - 1, par3, par4) != this.blockID
-						&& par1World.getBlockId(par2 + 1, par3, par4) != this.blockID) {
+				if (par1World.getBlock(par2 - 1, par3, par4) != this
+						&& par1World.getBlock(par2 + 1, par3, par4) != this) {
 					d0 = (double) par2 + 0.5D + 0.25D * (double) i1;
 					d3 = (double) (par5Random.nextFloat() * 2.0F * (float) i1);
 				} else {
@@ -116,12 +119,12 @@ public class BlockWaPortal extends Block {
 	}
 
 	@Override
-	public int idPicked(World par1World, int par2, int par3, int par4) {
-		return 0;
+	public Item getItem(World par1World, int par2, int par3, int par4) {
+		return null;
 	}
 
 	@Override
-	public void registerIcons(IconRegister par1IconRegister) {
+	public void registerBlockIcons(IIconRegister par1IconRegister) {
 		this.blockIcon = par1IconRegister.registerIcon("wa:portal");
 	}
 }

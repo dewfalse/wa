@@ -1,17 +1,17 @@
-package wa;
+package wa.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 public class BlockKoto extends Block {
-	private Icon[] icons;
+	private IIcon[] icons;
 
-	public BlockKoto(int par1, Material par2Material) {
-		super(par1, par2Material);
+	public BlockKoto(Material par2Material) {
+		super(par2Material);
 		setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
 	}
 
@@ -29,13 +29,13 @@ public class BlockKoto extends Block {
 	}
 
 	@Override
-	public Icon getIcon(int par1, int par2) {
+	public IIcon getIcon(int par1, int par2) {
 		return par1 == 1 ? icons[0] : icons[1];
 	}
 
 	@Override
-	public void registerIcons(IconRegister par1IconRegister) {
-		icons = new Icon[2];
+	public void registerBlockIcons(IIconRegister par1IconRegister) {
+		icons = new IIcon[2];
 		icons[0] = par1IconRegister.registerIcon("wa:koto_head");
 		icons[1] = par1IconRegister.registerIcon("wa:koto_side");
 	}

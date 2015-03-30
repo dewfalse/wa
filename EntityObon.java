@@ -40,7 +40,7 @@ public class EntityObon extends EntityHanging {
 	@Override
 	public void writeEntityToNBT(NBTTagCompound par1NBTTagCompound) {
 		if (this.getDisplayedItem() != null) {
-			par1NBTTagCompound.setCompoundTag("Item", this.getDisplayedItem().writeToNBT(new NBTTagCompound()));
+			par1NBTTagCompound.setTag("Item", this.getDisplayedItem().writeToNBT(new NBTTagCompound()));
 			par1NBTTagCompound.setInteger("ItemRotation", this.getRotation());
 		}
 		super.writeEntityToNBT(par1NBTTagCompound);

@@ -1,11 +1,13 @@
 package wa;
 
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import wa.block.BlockKawara;
+import wa.block.Blocks;
 
 public class RenderKawaraBlock implements ISimpleBlockRenderingHandler {
 
@@ -30,7 +32,7 @@ public class RenderKawaraBlock implements ISimpleBlockRenderingHandler {
 
 	private void drawBlock(IBlockAccess world, int x, int y, int z,
 			Block block, int modelId, RenderBlocks renderer) {
-		Icon icon = Block.blockIron.getBlockTextureFromSide(3);
+		IIcon icon = Blocks.iron_block.getBlockTextureFromSide(3);
 		int metadata = world.getBlockMetadata(x, y, z);
 		int angle = 270;
 		if((metadata & 0x3) == 0) angle = 270;
@@ -46,7 +48,7 @@ public class RenderKawaraBlock implements ISimpleBlockRenderingHandler {
 		Tessellator tess = Tessellator.instance;
 		tess.setColorOpaque_F(1.0F, 1.0F, 1.0F);
 		tess.setBrightness(0);
-		int blockID = world.getBlockId(x, y, z);
+		Block theblock = world.getBlock(x, y, z);
 		{
 			double[][] f1 = {{0.0F, 0.1F, -0.1F}, {0.3F, 0.1F, -0.1F}, {0.3F, 0.0F, -0.1F}, {0.0F, 0.0F, -0.1F}};
 			double[][] f2 = {{0.0F, 0.5F, 1.0F}, {0.3F, 0.5F, 1.0F}, {0.3F, 0.4F, 1.0F}, {0.0F, 0.4F, 1.0F}};
@@ -86,7 +88,7 @@ public class RenderKawaraBlock implements ISimpleBlockRenderingHandler {
 	}
 
 	@Override
-	public boolean shouldRender3DInInventory() {
+	public boolean shouldRender3DInInventory(int par1) {
 		return false;
 	}
 

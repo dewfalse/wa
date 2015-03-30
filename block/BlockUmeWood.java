@@ -1,30 +1,34 @@
-package wa;
+package wa.block;
+
+import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.BlockLog;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
+import wa.EntityUmeLeavesFX;
+import wa.Items;
+import wa.Particles;
 
 import java.util.List;
 import java.util.Random;
 
-import net.minecraft.block.BlockLog;
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
-import net.minecraft.world.World;
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
 public class BlockUmeWood extends BlockLog {
 
 	public static int renderID;
-	private Icon[] icons;
+	private IIcon[] icons;
 
-	protected BlockUmeWood(int par1) {
-		super(par1);
+	protected BlockUmeWood() {
+		super();
 	}
 
 	@Override
-	public int idDropped(int par1, Random par2Random, int par3) {
-		return Blocks.umeLog.blockID;
+	public Item getItemDropped(int par1, Random par2Random, int par3) {
+		return Item.getItemFromBlock(Blocks.umeLog);
 	}
 
 	@Override
@@ -50,8 +54,8 @@ public class BlockUmeWood extends BlockLog {
 				}
 			}
 
-				int k1 = this.idDropped(par5, par1World.rand, par7);
-				this.dropBlockAsItem_do(par1World, par2, par3, par4,
+				Item k1 = this.getItemDropped(par5, par1World.rand, par7);
+				this.dropBlockAsItem(par1World, par2, par3, par4,
 						new ItemStack(k1, 1, this.damageDropped(par5)));
 
 			j1 = 6;
@@ -64,8 +68,8 @@ public class BlockUmeWood extends BlockLog {
 				}
 			}
 
-			if ((this.blockID == Blocks.umeWood.blockID) && par1World.rand.nextInt(j1) == 0) {
-				this.dropBlockAsItem_do(par1World, par2, par3, par4,
+			if ((this == Blocks.umeWood) && par1World.rand.nextInt(j1) == 0) {
+				this.dropBlockAsItem(par1World, par2, par3, par4,
 						new ItemStack(Items.梅の実, 1+par1World.rand.nextInt(4), 0));
 			}
 		}
@@ -73,24 +77,24 @@ public class BlockUmeWood extends BlockLog {
 
 	@Override
 	protected ItemStack createStackedBlock(int par1) {
-		return new ItemStack(this.blockID, 1, limitToValidMetadata(par1));
+		return new ItemStack(this, 1, BlockLog.func_150165_c(par1));
 	}
 
 	@Override
-	public void getSubBlocks(int par1, CreativeTabs par2CreativeTabs,
+	public void getSubBlocks(Item par1, CreativeTabs par2CreativeTabs,
 			List par3List) {
 		par3List.add(new ItemStack(par1, 1, 0));
 		par3List.add(new ItemStack(par1, 1, 1));
 	}
 
 	@Override
-	public Icon getIcon(int par1, int par2) {
+	public IIcon getIcon(int par1, int par2) {
 		return icons[1];
 	}
 
 	@Override
-	public void registerIcons(IconRegister par1IconRegister) {
-		icons = new Icon[2];
+	public void registerBlockIcons(IIconRegister par1IconRegister) {
+		icons = new IIcon[2];
 		icons[0] = par1IconRegister.registerIcon("log_oak_top");
 		icons[1] = par1IconRegister.registerIcon("log_oak");
 	}

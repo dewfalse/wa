@@ -1,12 +1,13 @@
 package wa;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenTrees;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
+import wa.block.Blocks;
+
+import java.util.Random;
 
 public class WorldGeneratorSakuraTrees extends WorldGenTrees {
 
@@ -37,7 +38,6 @@ public class WorldGeneratorSakuraTrees extends WorldGenTrees {
             int i1;
             byte b0;
             int j1;
-            int k1;
 
             for (i1 = par4; i1 <= par4 + 1 + l; ++i1)
             {
@@ -59,15 +59,14 @@ public class WorldGeneratorSakuraTrees extends WorldGenTrees {
                     {
                         if (i1 >= 0 && i1 < 256)
                         {
-                            k1 = par1World.getBlockId(l1, i1, j1);
+                            Block block = par1World.getBlock(l1, i1, j1);
 
-                            Block block = Block.blocksList[k1];
 
-                            if (k1 != 0 &&
+                            if (par1World.isAirBlock(l1, i1, j1) == false &&
                                !block.isLeaves(par1World, l1, i1, j1) &&
-                                k1 != Block.grass.blockID &&
-                                k1 != Block.dirt.blockID &&
-                                k1 != Blocks.sakuraSapling.blockID &&
+                                    block != Blocks.grass &&
+                                    block != Blocks.dirt &&
+                                    block != Blocks.sakuraSapling &&
                                !block.isWood(par1World, l1, i1, j1))
                             {
                                 flag = false;
@@ -87,9 +86,8 @@ public class WorldGeneratorSakuraTrees extends WorldGenTrees {
             }
             else
             {
-            	par1World.setBlock(par3, par4, par5, 0, 0, 4);
-                i1 = par1World.getBlockId(par3, par4 - 1, par5);
-                Block soil = Block.blocksList[i1];
+            	par1World.setBlockToAir(par3, par4, par5);
+                Block soil = par1World.getBlock(par3, par4 - 1, par5);
                 boolean isSoil = (soil != null && soil.canSustainPlant(par1World, par3, par4 - 1, par5, ForgeDirection.UP, (BlockSapling)Blocks.sakuraSapling));
 
                 if (isSoil && par4 < 256 - l - 1)
@@ -103,7 +101,7 @@ public class WorldGeneratorSakuraTrees extends WorldGenTrees {
 
                     for (j1 = par4 - b0 + l; j1 <= par4 + l; ++j1)
                     {
-                        k1 = j1 - (par4 + l);
+                        int k1 = j1 - (par4 + l);
                         i2 = b1 + 1 - k1 / 2;
 
                         for (j2 = par3 - i2; j2 <= par3 + i2; ++j2)
@@ -116,12 +114,11 @@ public class WorldGeneratorSakuraTrees extends WorldGenTrees {
 
                                 if (Math.abs(k2) != i2 || Math.abs(i3) != i2 || par2Random.nextInt(2) != 0 && k1 != 0)
                                 {
-                                    int j3 = par1World.getBlockId(j2, j1, l2);
-                                    Block block = Block.blocksList[j3];
+                                    Block block = par1World.getBlock(j2, j1, l2);
 
                                     if (block == null || block.canBeReplacedByLeaves(par1World, j2, j1, l2))
                                     {
-                                        this.setBlockAndMetadata(par1World, j2, j1, l2, Blocks.sakuraLeaves.blockID, this.metaLeaves);
+                                        this.setBlockAndNotifyAdequately(par1World, j2, j1, l2, Blocks.sakuraLeaves, this.metaLeaves);
                                     }
                                 }
                             }
@@ -130,13 +127,12 @@ public class WorldGeneratorSakuraTrees extends WorldGenTrees {
 
                     for (j1 = 0; j1 < l; ++j1)
                     {
-                        k1 = par1World.getBlockId(par3, par4 + j1, par5);
+                        Block block = par1World.getBlock(par3, par4 + j1, par5);
 
-                        Block block = Block.blocksList[k1];
 
-                        if (k1 == 0 || block == null || block.isLeaves(par1World, par3, par4 + j1, par5))
+                        if (par1World.isAirBlock(par3, par4 + j1, par5) || block == null || block.isLeaves(par1World, par3, par4 + j1, par5))
                         {
-                            this.setBlockAndMetadata(par1World, par3, par4 + j1, par5, Blocks.sakuraWood.blockID, this.metaWood);
+                            this.setBlockAndNotifyAdequately(par1World, par3, par4 + j1, par5, Blocks.sakuraWood, this.metaWood);
 
                         }
                     }

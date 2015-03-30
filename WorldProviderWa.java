@@ -1,12 +1,12 @@
 package wa;
 
+import cpw.mods.fml.common.ObfuscationReflectionHelper;
 import net.minecraft.block.Block;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.WorldProvider;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.storage.DerivedWorldInfo;
 import net.minecraft.world.storage.WorldInfo;
-import cpw.mods.fml.common.ObfuscationReflectionHelper;
 
 public class WorldProviderWa extends WorldProvider {
 
@@ -22,13 +22,9 @@ public class WorldProviderWa extends WorldProvider {
 
 	@Override
 	public boolean canCoordinateBeSpawn(int par1, int par2) {
-		int i = worldObj.getFirstUncoveredBlock(par1, par2);
+		Block block = worldObj.getTopBlock(par1, par2);
 
-		if (i == 0) {
-			return false;
-		} else {
-			return Block.blocksList[i].blockMaterial.blocksMovement();
-		}
+		return block.getMaterial().blocksMovement();
 	}
 
 	@Override

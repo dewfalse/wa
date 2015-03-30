@@ -1,13 +1,6 @@
 package wa;
 
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.WeightedRandomChestContent;
-import net.minecraftforge.common.BiomeManager;
-import net.minecraftforge.common.ChestGenHooks;
-import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.common.MinecraftForge;
-import cpw.mods.fml.common.ICraftingHandler;
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -15,19 +8,20 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import cpw.mods.fml.common.registry.EntityRegistry;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.WeightedRandomChestContent;
+import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.common.ChestGenHooks;
+import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.common.MinecraftForge;
+import wa.block.Blocks;
 
-@Mod(modid = Wa.modid, name = Wa.modid, version = "1.0")
-@NetworkMod(
-		clientSideRequired = true,
-		serverSideRequired = true,
-		channels = Wa.modid,
-		packetHandler = PacketHandler.class
-	)
+@Mod(modid = Wa.modid, name = Wa.modid, version = "1.7.10.11")
 public class Wa {
 	public static final String modid = "Wa";
 
@@ -69,7 +63,7 @@ public class Wa {
 		WorldChunkManagerWa.init();
 		DimensionManager.registerProviderType(Config.providerType, WorldProviderWa.class, false);
 		DimensionManager.registerDimension(Config.dimensionID, Config.providerType);
-		GameRegistry.registerWorldGenerator(new WorldGenTorii());
+		GameRegistry.registerWorldGenerator(new WorldGenTorii(), 5);
 		proxy.init();
 		//TODO 追加ディメンション内では和の音楽がなるようにする
 		//TODO 城の生成
@@ -94,12 +88,11 @@ public class Wa {
 		MinecraftForge.TERRAIN_GEN_BUS.register(new SaplingGrowTreeEventHandler());
 		MinecraftForge.EVENT_BUS.register(new BonemealEventHandler());
 		MinecraftForge.EVENT_BUS.register(new EntityJoinWorldEventHandler());
-		MinecraftForge.EVENT_BUS.register(new LivingDeathEventHandler());
-		MinecraftForge.EVENT_BUS.register(new SoundLoadEventHandler());
-		GameRegistry.registerWorldGenerator(new WorldGenTakenoko());
-		GameRegistry.registerCraftingHandler((ICraftingHandler) Items.太刀);
-		GameRegistry.registerCraftingHandler(new CraftingHandler());
-		NetworkRegistry.instance().registerGuiHandler(instance, proxy);
+        MinecraftForge.EVENT_BUS.register(new LivingDeathEventHandler());
+        MinecraftForge.EVENT_BUS.register(new EntityStruckByLightningEventHandler());
+		GameRegistry.registerWorldGenerator(new WorldGenTakenoko(), 5);
+        FMLCommonHandler.instance().bus().register(Items.太刀);
+		NetworkRegistry.INSTANCE.registerGuiHandler(instance, proxy);
 
 		String[] categories = {
 			ChestGenHooks.MINESHAFT_CORRIDOR,
@@ -138,7 +131,7 @@ public class Wa {
 	}
 
 	@EventHandler
-	public void init(FMLPostInitializationEvent event) {
+	public void postInit(FMLPostInitializationEvent event) {
 		Recipes.postInit();
 	}
 }

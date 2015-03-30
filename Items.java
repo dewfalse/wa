@@ -1,52 +1,47 @@
 package wa;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.EnumToolMaterial;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemAxe;
-import net.minecraft.item.ItemHoe;
-import net.minecraft.item.ItemPickaxe;
-import net.minecraft.item.ItemSeeds;
-import net.minecraft.item.ItemSpade;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemSword;
-import net.minecraftforge.common.EnumHelper;
-import net.minecraftforge.common.MinecraftForge;
-import cpw.mods.fml.common.registry.LanguageRegistry;
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.item.*;
+import net.minecraftforge.common.util.EnumHelper;
+import net.minecraftforge.oredict.OreDictionary;
+import wa.block.Blocks;
 
-public class Items {
+public class Items extends net.minecraft.init.Items {
 
-	public static EnumToolMaterial tamahagane = EnumHelper.addToolMaterial("tamahagane", Config.玉鋼強度 < 5 ? 2 : 3, 57 + Config.玉鋼強度 * 40, Config.玉鋼強度 * 0.3F + 4.0F, 3, 18);
-	public static Item 刀 = new ItemSword(Config.刀ID, tamahagane).setUnlocalizedName("wa:katana").setTextureName("wa:katana").setCreativeTab(Wa.creativeTab);
-	public static Item 太刀 = new ItemTachi(Config.太刀ID, tamahagane).setUnlocalizedName("wa:tachi").setTextureName("wa:tachi").setCreativeTab(Wa.creativeTab);
-	public static Item 玉鋼 = new Item(Config.玉鋼ID).setUnlocalizedName("wa:tamahagane").setTextureName("wa:tamahagane").setCreativeTab(Wa.creativeTab);
-	public static Item 食べ物 = (new ItemWaFood(Config.食べ物ID, 5, 0.6F, false)).setUnlocalizedName("wa:food").setCreativeTab(Wa.creativeTab);
-	public static Item 金槌 = new ItemKanazuchi(Config.金槌ID, 0).setUnlocalizedName("wa:kanaduchi").setTextureName("wa:kanaduchi").setCreativeTab(Wa.creativeTab);
-	public static Item 竹炭 = new Item(Config.竹炭ID).setUnlocalizedName("wa:takezumi").setTextureName("wa:takezumi").setCreativeTab(Wa.creativeTab);
-	public static Item 鋼の斧 = new ItemAxe(Config.鋼の斧ID, tamahagane).setUnlocalizedName("wa:axe").setTextureName("wa:axe").setCreativeTab(Wa.creativeTab);
-	public static Item 鋼のツルハシ = new ItemPickaxe(Config.鋼のツルハシID, tamahagane).setUnlocalizedName("wa:pickaxe").setTextureName("wa:pickaxe").setCreativeTab(Wa.creativeTab);
-	public static Item 鋼のシャベル = new ItemSpade(Config.鋼のシャベルID, tamahagane).setUnlocalizedName("wa:shovel").setTextureName("wa:shovel").setCreativeTab(Wa.creativeTab);
-	public static Item 鋼のクワ = new ItemHoe(Config.鋼のクワID, tamahagane).setUnlocalizedName("wa:hoe").setTextureName("wa:hoe").setCreativeTab(Wa.creativeTab);
-	public static Item 鋼の金槌 = new ItemKanazuchi(Config.鋼の金槌ID, 0).setUnlocalizedName("wa:steelKanaduchi").setTextureName("wa:steelKanaduchi").setCreativeTab(Wa.creativeTab);
-	public static Item 貨幣 = new ItemCoin(Config.貨幣ID).setUnlocalizedName("wa:kahei").setCreativeTab(Wa.creativeTab);
-	public static Item お盆 = new ItemObon(Config.お盆ID).setUnlocalizedName("wa:obon").setTextureName("wa:obon").setCreativeTab(Wa.creativeTab);
-	public static Item 手裏剣 = new ItemShuriken(Config.手裏剣ID).setUnlocalizedName("wa:shuriken").setTextureName("wa:shuriken").setCreativeTab(Wa.creativeTab);
-	public static Item 毛筆 = (new Item(Config.毛筆ID)).setMaxDamage(32).setUnlocalizedName("wa:mouhitsu").setTextureName("wa:mouhitsu").setCreativeTab(Wa.creativeTab);
-	public static Item 掛け軸 = (new ItemShodo(Config.掛け軸ID)).setUnlocalizedName("wa:kakejiku").setTextureName("wa:kakejiku").setCreativeTab(Wa.creativeTab);
-	public static Item 米 = new Item(Config.米ID).setUnlocalizedName("wa:kome").setTextureName("wa:kome").setCreativeTab(Wa.creativeTab);
-	public static Item 種籾 = new ItemSeeds(Config.種籾ID, Blocks.ine.blockID, Block.tilledField.blockID).setUnlocalizedName("wa:tanemomi").setTextureName("wa:tanemomi").setCreativeTab(Wa.creativeTab);
-	public static Item 稲 = new ItemIne(Config.稲ID).setUnlocalizedName("wa:ine").setTextureName("wa:ine").setCreativeTab(Wa.creativeTab);
-	public static Item 御鏡 = new ItemMirror(Config.御鏡ID).setUnlocalizedName("wa:mikagami").setTextureName("wa:mikagami").setCreativeTab(Wa.creativeTab);
-	public static Item 勾玉 = new ItemMagatama(Config.勾玉ID).setUnlocalizedName("wa:magatama").setTextureName("wa:magatama").setCreativeTab(Wa.creativeTab);
-	public static Item ズク = new Item(Config.ズクID).setUnlocalizedName("wa:zuku").setTextureName("wa:zuku").setCreativeTab(Wa.creativeTab);
-	public static Item ズク破片 = new Item(Config.ズク破片ID).setUnlocalizedName("wa:zukuDust").setTextureName("wa:zukuDust").setCreativeTab(Wa.creativeTab);
-	public static Item 石の金槌 = new ItemKanazuchi(Config.石の金槌ID, 0).setUnlocalizedName("wa:stoneKanaduchi").setTextureName("wa:stoneKanaduchi").setCreativeTab(Wa.creativeTab);
-	public static Item 左下鉄 = new Item(Config.左下鉄ID).setUnlocalizedName("wa:sagegane").setTextureName("wa:sagegane").setCreativeTab(Wa.creativeTab);
-	public static Item 梅の実 = new ItemUmenomi(Config.梅の実ID).setUnlocalizedName("wa:umenomi").setTextureName("wa:umenomi").setCreativeTab(Wa.creativeTab);
-	public static Item 梅干し = new ItemUmeboshi(Config.梅干しID).setUnlocalizedName("wa:umeboshi").setTextureName("wa:umeboshi").setCreativeTab(Wa.creativeTab);
-	public static Item 梅酒 = new ItemUmeshu(Config.梅酒ID).setUnlocalizedName("wa:umeshu").setTextureName("wa:umeshu").setCreativeTab(Wa.creativeTab);
-	public static Item 茶碗 = new Item(Config.茶碗ID).setUnlocalizedName("wa:teaEmpty").setTextureName("wa:teaEmpty").setCreativeTab(Wa.creativeTab);
-	public static Item お茶 = new ItemTea(Config.お茶ID).setUnlocalizedName("wa:tea").setTextureName("wa:tea").setCreativeTab(Wa.creativeTab);
+	public static Item.ToolMaterial tamahagane = EnumHelper.addToolMaterial("tamahagane", Config.玉鋼強度 < 5 ? 2 : 3, 57 + Config.玉鋼強度 * 40, Config.玉鋼強度 * 0.3F + 4.0F, 3, 18);
+	public static Item 刀 = new ItemSword(tamahagane).setUnlocalizedName("wa:katana").setTextureName("wa:katana").setCreativeTab(Wa.creativeTab);
+	public static Item 太刀 = new ItemTachi(tamahagane).setUnlocalizedName("wa:tachi").setTextureName("wa:tachi").setCreativeTab(Wa.creativeTab);
+	public static Item 玉鋼 = new Item().setUnlocalizedName("wa:tamahagane").setTextureName("wa:tamahagane").setCreativeTab(Wa.creativeTab);
+	public static Item 食べ物 = (new ItemWaFood(5, 0.6F, false)).setUnlocalizedName("wa:food").setCreativeTab(Wa.creativeTab);
+	public static Item 金槌 = new ItemKanazuchi(Item.ToolMaterial.IRON).setUnlocalizedName("wa:kanaduchi").setTextureName("wa:kanaduchi").setCreativeTab(Wa.creativeTab);
+	public static Item 竹炭 = new Item().setUnlocalizedName("wa:takezumi").setTextureName("wa:takezumi").setCreativeTab(Wa.creativeTab);
+	public static Item 鋼の斧 = new ItemSteelAxe(tamahagane).setUnlocalizedName("wa:axe").setTextureName("wa:axe").setCreativeTab(Wa.creativeTab);
+	public static Item 鋼のツルハシ = new ItemSteelPickaxe(tamahagane).setUnlocalizedName("wa:pickaxe").setTextureName("wa:pickaxe").setCreativeTab(Wa.creativeTab);
+	public static Item 鋼のシャベル = new ItemSpade(tamahagane).setUnlocalizedName("wa:shovel").setTextureName("wa:shovel").setCreativeTab(Wa.creativeTab);
+	public static Item 鋼のクワ = new ItemHoe(tamahagane).setUnlocalizedName("wa:hoe").setTextureName("wa:hoe").setCreativeTab(Wa.creativeTab);
+	public static Item 鋼の金槌 = new ItemKanazuchi(tamahagane).setUnlocalizedName("wa:steelKanaduchi").setTextureName("wa:steelKanaduchi").setCreativeTab(Wa.creativeTab);
+	public static Item 貨幣 = new ItemCoin().setUnlocalizedName("wa:kahei").setCreativeTab(Wa.creativeTab);
+	public static Item お盆 = new ItemObon().setUnlocalizedName("wa:obon").setTextureName("wa:obon").setCreativeTab(Wa.creativeTab);
+	public static Item 手裏剣 = new ItemShuriken().setUnlocalizedName("wa:shuriken").setTextureName("wa:shuriken").setCreativeTab(Wa.creativeTab);
+	public static Item 毛筆 = (new Item()).setMaxDamage(32).setUnlocalizedName("wa:mouhitsu").setTextureName("wa:mouhitsu").setCreativeTab(Wa.creativeTab);
+	public static Item 掛け軸 = (new ItemShodo()).setUnlocalizedName("wa:kakejiku").setTextureName("wa:kakejiku").setCreativeTab(Wa.creativeTab);
+	public static Item 米 = new Item().setUnlocalizedName("wa:kome").setTextureName("wa:kome").setCreativeTab(Wa.creativeTab);
+	public static Item 種籾 = new ItemSeeds(Blocks.ine, Blocks.farmland).setUnlocalizedName("wa:tanemomi").setTextureName("wa:tanemomi").setCreativeTab(Wa.creativeTab);
+	public static Item 稲 = new ItemIne().setUnlocalizedName("wa:ine").setTextureName("wa:ine").setCreativeTab(Wa.creativeTab);
+	public static Item 御鏡 = new ItemMirror().setUnlocalizedName("wa:mikagami").setTextureName("wa:mikagami").setCreativeTab(Wa.creativeTab);
+	public static Item 勾玉 = new ItemMagatama().setUnlocalizedName("wa:magatama").setTextureName("wa:magatama").setCreativeTab(Wa.creativeTab);
+	public static Item ズク = new Item().setUnlocalizedName("wa:zuku").setTextureName("wa:zuku").setCreativeTab(Wa.creativeTab);
+	public static Item ズク破片 = new Item().setUnlocalizedName("wa:zukuDust").setTextureName("wa:zukuDust").setCreativeTab(Wa.creativeTab);
+	public static Item 石の金槌 = new ItemKanazuchi(Item.ToolMaterial.STONE).setUnlocalizedName("wa:stoneKanaduchi").setTextureName("wa:stoneKanaduchi").setCreativeTab(Wa.creativeTab);
+	public static Item 左下鉄 = new Item().setUnlocalizedName("wa:sagegane").setTextureName("wa:sagegane").setCreativeTab(Wa.creativeTab);
+	public static Item 梅の実 = new ItemUmenomi().setUnlocalizedName("wa:umenomi").setTextureName("wa:umenomi").setCreativeTab(Wa.creativeTab);
+	public static Item 梅干し = new ItemUmeboshi().setUnlocalizedName("wa:umeboshi").setTextureName("wa:umeboshi").setCreativeTab(Wa.creativeTab);
+	public static Item 梅酒 = new ItemUmeshu().setUnlocalizedName("wa:umeshu").setTextureName("wa:umeshu").setCreativeTab(Wa.creativeTab);
+	public static Item 茶碗 = new Item().setUnlocalizedName("wa:teaEmpty").setTextureName("wa:teaEmpty").setCreativeTab(Wa.creativeTab);
+	public static Item お茶 = new ItemTea().setUnlocalizedName("wa:tea").setTextureName("wa:tea").setCreativeTab(Wa.creativeTab);
+
+    public static Item 磁鉄鉱インゴット = new Item().setUnlocalizedName("wa:magnetite_ingot").setTextureName("wa:ingotMagnetite").setCreativeTab(Wa.creativeTab);
+    public static Item 磁石 = new ItemMagnet().setUnlocalizedName("wa:magnet").setTextureName("wa:magnet").setCreativeTab(Wa.creativeTab);
 
 	static Item 家紋;// = new 家紋(Config.家紋ID).setUnlocalizedName("wa:kamon").setCreativeTab(Wa.creativeTab);
 
@@ -58,76 +53,62 @@ public class Items {
 	}
 
 	public static void init() {
-		addNameForObject(玉鋼, "tamahagane", "玉鋼");
-		LanguageRegistry.instance().addStringLocalization(EnumFood.onigiri.toString(), "ja_JP", "おにぎり");
-		LanguageRegistry.instance().addStringLocalization(EnumFood.odango.toString(), "ja_JP", "お団子");
-		for(int i = 0; i < EnumFood.values().length; ++i) {
-			addNameForObject(new ItemStack(食べ物, 1, i), EnumFood.values()[i].toString(), getStringLocalization(EnumFood.values()[i].toString(), "ja_JP"));
-		}
+        GameRegistry.registerItem(玉鋼, "tamahagane");
+        GameRegistry.registerItem(食べ物, "food");
 
 		//TODO 家紋の名前を設定する
 		//TODO 家紋使用時の動作を実装する
 
-		LanguageRegistry.instance().addStringLocalization(EnumCoin.BRONZE_COIN.toString(), "ja_JP", "寛永通宝");
-		LanguageRegistry.instance().addStringLocalization(EnumCoin.SILVER_COIN.toString(), "ja_JP", "慶長小玉銀");
-		LanguageRegistry.instance().addStringLocalization(EnumCoin.GOLD_COIN.toString(), "ja_JP", "慶長小判");
 
-		for(int i = 0; i < EnumCoin.values().length; ++i) {
-			addNameForObject(new ItemStack(貨幣, 1, i), EnumCoin.values()[i].toString(), getStringLocalization(EnumCoin.values()[i].toString(), "ja_JP"));
-		}
-		addNameForObject(石の金槌, "StoneKanaduchi", "石の金槌");
-		addNameForObject(金槌, "kanaduchi", "金槌");
-		addNameForObject(鋼の金槌, "SteelKanaduchi", "鋼の金槌");
+        GameRegistry.registerItem(貨幣, "coin");
+        GameRegistry.registerItem(石の金槌, "StoneKanaduchi");
+        GameRegistry.registerItem(金槌, "kanaduchi");
+        GameRegistry.registerItem(鋼の金槌, "SteelKanaduchi");
 
 		//金槌は専用のツールカテゴリに登録する
-		MinecraftForge.setToolClass(石の金槌, "hummer", 1);
-		MinecraftForge.setToolClass(金槌, "hummer", 2);
-		MinecraftForge.setToolClass(鋼の金槌, "hummer", 3);
+		//MinecraftForge.setToolClass(石の金槌, "hummer", 1);
+		//MinecraftForge.setToolClass(金槌, "hummer", 2);
+		//MinecraftForge.setToolClass(鋼の金槌, "hummer", 3);
+        石の金槌.setHarvestLevel("hummer", 1);
+        金槌.setHarvestLevel("hummer", 2);
+        鋼の金槌.setHarvestLevel("hummer", 3);
 
-        addNameForObject(太刀, "tachi", "太刀");
-		addNameForObject(刀, "katana", "刀");
-		addNameForObject(鋼の斧, "steelAxe", "鋼の斧");
-		addNameForObject(鋼のツルハシ, "steelPickaxe", "鋼のツルハシ");
-		addNameForObject(鋼のシャベル, "steelShovel", "鋼のシャベル");
-		addNameForObject(鋼のクワ, "steelHoe", "鋼のクワ");
+        GameRegistry.registerItem(太刀, "tachi");
+        GameRegistry.registerItem(刀, "katana");
+        GameRegistry.registerItem(鋼の斧, "steelAxe");
+        GameRegistry.registerItem(鋼のツルハシ, "steelPickaxe");
+        GameRegistry.registerItem(鋼のシャベル, "steelShovel");
+        GameRegistry.registerItem(鋼のクワ, "steelHoe");
 		//addNameForObject(家紋, "kamon", "家紋");
-		addNameForObject(竹炭, "takezumi", "竹炭");
-		addNameForObject(お盆, "obon", "お盆");
-		addNameForObject(手裏剣, "shuriken", "手裏剣");
-		addNameForObject(掛け軸, "kakejiku", "掛け軸");
-		addNameForObject(毛筆, "mouhitsu", "毛筆");
-		addNameForObject(米, "kome", "米");
-		addNameForObject(稲, "ine", "稲");
-		addNameForObject(種籾, "tanemomi", "種籾");
-		addNameForObject(御鏡, "mikagami", "御鏡");
-		addNameForObject(勾玉, "magatama", "勾玉");
-		addNameForObject(ズク, "zuku", "ズク");
-		addNameForObject(ズク破片, "zukuDust", "ズク破片");
-		addNameForObject(左下鉄, "sagegane", "左下鉄");
-		addNameForObject(梅の実, "umenomi", "梅の実");
-		addNameForObject(梅干し, "umeboshi", "梅干し");
-		addNameForObject(梅酒, "umeshu", "梅酒");
-		addNameForObject(茶碗, "chawan", "茶碗");
-		addNameForObject(お茶, "ocha", "お茶");
+        GameRegistry.registerItem(竹炭, "takezumi");
+        GameRegistry.registerItem(お盆, "obon");
+        GameRegistry.registerItem(手裏剣, "shuriken");
+        GameRegistry.registerItem(掛け軸, "kakejiku");
+        GameRegistry.registerItem(毛筆, "mouhitsu");
+        GameRegistry.registerItem(米, "kome");
+        GameRegistry.registerItem(稲, "ine");
+        GameRegistry.registerItem(種籾, "tanemomi");
+        GameRegistry.registerItem(御鏡, "mikagami");
+        GameRegistry.registerItem(勾玉, "magatama");
+        GameRegistry.registerItem(ズク, "zuku");
+        GameRegistry.registerItem(ズク破片, "zukuDust");
+        GameRegistry.registerItem(左下鉄, "sagegane");
+        GameRegistry.registerItem(梅の実, "umenomi");
+        GameRegistry.registerItem(梅干し, "umeboshi");
+        GameRegistry.registerItem(梅酒, "umeshu");
+        GameRegistry.registerItem(茶碗, "chawan");
+        GameRegistry.registerItem(お茶, "ocha");
 
-		addKakejikuLocalization();
+        GameRegistry.registerItem(磁鉄鉱インゴット, "magnetite_ingot");
+        GameRegistry.registerItem(磁石, "magnet");
+
+        OreDictionary.registerOre("ingotMagnetite", 磁鉄鉱インゴット);
+        OreDictionary.registerOre("rice", 米);
+
+        OreDictionary.registerOre("charcoal", 竹炭);
 	}
 
-	private static void addKakejikuLocalization() {
-		LanguageRegistry.instance().addStringLocalization("syogyo", "ja_JP", "諸行無常");
-		LanguageRegistry.instance().addStringLocalization("inga", "ja_JP", "因果応報");
-		LanguageRegistry.instance().addStringLocalization("yudan", "ja_JP", "油断大敵");
-		LanguageRegistry.instance().addStringLocalization("geijyutu", "ja_JP", "芸術爆発");
-		LanguageRegistry.instance().addStringLocalization("bakuhatsu", "ja_JP", "爆発芸術");
-		LanguageRegistry.instance().addStringLocalization("yakiniku", "ja_JP", "焼肉定食");
-		LanguageRegistry.instance().addStringLocalization("touzai", "ja_JP", "東西南北");
-		LanguageRegistry.instance().addStringLocalization("honda", "ja_JP", "本田圭佑");
-		LanguageRegistry.instance().addStringLocalization("kingin", "ja_JP", "金銀財宝");
-		LanguageRegistry.instance().addStringLocalization("kirisute", "ja_JP", "斬捨御免");
-		LanguageRegistry.instance().addStringLocalization("syunka", "ja_JP", "春夏秋冬");
-
-	}
-
+/*
 	static String getStringLocalization(String key, String lang) {
 		 return LanguageRegistry.instance().getStringLocalization(key, lang);
 	}
@@ -140,5 +121,5 @@ public class Items {
 	static void addNameForObject(ItemStack itemStack, String name, String 名前) {
 		LanguageRegistry.instance().addNameForObject(itemStack, "en_US", name);
 		LanguageRegistry.instance().addNameForObject(itemStack, "ja_JP", 名前);
-	}
+	}*/
 }

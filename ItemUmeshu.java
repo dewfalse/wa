@@ -10,8 +10,8 @@ import net.minecraft.world.World;
 
 public class ItemUmeshu extends Item {
 
-	public ItemUmeshu(int par1) {
-		super(par1);
+	public ItemUmeshu() {
+		super();
 	}
 
 	@Override
@@ -59,7 +59,7 @@ public class ItemUmeshu extends Item {
 	}
 
 	@Override
-	public ItemStack getContainerItemStack(ItemStack itemStack) {
-		return new ItemStack(Item.glassBottle, itemStack.stackSize, 0);
+	public ItemStack getContainerItem(ItemStack itemStack) {
+		return new ItemStack(Items.glass_bottle, itemStack.stackSize, 0);
 	}
 }

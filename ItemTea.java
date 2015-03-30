@@ -10,8 +10,8 @@ import net.minecraft.world.World;
 
 public class ItemTea extends Item {
 
-	public ItemTea(int par1) {
-		super(par1);
+	public ItemTea() {
+		super();
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class ItemTea extends Item {
 	}
 
 	@Override
-	public ItemStack getContainerItemStack(ItemStack itemStack) {
+	public ItemStack getContainerItem(ItemStack itemStack) {
 		return new ItemStack(Items.茶碗, itemStack.stackSize, 0);
 	}
 }

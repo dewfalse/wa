@@ -1,6 +1,7 @@
 package wa;
 
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class WaCreativeTabs extends CreativeTabs {
@@ -15,7 +16,12 @@ public class WaCreativeTabs extends CreativeTabs {
 		return new ItemStack(Items.食べ物);
 	}
 
-	@Override
+    @Override
+    public Item getTabIconItem() {
+        return Items.食べ物;
+    }
+
+    @Override
 	public String getTranslatedTabLabel() {
 		return "和";
 	}

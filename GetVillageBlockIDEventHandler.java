@@ -1,18 +1,19 @@
 package wa;
 
-import net.minecraft.block.Block;
+import cpw.mods.fml.common.eventhandler.Event;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraftforge.event.Event.Result;
-import net.minecraftforge.event.ForgeSubscribe;
 import net.minecraftforge.event.terraingen.BiomeEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import wa.block.Blocks;
 
 public class GetVillageBlockIDEventHandler {
 
-	@ForgeSubscribe
+	@SubscribeEvent
 	public void getVillageBlockID(BiomeEvent.GetVillageBlockID event) {
 
+		if (event == null) {
+			return;
+		}
 		if (event.biome == null) {
 			return;
 		}
@@ -27,50 +28,53 @@ public class GetVillageBlockIDEventHandler {
 			return;
 		}
 
-		if (event.original == Block.wood.blockID) {
-			event.replacement = Blocks.colorWood[1].blockID;
-		} else if (event.original == Block.cobblestone.blockID) {
-			event.replacement = Blocks.sakuraWood.blockID;
-		} else if (event.original == Block.planks.blockID) {
-			event.replacement = Blocks.shikui.blockID;
-		} else if (event.original == Block.stairsWoodOak.blockID) {
-			event.replacement = Blocks.wara.blockID;
-		} else if (event.original == Block.stairsCobblestone.blockID) {
+		if (event.original == Blocks.planks) {
+			event.replacement = Blocks.colorWood[1];
+		} else if (event.original == Blocks.cobblestone) {
+			event.replacement = Blocks.sakuraWood;
+		} else if (event.original == Blocks.planks) {
+			event.replacement = Blocks.shikui;
+		} else if (event.original == Blocks.oak_stairs) {
+			event.replacement = Blocks.wara;
+		} else if (event.original == Blocks.stone_stairs) {
 			return;
-		} else if (event.original == Block.gravel.blockID) {
-			event.replacement = Block.sand.blockID;
-		} else if (event.original == Block.dirt.blockID) {
-			event.replacement = Block.sand.blockID;
-		} else if (event.original == Block.furnaceIdle.blockID) {
-			event.replacement = Blocks.taiko.blockID;
-		} else if (event.original == Block.carrot.blockID) {
-			event.replacement = Blocks.ine.blockID;
-		} else if (event.original == Block.potato.blockID) {
-			event.replacement = Blocks.ine.blockID;
-		} else if (event.original == Block.crops.blockID) {
-			event.replacement = Blocks.ine.blockID;
-		} else if (event.original == Block.thinGlass.blockID) {
+		} else if (event.original == Blocks.gravel) {
+			event.replacement = Blocks.sand;
+		} else if (event.original == Blocks.dirt) {
+			event.replacement = Blocks.sand;
+		} else if (event.original == Blocks.furnace) {
+			event.replacement = Blocks.taiko;
+		} else if (event.original == Blocks.carrots) {
+			event.replacement = Blocks.ine;
+		} else if (event.original == Blocks.potatoes) {
+			event.replacement = Blocks.ine;
+		} else if (event.original == Blocks.wheat) {
+			event.replacement = Blocks.ine;
+		} else if (event.original == Blocks.glass_pane) {
 			return;
-		} else if (event.original == Block.stoneDoubleSlab.blockID) {
-			event.replacement = Blocks.BlockWaDoubleBlock.blockID;
-		} else if (event.original == Block.stoneSingleSlab.blockID) {
-			event.replacement = Blocks.sakuraPlank.blockID;
-		} else if (event.original == Block.fence.blockID) {
+		} else if (event.original == Blocks.double_stone_slab) {
+			event.replacement = Blocks.BlockWaDoubleBlock;
+		} else if (event.original == Blocks.stone_slab) {
+			event.replacement = Blocks.sakuraPlank;
+		} else if (event.original == Blocks.fence) {
 			return;
-		} else if (event.original == Block.bookShelf.blockID) {
+		} else if (event.original == Blocks.bookshelf) {
 			return;
-		} else if (event.original == Block.waterMoving.blockID) {
+		} else if (event.original == Blocks.flowing_water) {
 			return;
 		} else {
 			return;
 		}
 
-		event.setResult(Result.DENY);
+		event.setResult(Event.Result.DENY);
 	}
 
-	@ForgeSubscribe
+	@SubscribeEvent
 	public void getVillageBlockID(BiomeEvent.GetVillageBlockMeta event) {
 
+		if (event == null) {
+			return;
+		}
 		if (event.biome == null) {
 			return;
 		}
@@ -85,14 +89,14 @@ public class GetVillageBlockIDEventHandler {
 			return;
 		}
 
-		if (event.original == Block.stairsWoodOak.blockID) {
+		if (event.original == Blocks.oak_stairs) {
 			event.replacement = 0;
-		} else if (event.original == Block.furnaceIdle.blockID) {
+		} else if (event.original == Blocks.furnace) {
 			event.replacement = 4;
 		} else {
 			return;
 		}
 
-		event.setResult(Result.DENY);
+		event.setResult(Event.Result.DENY);
 	}
 }

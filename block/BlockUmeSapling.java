@@ -1,25 +1,25 @@
-package wa;
-
-import java.awt.Color;
+package wa.block;
 
 import net.minecraft.block.BlockSapling;
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.util.Icon;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
+
+import java.awt.*;
 
 public class BlockUmeSapling extends BlockSapling {
 
-	protected BlockUmeSapling(int par1) {
-		super(par1);
+	protected BlockUmeSapling() {
+		super();
 	}
 
 	@Override
-	public Icon getIcon(int par1, int par2) {
+	public IIcon getIcon(int par1, int par2) {
 		return blockIcon;
 	}
 
 	@Override
-	public void registerIcons(IconRegister par1IconRegister) {
+	public void registerBlockIcons(IIconRegister par1IconRegister) {
 		this.blockIcon = par1IconRegister.registerIcon("wa:umeSapling");
 	}
 

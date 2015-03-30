@@ -3,7 +3,6 @@ package wa;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 
 public class GuiBrewingBarrel extends GuiContainer {
@@ -40,7 +39,7 @@ public class GuiBrewingBarrel extends GuiContainer {
 
 	@Override
 	protected void drawGuiContainerForegroundLayer(int par1, int par2) {
-		this.fontRenderer.drawString("Brewing Barrel", 58, 5, 4210752);
+		this.fontRendererObj.drawString("Brewing Barrel", 58, 5, 4210752);
 	}
 
 }

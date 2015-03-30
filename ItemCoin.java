@@ -1,43 +1,43 @@
 package wa;
 
-import java.util.List;
-
-import net.minecraft.client.renderer.texture.IconRegister;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 public class ItemCoin extends Item {
-	private Icon icons[];
+	private IIcon icons[];
 
-	public ItemCoin(int par1) {
-		super(par1);
+	public ItemCoin() {
+		super();
 		setHasSubtypes(true);
 	}
 
 	@Override
-	public Icon getIconFromDamage(int par1) {
+	public IIcon getIconFromDamage(int par1) {
 		int i = MathHelper.clamp_int(par1, 0, EnumCoin.values().length-1);
 		return icons[i];
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public void registerIcons(IconRegister par1IconRegister) {
-		icons = new Icon[EnumCoin.values().length];
+	public void registerIcons(IIconRegister par1IconRegister) {
+		icons = new IIcon[EnumCoin.values().length];
 		for (int var4 = 0; var4 < EnumCoin.values().length; ++var4) {
 			icons[var4] = par1IconRegister.registerIcon("wa:"+EnumCoin.values()[var4].toString().toLowerCase());
 		}
 	}
 
 	@Override
-	public void getSubItems(int par1, CreativeTabs par2CreativeTabs, List par3List) {
+	public void getSubItems(Item par1, CreativeTabs par2CreativeTabs, List par3List) {
 		for (int var4 = 0; var4 < EnumCoin.values().length; ++var4) {
 			par3List.add(new ItemStack(par1, 1, var4));
 		}
@@ -46,7 +46,7 @@ public class ItemCoin extends Item {
 	@Override
 	public String getUnlocalizedName(ItemStack par1ItemStack) {
 		return super.getUnlocalizedName(par1ItemStack)
-				+ EnumCoin.values()[par1ItemStack.getItemDamage()].toString().toLowerCase();
+				+ "." + EnumCoin.values()[par1ItemStack.getItemDamage()].toString().toLowerCase();
 	}
 
 	@Override

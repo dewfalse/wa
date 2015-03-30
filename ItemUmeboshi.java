@@ -1,9 +1,5 @@
 package wa;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
@@ -12,12 +8,16 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 public class ItemUmeboshi extends Item {
 
 	Potion[] curableEffects = {Potion.moveSlowdown, Potion.digSlowdown, Potion.blindness, Potion.weakness, Potion.wither};
 
-	public ItemUmeboshi(int par1) {
-		super(par1);
+	public ItemUmeboshi() {
+		super();
 	}
 
 	@Override

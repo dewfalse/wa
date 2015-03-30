@@ -1,12 +1,14 @@
 package wa;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
+import wa.block.Blocks;
 
 public class ItemBlockColorWood extends ItemBlock {
 
-	public ItemBlockColorWood(int par1) {
+	public ItemBlockColorWood(Block par1) {
 		super(par1);
 		this.setMaxDamage(0);
 		this.setHasSubtypes(true);
@@ -19,7 +21,7 @@ public class ItemBlockColorWood extends ItemBlock {
 	}
 
 	@Override
-	public Icon getIconFromDamage(int i) {
+	public IIcon getIconFromDamage(int i) {
 		return Blocks.colorWood[0].getIcon(2, i);
 	}
 

@@ -1,13 +1,13 @@
 package wa;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
-
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.packet.Packet;
+import net.minecraft.network.Packet;
 import net.minecraft.pathfinding.PathPoint;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class TileEntityCharm extends TileEntity {
 
@@ -47,8 +47,8 @@ public class TileEntityCharm extends TileEntity {
 				list.remove(new PathPoint(this.xCoord, this.yCoord, this.zCoord));
 				EntityJoinWorldEventHandler.charmsInDim.put(this.worldObj.provider.dimensionId, list);
 			}
-			this.worldObj.setBlock(this.xCoord,this.yCoord,this.zCoord,0);
-			this.worldObj.removeBlockTileEntity(this.xCoord,this.yCoord,this.zCoord);
+			this.worldObj.setBlockToAir(this.xCoord, this.yCoord, this.zCoord);
+			this.worldObj.removeTileEntity(this.xCoord, this.yCoord, this.zCoord);
 			this.updateContainingBlockInfo();
 		}
 		super.updateEntity();

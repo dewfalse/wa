@@ -14,8 +14,8 @@ public class ItemKamon extends Item {
 	 * 設置済みの場所にもう一回設置しようとしてもなにも起こらない
 	 */
 
-	public ItemKamon(int par1) {
-		super(par1);
+	public ItemKamon() {
+		super();
 		// TODO 自動生成されたコンストラクター・スタブ
 	}
 

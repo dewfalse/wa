@@ -1,23 +1,23 @@
-package wa;
+package wa.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.util.Icon;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
 
 public class BlockShikui extends Block {
 
-	Icon[] icons;
+	IIcon[] icons;
 
-	public BlockShikui(int par1, Material par2Material) {
-		super(par1, par2Material);
+	public BlockShikui(Material par2Material) {
+		super(par2Material);
 	}
 
 	@Override
-	public void registerIcons(IconRegister par1IconRegister) {
-		icons = new Icon[16];
+	public void registerBlockIcons(IIconRegister par1IconRegister) {
+		icons = new IIcon[16];
 		for(int i = 0; i < icons.length; ++i) {
 			icons[i] = par1IconRegister.registerIcon("wa:shikui" + String.valueOf(i));
 		}
@@ -31,7 +31,7 @@ public class BlockShikui extends Block {
 	}
 
 	@Override
-	public Icon getBlockTexture(IBlockAccess par1iBlockAccess, int par2,
+	public IIcon getIcon(IBlockAccess par1iBlockAccess, int par2,
 			int par3, int par4, int par5) {
 		ForgeDirection[] dirs_top = {ForgeDirection.NORTH, ForgeDirection.EAST, ForgeDirection.SOUTH, ForgeDirection.WEST};
 		ForgeDirection[] dirs_2 = {ForgeDirection.UP, ForgeDirection.WEST, ForgeDirection.DOWN, ForgeDirection.EAST};
@@ -59,8 +59,8 @@ public class BlockShikui extends Block {
 
 		int index = 0;
 		for(int i = 0; i < 4; ++i) {
-			int nBlockID = par1iBlockAccess.getBlockId(par2+dirs[i].offsetX, par3+dirs[i].offsetY, par4+dirs[i].offsetZ);
-			if(nBlockID != blockID) {
+			Block block = par1iBlockAccess.getBlock(par2+dirs[i].offsetX, par3+dirs[i].offsetY, par4+dirs[i].offsetZ);
+			if(block != this) {
 				switch(i) {
 				case 0:
 					index += 1;

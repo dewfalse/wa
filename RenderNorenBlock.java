@@ -1,12 +1,11 @@
 package wa;
 
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.world.IBlockAccess;
-import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import wa.block.BlockNoren;
 
 public class RenderNorenBlock implements ISimpleBlockRenderingHandler {
 
@@ -37,7 +36,7 @@ public class RenderNorenBlock implements ISimpleBlockRenderingHandler {
 	}
 
 	@Override
-	public boolean shouldRender3DInInventory() {
+	public boolean shouldRender3DInInventory(int par1) {
 		return false;
 	}
 

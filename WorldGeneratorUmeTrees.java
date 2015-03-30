@@ -1,12 +1,13 @@
 package wa;
 
-import java.util.Random;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
+import wa.block.Blocks;
+
+import java.util.Random;
 
 public class WorldGeneratorUmeTrees extends WorldGenerator {
 
@@ -32,14 +33,12 @@ public class WorldGeneratorUmeTrees extends WorldGenerator {
 		boolean flag = true;
 
 		for (int j = 255; j >= Math.max(1, par4); --j) {
-			int blockID = par1World.getBlockId(par3, j, par5);
+            Block block = par1World.getBlock(par3, j, par5);
 
-			Block block = Block.blocksList[blockID];
-
-			if (blockID != 0 && !block.isLeaves(par1World, par3, j, par5)
-					&& blockID != Block.grass.blockID
-					&& blockID != Block.dirt.blockID
-					&& blockID != Blocks.umeSapling.blockID
+			if (par1World.isAirBlock(par3, j, par5) == false && !block.isLeaves(par1World, par3, j, par5)
+					&& block != Blocks.grass
+					&& block != Blocks.dirt
+					&& block != Blocks.umeSapling
 					&& !block.isWood(par1World, par3, j, par5)) {
 				flag = false;
 			}
@@ -48,9 +47,8 @@ public class WorldGeneratorUmeTrees extends WorldGenerator {
 		if (!flag) {
 			return false;
 		} else {
-			par1World.setBlock(par3, par4, par5, 0, 0, 4);
-			int blockID = par1World.getBlockId(par3, par4 - 1, par5);
-			Block soil = Block.blocksList[blockID];
+			par1World.setBlockToAir(par3, par4, par5);
+            Block soil = par1World.getBlock(par3, par4 - 1, par5);
 			boolean isSoil = (soil != null && soil.canSustainPlant(par1World,
 					par3, par4 - 1, par5, ForgeDirection.UP,
 					(BlockSapling) Blocks.umeSapling));
@@ -59,11 +57,10 @@ public class WorldGeneratorUmeTrees extends WorldGenerator {
 				soil.onPlantGrow(par1World, par3, par4 - 1, par5, par3, par4,
 						par5);
 				for (int j = 0; j < 3; ++j) {
-					blockID = par1World.getBlockId(par3, par4 + j, par5);
-					Block block = Block.blocksList[blockID];
-					if (blockID == 0 || block == null) {
-						this.setBlockAndMetadata(par1World, par3, par4 + j,
-								par5, Blocks.umeWood.blockID, 0);
+					Block block = par1World.getBlock(par3, par4 + j, par5);
+					if (par1World.isAirBlock(par3, par4 + j, par5) || block == null) {
+						this.setBlockAndNotifyAdequately(par1World, par3, par4 + j,
+								par5, Blocks.umeWood, 0);
 					} else {
 						return true;
 					}
@@ -90,11 +87,10 @@ public class WorldGeneratorUmeTrees extends WorldGenerator {
 					x += dir.offsetX;
 					y += dir.offsetY;
 					z += dir.offsetZ;
-					blockID = par1World.getBlockId(x, y, z);
-					Block block = Block.blocksList[blockID];
-					if (blockID == 0 || block == null) {
-						this.setBlockAndMetadata(par1World, x, y, z,
-								Blocks.umeWood.blockID, this.metaWood);
+                    Block block = par1World.getBlock(x, y, z);
+					if (par1World.isAirBlock(x, y, z) || block == null) {
+						this.setBlockAndNotifyAdequately(par1World, x, y, z,
+								Blocks.umeWood, this.metaWood);
 					} else {
 						return true;
 					}

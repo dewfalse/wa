@@ -1,10 +1,9 @@
-package wa;
+package wa.block;
 
-import java.util.Set;
-
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IconRegister;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -15,20 +14,25 @@ import net.minecraft.nbt.NBTTagList;
 import net.minecraft.pathfinding.PathPoint;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.Icon;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import wa.Enchantments;
+import wa.EntityJoinWorldEventHandler;
+import wa.TileEntityCharm;
+
+import java.util.Set;
 
 public class BlockCharm extends BlockContainer {
 
 	public static int renderID;
 
-	protected BlockCharm(int par1, Material par2Material) {
-		super(par1, par2Material);
+	protected BlockCharm(Material par2Material) {
+		super(par2Material);
 	}
 
 	@Override
-	public TileEntity createNewTileEntity(World world) {
+	public TileEntity createNewTileEntity(World world, int par2) {
 		return new TileEntityCharm();
 	}
 
@@ -103,7 +107,7 @@ public class BlockCharm extends BlockContainer {
 	}
 
 	@Override
-	public boolean isBlockNormalCube(World world, int x, int y, int z) {
+	public boolean isNormalCube() {
 		return false;
 	}
 
@@ -115,14 +119,14 @@ public class BlockCharm extends BlockContainer {
 
 	@Override
 	public void breakBlock(World par1World, int par2, int par3, int par4,
-			int par5, int par6) {
+			Block par5, int par6) {
 		Set<PathPoint> list = EntityJoinWorldEventHandler.charmsInDim.get(par1World.provider.dimensionId);
 		if(list != null) {
 			list.remove(new PathPoint(par2, par3, par4));
 			EntityJoinWorldEventHandler.charmsInDim.put(par1World.provider.dimensionId, list);
 		}
 		if(!par1World.isRemote) {
-			TileEntity tile = par1World.getBlockTileEntity(par2, par3, par4);
+			TileEntity tile = par1World.getTileEntity(par2, par3, par4);
 			if(tile != null && tile instanceof TileEntityCharm) {
 				TileEntityCharm tileCharm = (TileEntityCharm)tile;
 				if(tileCharm.damage < 1600) {
@@ -138,15 +142,15 @@ public class BlockCharm extends BlockContainer {
 		super.breakBlock(par1World, par2, par3, par4, par5, par6);
 	}
 
-	@Override
-	protected void dropBlockAsItem_do(World par1World, int par2, int par3,
+    @Override
+	protected void dropBlockAsItem(World par1World, int par2, int par3,
 			int par4, ItemStack par5ItemStack) {
 	}
 
 	@Override
 	public void onBlockPlacedBy(World par1World, int par2, int par3, int par4,
 			EntityLivingBase par5EntityLivingBase, ItemStack par6ItemStack) {
-		TileEntity tile = par1World.getBlockTileEntity(par2, par3, par4);
+		TileEntity tile = par1World.getTileEntity(par2, par3, par4);
 		if(tile instanceof TileEntityCharm) {
 			((TileEntityCharm)tile).damage = 0;
 			((TileEntityCharm)tile).charmType = 1;
@@ -155,8 +159,8 @@ public class BlockCharm extends BlockContainer {
 				NBTTagList list = par6ItemStack.getEnchantmentTagList();
 				if(list != null) {
 					for(int i = 0; i < list.tagCount(); ++i) {
-						short id = ((NBTTagCompound)list.tagAt(i)).getShort("id");
-						short level = ((NBTTagCompound)list.tagAt(i)).getShort("lvl");
+						short id = ((NBTTagCompound)list.getCompoundTagAt(i)).getShort("id");
+						short level = ((NBTTagCompound)list.getCompoundTagAt(i)).getShort("lvl");
 						if (Enchantment.enchantmentsList[id] != null) {
 							if(id == Enchantments.purgation.effectId) {
 								((TileEntityCharm)tile).charmType = 3;
@@ -175,12 +179,12 @@ public class BlockCharm extends BlockContainer {
 	}
 
 	@Override
-	public Icon getIcon(int par1, int par2) {
+	public IIcon getIcon(int par1, int par2) {
 		return blockIcon;
 	}
 
 	@Override
-	public void registerIcons(IconRegister par1IconRegister) {
+	public void registerBlockIcons(IIconRegister par1IconRegister) {
 		this.blockIcon = par1IconRegister.registerIcon("wa:ofuda");
 	}
 

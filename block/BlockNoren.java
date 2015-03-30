@@ -1,23 +1,24 @@
-package wa;
-
-import java.util.Random;
+package wa.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBreakable;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
+import net.minecraftforge.common.util.ForgeDirection;
+
+import java.util.Random;
 
 
 public class BlockNoren extends BlockBreakable {
 
 	public static int renderID;
 
-	public BlockNoren(int par1, Material par2Material) {
-		super(par1, "wa:noren", par2Material, false);
+	public BlockNoren(Material par2Material) {
+		super("wa:noren", par2Material, false);
 		// TODO 自動生成されたコンストラクター・スタブ
 	}
 
@@ -92,7 +93,7 @@ public class BlockNoren extends BlockBreakable {
 	}
 
 	@Override
-	public boolean isBlockNormalCube(World world, int x, int y, int z) {
+	public boolean isNormalCube() {
 		return false;
 	}
 
@@ -108,26 +109,26 @@ public class BlockNoren extends BlockBreakable {
 	}
 
 	private boolean canStay(World par1World, int par2, int par3, int par4) {
-		Block block = Block.blocksList[par1World.getBlockId(par2, par3 + 1, par4)];
-		if(block != null && block.isBlockNormalCube(par1World, par2, par3 + 1, par4)) {
+		Block block = par1World.getBlock(par2, par3 + 1, par4);
+		if(block != null && block.isNormalCube(par1World, par2, par3 + 1, par4)) {
 			return true;
 		}
 		ForgeDirection n = ForgeDirection.NORTH;
 		ForgeDirection s = ForgeDirection.SOUTH;
 		ForgeDirection e = ForgeDirection.EAST;
 		ForgeDirection w = ForgeDirection.WEST;
-		Block blockS = Block.blocksList[par1World.getBlockId(par2 + s.offsetX, par3 + s.offsetY, par4 + s.offsetZ)];
-		Block blockW = Block.blocksList[par1World.getBlockId(par2 + w.offsetX, par3 + w.offsetY, par4 + w.offsetZ)];
-		Block blockE = Block.blocksList[par1World.getBlockId(par2 + e.offsetX, par3 + e.offsetY, par4 + e.offsetZ)];
-		Block blockN = Block.blocksList[par1World.getBlockId(par2 + n.offsetX, par3 + n.offsetY, par4 + n.offsetZ)];
+		Block blockS = par1World.getBlock(par2 + s.offsetX, par3 + s.offsetY, par4 + s.offsetZ);
+		Block blockW = par1World.getBlock(par2 + w.offsetX, par3 + w.offsetY, par4 + w.offsetZ);
+		Block blockE = par1World.getBlock(par2 + e.offsetX, par3 + e.offsetY, par4 + e.offsetZ);
+		Block blockN = par1World.getBlock(par2 + n.offsetX, par3 + n.offsetY, par4 + n.offsetZ);
 		if(blockS != null && blockN != null
-				&& blockS.isBlockNormalCube(par1World,par2 + s.offsetX, par3 + s.offsetY, par4 + s.offsetZ)
-				&& blockN.isBlockNormalCube(par1World,par2 + n.offsetX, par3 + n.offsetY, par4 + n.offsetZ)) {
+				&& blockS.isNormalCube(par1World,par2 + s.offsetX, par3 + s.offsetY, par4 + s.offsetZ)
+				&& blockN.isNormalCube(par1World,par2 + n.offsetX, par3 + n.offsetY, par4 + n.offsetZ)) {
 			return true;
 		}
 		if(blockE != null && blockW != null
-				&& blockE.isBlockNormalCube(par1World,par2 + e.offsetX, par3 + e.offsetY, par4 + e.offsetZ)
-				&& blockW.isBlockNormalCube(par1World,par2 + w.offsetX, par3 + w.offsetY, par4 + w.offsetZ)) {
+				&& blockE.isNormalCube(par1World,par2 + e.offsetX, par3 + e.offsetY, par4 + e.offsetZ)
+				&& blockW.isNormalCube(par1World,par2 + w.offsetX, par3 + w.offsetY, par4 + w.offsetZ)) {
 			return true;
 		}
 		return false;
@@ -135,7 +136,7 @@ public class BlockNoren extends BlockBreakable {
 
 	@Override
 	public void onNeighborBlockChange(World par1World, int par2, int par3,
-			int par4, int par5) {
+			int par4, Block par5) {
 		if (!par1World.isRemote
 				&& !this.canStay(par1World, par2, par3, par4)) {
 			this.dropBlockAsItem(par1World, par2, par3, par4,
@@ -167,8 +168,8 @@ public class BlockNoren extends BlockBreakable {
 	}
 
 	@Override
-	public int idDropped(int par1, Random par2Random, int par3) {
-		return Blocks.noren.blockID;
+	public Item getItemDropped(int par1, Random par2Random, int par3) {
+		return Item.getItemFromBlock(Blocks.noren);
 	}
 
 }

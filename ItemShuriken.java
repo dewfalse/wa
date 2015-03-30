@@ -7,8 +7,8 @@ import net.minecraft.world.World;
 
 public class ItemShuriken extends Item {
 
-	public ItemShuriken(int par1) {
-		super(par1);
+	public ItemShuriken() {
+		super();
 		setMaxStackSize(16);
 	}
 

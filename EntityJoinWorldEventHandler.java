@@ -1,9 +1,7 @@
 package wa;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-import java.util.Set;
-
+import cpw.mods.fml.common.eventhandler.Event;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.boss.IBossDisplayData;
 import net.minecraft.entity.monster.EntityZombie;
@@ -13,20 +11,23 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathPoint;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.event.Event.Result;
-import net.minecraftforge.event.ForgeSubscribe;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.Set;
 
 public class EntityJoinWorldEventHandler {
 
 	public static Map<Integer, Set<PathPoint>> charmsInDim = new LinkedHashMap();
 
-	@ForgeSubscribe
+	@SubscribeEvent
 	public void onEntityJoinWorldEvent(EntityJoinWorldEvent event) {
 		if(event.isCanceled()) {
 			return;
 		}
-		if(event.getResult() != Result.DEFAULT) {
+		if(event.getResult() != Event.Result.DEFAULT) {
 			return;
 		}
 		if(event.entity instanceof IMob) {
@@ -35,7 +36,7 @@ public class EntityJoinWorldEventHandler {
 				if(list != null) {
 					for(PathPoint point : list) {
 						if(Math.abs(point.xCoord - event.entity.posX) < 8.0D && Math.abs(point.yCoord - event.entity.posY) < 8.0D && Math.abs(point.zCoord - event.entity.posZ) < 8.0D) {
-							TileEntity tile = event.world.getBlockTileEntity(point.xCoord, point.yCoord, point.zCoord);
+							TileEntity tile = event.world.getTileEntity(point.xCoord, point.yCoord, point.zCoord);
 							if(tile != null && tile instanceof TileEntityCharm) {
 								if(((TileEntityCharm)tile).charmLevel < 5) {
 									((TileEntityCharm)tile).damage += ((EntityLiving)event.entity).getMaxHealth() / ((TileEntityCharm)tile).charmLevel;
@@ -47,7 +48,6 @@ public class EntityJoinWorldEventHandler {
 					}
 				}
 			}
-
 		}
 		if(event.entity instanceof EntityPlayer) {
 			if(event.entity.dimension == Config.dimensionID) {
@@ -56,9 +56,9 @@ public class EntityJoinWorldEventHandler {
 		}
 		if(event.entity instanceof EntityZombie) {
 			EntityZombie entity = (EntityZombie)event.entity;
-			ItemStack itemStack = entity.getCurrentItemOrArmor(0);
+			ItemStack itemStack = entity.getLastActiveItems()[0];
 			if(itemStack == null) {
-				if(event.world.rand.nextDouble() < (event.world.difficultySetting == 3 ? 0.05F : 0.01F)) {
+				if(event.world.rand.nextDouble() < (event.world.difficultySetting == EnumDifficulty.HARD ? 0.05F : 0.01F)) {
 					entity.setCurrentItemOrArmor(0, new ItemStack(Items.刀));
 				}
 			}
@@ -77,7 +77,7 @@ public class EntityJoinWorldEventHandler {
 			default:
 				((EntityVillager)event.entity).setProfession(Config.町人ID);
 			}
-			event.setResult(Result.ALLOW);
+			event.setResult(Event.Result.ALLOW);
 		}
 	}
 }
