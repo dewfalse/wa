@@ -1,6 +1,7 @@
 package wa;
 
 import cpw.mods.fml.common.network.IGuiHandler;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.stats.Achievement;
 import net.minecraft.tileentity.TileEntity;
@@ -34,7 +35,10 @@ public class CommonProxy implements IGuiHandler {
 
 	public void init() {
 		// TODO 自動生成されたメソッド・スタブ
-
+		
+		// defeatedcrow追加物
+		GameRegistry.registerTileEntity(TileEntityZabuton.class, "tileentityZabuton");
+		GameRegistry.registerTileEntity(TileEntityKoto.class, "tileentityKoto");
 	}
 
 	public World getClientWorld() {

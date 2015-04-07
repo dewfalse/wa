@@ -1,4 +1,4 @@
-package wa;
+package wa.client;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;

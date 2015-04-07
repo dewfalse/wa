@@ -6,13 +6,16 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.BlockLog;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import wa.EntityUmeLeavesFX;
 import wa.Items;
-import wa.Particles;
+import wa.client.Particles;
 
 import java.util.List;
 import java.util.Random;
@@ -33,7 +36,7 @@ public class BlockUmeWood extends BlockLog {
 
 	@Override
 	public int damageDropped(int par1) {
-		return par1;
+		return 0;
 	}
 
 	@Override
@@ -89,14 +92,17 @@ public class BlockUmeWood extends BlockLog {
 
 	@Override
 	public IIcon getIcon(int par1, int par2) {
-		return icons[1];
+		int i = MathHelper.clamp_int(par1, 0, 2);
+		return icons[i];
 	}
 
+	//変更点:アイコンを変えた
 	@Override
 	public void registerBlockIcons(IIconRegister par1IconRegister) {
-		icons = new IIcon[2];
+		icons = new IIcon[3];
 		icons[0] = par1IconRegister.registerIcon("log_oak_top");
 		icons[1] = par1IconRegister.registerIcon("log_oak");
+		icons[2] = par1IconRegister.registerIcon("Wa:umeLeaves");
 	}
 
 	@Override
@@ -133,6 +139,36 @@ public class BlockUmeWood extends BlockLog {
 				entityFX.setParticleIcon(Particles.getInstance().getIcon("wa:ume"));
 				FMLClientHandler.instance().getClient().effectRenderer.addEffect(entityFX);
 			}
+	}
+	
+	/* 追加点 */
+	
+	@Override
+	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase living, ItemStack item)
+	{
+		int playerFacing = MathHelper.floor_double((double)((living.rotationYaw * 4F) / 360F) + 0.5D) & 3;
+ 
+		boolean tall = false;
+		
+		if (living != null && living instanceof EntityPlayer)
+		{
+			tall = living.isSneaking();
+		}
+		else
+		{
+			tall = false;
+		}
+		
+		//スニークしながら設置した場合、メタデータが1になる。
+		//メタ1は強制的に花レンダーになる。
+		if (tall)
+		{
+			world.setBlockMetadataWithNotify(x, y, z, 1, 3);
+		}
+		else
+		{
+			world.setBlockMetadataWithNotify(x, y, z, 0, 3);
+		}
 	}
 
 }

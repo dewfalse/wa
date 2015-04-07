@@ -25,8 +25,8 @@ public class Blocks extends net.minecraft.init.Blocks {
 	public static Block tataraBlock = (new BlockTatara(Material.rock)).setHardness(3.0F).setResistance(5.0F).setStepSound(Block.soundTypeStone).setBlockName("wa:tatara").setCreativeTab(Wa.creativeTab);
 	public static Block portal = new BlockWaPortal(Material.portal).setHardness(-1.0F).setResistance(6000000.0F).setBlockName("wa:portal").setCreativeTab(Wa.creativeTab);
 	public static Block wara = new WaBlock(Material.grass).setHardness(0.2F).setStepSound(Block.soundTypeGrass).setBlockName("wa:wara").setBlockTextureName("wa:wara").setCreativeTab(Wa.creativeTab);
-	public static BlockSlab BlockWaHalfBlock = (BlockSlab)(new BlockWaStep(false)).setHardness(1.0F).setStepSound(Block.soundTypeCloth).setBlockName("wa:step");
-	public static BlockSlab BlockWaDoubleBlock = (BlockSlab)(new BlockWaStep(true)).setHardness(1.0F).setStepSound(Block.soundTypeCloth).setBlockName("wa:step");
+	public static BlockSlabBase BlockWaHalfBlock = (BlockSlabBase)(new BlockTatami(false, Material.cloth)).setHardness(0.2F).setStepSound(Block.soundTypeCloth).setBlockName("wa:step").setCreativeTab(Wa.creativeTab);
+	public static BlockSlabBase BlockWaDoubleBlock = (BlockSlabBase)(new BlockTatami(true, Material.cloth)).setHardness(0.2F).setStepSound(Block.soundTypeCloth).setBlockName("wa:step");
 	static public Block shikui = new BlockShikui(Material.clay).setHardness(0.6F).setStepSound(Block.soundTypeGravel).setBlockName("wa:shikui").setCreativeTab(Wa.creativeTab);
 	static public Block sakuraWood = (new BlockSakuraWood()).setHardness(2.0F).setStepSound(Block.soundTypeWood).setBlockName("wa:sakuraWood").setCreativeTab(Wa.creativeTab);
 	static public BlockLeaves sakuraLeaves = (BlockLeaves)(new BlockSakuraLeaves()).setHardness(0.2F).setLightOpacity(1).setStepSound(Block.soundTypeGrass).setBlockName("wa:sakuraLeaves").setCreativeTab(Wa.creativeTab);
@@ -61,7 +61,9 @@ public class Blocks extends net.minecraft.init.Blocks {
     // または磁石を砂or砂利に使うと砂鉄が得られる
     // メタデータが変更されて2回は取れない
     // 砂鉄はironDust的存在、9個でインゴットに
-
+    
+    /* defeatedcrow作成物 */
+    public static Block zabuton = (new BlockZabuton(Material.sponge)).setHardness(0.2F).setStepSound(Block.soundTypeCloth).setBlockName("wa:zabuton").setBlockTextureName("wa:zabuton").setCreativeTab(Wa.creativeTab);
 
 
 	//TODO 入手方法を実装
@@ -79,10 +81,12 @@ public class Blocks extends net.minecraft.init.Blocks {
 	static Block 障子;
 
 	public static void preInit() {
-		//ItemBlock itemBlockSingle = (ItemBlock) new ItemWaSlab(BlockWaHalfBlock, BlockWaHalfBlock, BlockWaDoubleBlock, false).setUnlocalizedName("wa:step");
-		//ItemBlock itemBlockDouble = (ItemBlock) new ItemWaSlab(BlockWaDoubleBlock, BlockWaHalfBlock, BlockWaDoubleBlock, true).setUnlocalizedName("wa:step");
-		GameRegistry.registerBlock(BlockWaHalfBlock, ItemWaSlab.class, "WaHalfBlock", BlockWaHalfBlock, BlockWaDoubleBlock, false);
-		GameRegistry.registerBlock(BlockWaDoubleBlock, ItemWaSlab.class, "WaDoubleBlock", BlockWaHalfBlock, BlockWaDoubleBlock, true);
+//		ItemBlock itemBlockSingle = (ItemBlock) new ItemSlabBase(BlockWaHalfBlock, BlockWaHalfBlock, BlockWaDoubleBlock, false).setUnlocalizedName("wa:step");
+//		ItemBlock itemBlockDouble = (ItemBlock) new ItemSlabBase(BlockWaDoubleBlock, BlockWaHalfBlock, BlockWaDoubleBlock, true).setUnlocalizedName("wa:step");
+//		GameRegistry.registerBlock(BlockWaHalfBlock, ItemWaSlab.class, "WaHalfBlock", BlockWaHalfBlock, BlockWaDoubleBlock, false);
+//		GameRegistry.registerBlock(BlockWaDoubleBlock, ItemWaSlab.class, "WaDoubleBlock", BlockWaHalfBlock, BlockWaDoubleBlock, true);
+		GameRegistry.registerBlock(BlockWaHalfBlock, ItemTatami.class, "WaHalfBlock");
+		GameRegistry.registerBlock(BlockWaDoubleBlock, ItemTatami.class, "WaDoubleBlock");
 
 		LanguageRegistry.instance().addStringLocalization("tile.wa:step.tatami.name", "en_US", "tatami");
 		LanguageRegistry.instance().addStringLocalization("tile.wa:step.tatami.name", "ja_JP", "畳");
@@ -143,6 +147,9 @@ public class Blocks extends net.minecraft.init.Blocks {
             //GameRegistry.registerBlock(colorWood[i], "paintedWood(" + ItemDye.field_150923_a[i] + ")", "色付き木材(" + ItemDye.field_150923_a[i] + ")");
             GameRegistry.registerBlock(colorWood[i], "paintedWood(" + ItemDye.field_150923_a[i] + ")");
 		}
+		
+		/* defeatedcrow作成物 */
+		GameRegistry.registerBlock(zabuton, ItemZabuton.class, "zabuton");
 
 		//ケラは金槌が対応ツールになる
 		//MinecraftForge.removeBlockEffectiveness(kera, 0, "pickaxe");

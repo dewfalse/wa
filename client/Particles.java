@@ -1,4 +1,4 @@
-package wa;
+package wa.client;
 
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
