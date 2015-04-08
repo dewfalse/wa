@@ -1,16 +1,16 @@
-package wa;
+package wa.client;
 
 import cpw.mods.fml.client.FMLClientHandler;
+import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 import net.minecraft.stats.Achievement;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
-import wa.block.BlockCharm;
-import wa.block.BlockKawara;
-import wa.block.BlockNoren;
-import wa.block.BlockUmeWood;
+import wa.*;
+import wa.block.*;
+import wa.client.*;
 
 import java.io.*;
 
@@ -31,11 +31,20 @@ public class ClientProxy extends CommonProxy {
 		RenderingRegistry.registerEntityRenderingHandler(EntityCoin.class, new RenderCoin());
 
 		BlockUmeWood.renderID = RenderingRegistry.getNextAvailableRenderId();
-		RenderingRegistry.registerBlockHandler(new RenderUmeWood());
+		RenderingRegistry.registerBlockHandler(new RenderUmeLog());
 
 		BlockKawara.renderID = RenderingRegistry.getNextAvailableRenderId();
 		RenderingRegistry.registerBlockHandler(new RenderKawaraBlock());
+		
+		BlockSusuki.renderID = RenderingRegistry.getNextAvailableRenderId();
+		RenderingRegistry.registerBlockHandler(new RenderSusuki());
 
+		// defeatedcrow追加物
+		RenderingRegistry.registerEntityRenderingHandler(EntityZabuton.class, new RenderZabutonEntity());
+		
+		ClientRegistry.registerTileEntity(TileEntityZabuton.class, "tileentityZabuton", new RenderZabutonBlock());
+		ClientRegistry.registerTileEntity(TileEntityKoto.class, "tileentityKoto", new RenderKotoBlock());
+		
 		MinecraftForge.EVENT_BUS.register(new Particles());
 
 		VillagerRegistry.instance().registerVillagerSkin(Config.町人ID, new ResourceLocation("wa", "textures/villager.png"));

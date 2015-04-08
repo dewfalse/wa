@@ -23,7 +23,7 @@ public class BlockTaiko extends Block {
 		if (par1World.isRemote) {
 			ItemStack itemStack = par5EntityPlayer.getCurrentEquippedItem();
 			if (itemStack != null && itemStack.getItem() == Items.stick) {
-				par1World.playSound(par2, par3, par4, "wa.taiko", 0.5F, 1.0F,
+				par1World.playSound(par2, par3, par4, "wa:taiko", 0.5F, 1.0F,
 						false);
 			}
 		}
@@ -43,8 +43,8 @@ public class BlockTaiko extends Block {
 	@Override
 	public void registerBlockIcons(IIconRegister par1IconRegister) {
 		icons = new IIcon[2];
-		icons[0] = par1IconRegister.registerIcon("wa:taiko_head");
-		icons[1] = par1IconRegister.registerIcon("wa:taiko_side");
+		icons[0] = par1IconRegister.registerIcon("wa:taiko_head_alt");
+		icons[1] = par1IconRegister.registerIcon("wa:taiko_side_alt");
 	}
 
 	public int onBlockPlaced(World par1World, int par2, int par3, int par4,

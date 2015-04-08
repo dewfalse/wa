@@ -28,7 +28,7 @@ public class Wa {
 	@Instance("Wa")
 	public static Wa instance;
 
-	@SidedProxy(clientSide = "wa.ClientProxy", serverSide = "wa.CommonProxy")
+	@SidedProxy(clientSide = "wa.client.ClientProxy", serverSide = "wa.CommonProxy")
 	public static CommonProxy proxy;
 
 	public static CreativeTabs creativeTab = new WaCreativeTabs();
@@ -53,6 +53,7 @@ public class Wa {
 		EntityRegistry.registerModEntity(EntityShuriken.class, "Shuriken", 1, this, 80, 1, true);
 		EntityRegistry.registerModEntity(EntityKakejiku.class, "Kakejiku", 2, this, 80, 1, true);
 		EntityRegistry.registerModEntity(EntityCoin.class, "Coin", 3, this, 80, 1, true);
+		EntityRegistry.registerModEntity(EntityZabuton.class, "Zabuton", 4, this, 80, 1, true);
 		//TODO レシピ追加
 		Recipes.init();
 		Items.init();

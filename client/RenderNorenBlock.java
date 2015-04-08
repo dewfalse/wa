@@ -1,13 +1,13 @@
-package wa;
+package wa.client;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
-import wa.block.BlockCharm;
+import wa.block.BlockNoren;
 
-public class RenderCharmBlock implements ISimpleBlockRenderingHandler {
+public class RenderNorenBlock implements ISimpleBlockRenderingHandler {
 
 	@Override
 	public void renderInventoryBlock(Block block, int metadata, int modelID,
@@ -42,7 +42,7 @@ public class RenderCharmBlock implements ISimpleBlockRenderingHandler {
 
 	@Override
 	public int getRenderId() {
-		return BlockCharm.renderID;
+		return BlockNoren.renderID;
 	}
 
 }
