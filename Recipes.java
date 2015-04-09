@@ -164,6 +164,21 @@ public class Recipes {
                 "MMM",
                 'M', Items.磁鉄鉱インゴット);
 
+        GameRegistry.addShapedRecipe(new ItemStack(Blocks.zabuton, 4),
+                "MM",
+                "MM",
+                'M', Blocks.carpet);
+
+        // dye red
+        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.zabuton, 1, 8),
+                Blocks.zabuton, new ItemStack(Items.dye, 1, 1));
+        // dye blue
+        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.zabuton, 1, 0),
+                new ItemStack(Blocks.zabuton, 1, 8), new ItemStack(Items.dye, 1, 4));
+
+        GameRegistry.addShapelessRecipe(new ItemStack(Items.iron_ingot, 1),
+                Items.玉鋼);
+
         GameRegistry.addSmelting(Blocks.oreMagnetite, new ItemStack(Items.磁鉄鉱インゴット), 0.7F);
 	}
 

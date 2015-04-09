@@ -1,6 +1,5 @@
 package wa.block;
 
-import mods.defeatedcrow.common.DCsAppleMilk;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.BlockSlab;
