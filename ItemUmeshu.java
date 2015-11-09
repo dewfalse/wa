@@ -8,7 +8,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
-public class ItemUmeshu extends Item {
+public class ItemUmeshu extends ItemLiquorBase {
 
 	public ItemUmeshu() {
 		super();

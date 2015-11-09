@@ -64,7 +64,7 @@ public class Blocks extends net.minecraft.init.Blocks {
     
     /* defeatedcrow作成物 */
     public static Block zabuton = (new BlockZabuton(Material.sponge)).setHardness(0.2F).setStepSound(Block.soundTypeCloth).setBlockName("wa:zabuton").setBlockTextureName("wa:zabuton").setCreativeTab(Wa.creativeTab);
-
+    public static Block brewingBarrelII = new BlockBrewingBarrelII().setBlockName("wa:brewingBarrelII").setCreativeTab(Wa.creativeTab);
 
 	//TODO 入手方法を実装
 
@@ -126,17 +126,17 @@ public class Blocks extends net.minecraft.init.Blocks {
         GameRegistry.registerBlock(takezumiBlock, "takezumiBlock");
         GameRegistry.registerBlock(tataraBlock, "tatara");
         GameRegistry.registerBlock(portal, "portal");
-		GameRegistry.registerTileEntity(TileEntityTatara.class, "tatara");
+		GameRegistry.registerTileEntity(TileEntityTatara.class, "wa.tatara");
 
         GameRegistry.registerBlock(brewingBarrel, "brewingBarrel");
-		GameRegistry.registerTileEntity(TileEntityBrewingBarrel.class, "BrewingBarrel");
+		GameRegistry.registerTileEntity(TileEntityBrewingBarrel.class, "wa.BrewingBarrel");
 
         GameRegistry.registerBlock(kawara, "kawara");
         GameRegistry.registerBlock(oreMagnetite, "oreMagnetite");
 
 		//registerBlock(charm, "charm", "御札");
 		GameRegistry.registerBlock(charm, ItemBlockCharm.class, "ofuda");
-		GameRegistry.registerTileEntity(TileEntityCharm.class, "ofuda");
+		GameRegistry.registerTileEntity(TileEntityCharm.class, "wa.ofuda");
 		//GameRegistry.registerItem(itemBlockCharm, "WaOfuda");
 		//LanguageRegistry.instance().addNameForObject(itemBlockCharm, "en_US", "ofuda");
 		//LanguageRegistry.instance().addNameForObject(itemBlockCharm, "ja_JP", "御札");
@@ -150,6 +150,8 @@ public class Blocks extends net.minecraft.init.Blocks {
 		
 		/* defeatedcrow作成物 */
 		GameRegistry.registerBlock(zabuton, ItemZabuton.class, "zabuton");
+		GameRegistry.registerBlock(brewingBarrelII, "brewingBarrelII");
+		GameRegistry.registerTileEntity(TileEntityBrewingBarrelII.class, "wa.BrewingBarrelII");
 
 		//ケラは金槌が対応ツールになる
 		//MinecraftForge.removeBlockEffectiveness(kera, 0, "pickaxe");

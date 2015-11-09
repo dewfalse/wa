@@ -14,8 +14,8 @@ public class CommonProxy implements IGuiHandler {
 			int x, int y, int z) {
 		if(ID == Config.醸造樽GUIID) {
 			TileEntity e = world.getTileEntity(x, y, z);
-			if(e instanceof TileEntityBrewingBarrel) {
-				return new ContainerBrewingBarrel(player.inventory, (TileEntityBrewingBarrel) e);
+			if(e instanceof TileEntityBrewingBarrelII) {
+				return new ContainerBrewingBarrelII(player, (TileEntityBrewingBarrelII) e);
 			}
 		}
 		return null;
@@ -26,8 +26,8 @@ public class CommonProxy implements IGuiHandler {
 			int x, int y, int z) {
 		if(ID == Config.醸造樽GUIID) {
 			TileEntity e = world.getTileEntity(x, y, z);
-			if(e instanceof TileEntityBrewingBarrel) {
-				return new GuiBrewingBarrel(player.inventory, (TileEntityBrewingBarrel) e);
+			if(e instanceof TileEntityBrewingBarrelII) {
+				return new GuiBrewingBarrelII(player, (TileEntityBrewingBarrelII) e);
 			}
 		}
 		return null;
@@ -37,8 +37,8 @@ public class CommonProxy implements IGuiHandler {
 		// TODO 自動生成されたメソッド・スタブ
 		
 		// defeatedcrow追加物
-		GameRegistry.registerTileEntity(TileEntityZabuton.class, "tileentityZabuton");
-		GameRegistry.registerTileEntity(TileEntityKoto.class, "tileentityKoto");
+		GameRegistry.registerTileEntity(TileEntityZabuton.class, "wa.tileentityZabuton");
+		GameRegistry.registerTileEntity(TileEntityKoto.class, "wa.tileentityKoto");
 	}
 
 	public World getClientWorld() {
@@ -54,6 +54,11 @@ public class CommonProxy implements IGuiHandler {
 	public void preInit() {
 		// TODO 自動生成されたメソッド・スタブ
 
+	}
+	
+	/* defeatedcrow追加 */
+	public void registerFluidTex() {
+		
 	}
 
 }

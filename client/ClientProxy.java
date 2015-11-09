@@ -3,10 +3,12 @@ package wa.client;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 import net.minecraft.stats.Achievement;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import wa.*;
 import wa.block.*;
@@ -42,8 +44,8 @@ public class ClientProxy extends CommonProxy {
 		// defeatedcrow追加物
 		RenderingRegistry.registerEntityRenderingHandler(EntityZabuton.class, new RenderZabutonEntity());
 		
-		ClientRegistry.registerTileEntity(TileEntityZabuton.class, "tileentityZabuton", new RenderZabutonBlock());
-		ClientRegistry.registerTileEntity(TileEntityKoto.class, "tileentityKoto", new RenderKotoBlock());
+		ClientRegistry.registerTileEntity(TileEntityZabuton.class, "wa.tileentityZabuton", new RenderZabutonBlock());
+		ClientRegistry.registerTileEntity(TileEntityKoto.class, "wa.tileentityKoto", new RenderKotoBlock());
 		
 		MinecraftForge.EVENT_BUS.register(new Particles());
 
@@ -102,5 +104,16 @@ public class ClientProxy extends CommonProxy {
 				}
 			}
 		}
+	}
+	
+	/* defeatedcrow追加 */
+	@Override
+	public void registerFluidTex() {
+		MinecraftForge.EVENT_BUS.register(this);
+	}
+	
+	@SubscribeEvent
+	public void onTextureStitch(TextureStitchEvent.Post event) {
+		FluidInit.umesyuFluid.setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
 	}
 }

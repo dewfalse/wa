@@ -20,8 +20,9 @@ import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import wa.block.Blocks;
+import wa.recipe.RecipeRegisterWa;
 
-@Mod(modid = Wa.modid, name = Wa.modid, version = "1.7.10.11")
+@Mod(modid = Wa.modid, name = Wa.modid, version = "1.7.10.14")
 public class Wa {
 	public static final String modid = "Wa";
 
@@ -37,12 +38,18 @@ public class Wa {
 
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
+		
+		// APIの初期化
+		RecipeRegisterWa.registerInstance();
 
 		Config.preInit(event.getSuggestedConfigurationFile());
 		Blocks.preInit();
 		Items.preInit();
 		Achievements.preInit();
 		proxy.preInit();
+		
+		// defeatedcrow作成、液体追加
+		FluidInit.preInit();
 
 	}
 
@@ -134,5 +141,6 @@ public class Wa {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		Recipes.postInit();
+		RecipeRegisterWa.registerRecipe();
 	}
 }

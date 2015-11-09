@@ -11,15 +11,17 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import wa.Config;
-import wa.TileEntityBrewingBarrel;
+import wa.TileEntityBrewingBarrelII;
 import wa.Wa;
 
-public class BlockBrewingBarrel extends BlockContainer {
+public class BlockBrewingBarrelII extends BlockContainer {
 
     IIcon[] icons;
 
-	public BlockBrewingBarrel(Material par2Material) {
-		super(par2Material);
+	public BlockBrewingBarrelII() {
+		super(Material.wood);
+		this.setHardness(0.3F);
+		this.setResistance(15.0F);
 	}
 
 	@Override
@@ -39,15 +41,15 @@ public class BlockBrewingBarrel extends BlockContainer {
 
 	@Override
 	public TileEntity createNewTileEntity(World world, int var2) {
-		return new TileEntityBrewingBarrel();
+		return new TileEntityBrewingBarrelII();
 	}
 
 	@Override
 	public void breakBlock(World par1World, int par2, int par3, int par4,
 			Block par5, int par6) {
 		TileEntity tile = par1World.getTileEntity(par2, par3, par4);
-		if(tile instanceof TileEntityBrewingBarrel) {
-			TileEntityBrewingBarrel brewingBarrel = (TileEntityBrewingBarrel)tile;
+		if(tile instanceof TileEntityBrewingBarrelII) {
+			TileEntityBrewingBarrelII brewingBarrel = (TileEntityBrewingBarrelII)tile;
 			for(int i = 0; i < brewingBarrel.getSizeInventory(); ++i) {
 				ItemStack itemStack = brewingBarrel.getStackInSlot(i);
 				if(itemStack != null) {
@@ -74,8 +76,7 @@ public class BlockBrewingBarrel extends BlockContainer {
 		TileEntity tile = par1World.getTileEntity(par2, par3, par4);
 
 		if (tile != null) {
-			// 一時的にコメントアウト
-			// par5EntityPlayer.openGui(Wa.instance, Config.醸造樽GUIID, par1World, par2, par3, par4);
+			par5EntityPlayer.openGui(Wa.instance, Config.醸造樽GUIID, par1World, par2, par3, par4);
 		}
 
 		return true;
