@@ -1,9 +1,9 @@
 package wa.recipe;
 
-import wa.FluidInit;
-import wa.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
+import wa.FluidInit;
+import wa.Items;
 import wa.api.RecipeManagerWa;
 
 public class RecipeRegisterWa {

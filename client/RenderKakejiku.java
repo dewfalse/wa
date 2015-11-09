@@ -6,11 +6,10 @@ import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
-
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
-
-import wa.*;
+import wa.EntityKakejiku;
+import wa.EnumKakejiku;
 
 public class RenderKakejiku extends Render {
 

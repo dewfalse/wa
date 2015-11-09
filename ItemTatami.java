@@ -1,8 +1,8 @@
 package wa;
 
+import net.minecraft.block.Block;
 import wa.block.BlockSlabBase;
 import wa.block.Blocks;
-import net.minecraft.block.Block;
 
 public class ItemTatami extends ItemSlabBase {
 

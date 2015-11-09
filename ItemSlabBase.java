@@ -2,14 +2,13 @@ package wa;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import wa.block.BlockSlabBase;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockSlab;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import wa.block.BlockSlabBase;
 
 /**
  * バニラのItemSlabが使いにくくて可読性もよろしくないので作成。

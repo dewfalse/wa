@@ -12,7 +12,6 @@ import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import wa.*;
 import wa.block.*;
-import wa.client.*;
 
 import java.io.*;
 

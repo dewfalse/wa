@@ -1,13 +1,13 @@
 package wa.client;
 
-import wa.block.BlockUmeWood;
-import wa.block.Blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraftforge.common.util.ForgeDirection;
+import wa.block.BlockUmeWood;
+import wa.block.Blocks;
 
 public class RenderUmeLog extends RenderingBase {
 	

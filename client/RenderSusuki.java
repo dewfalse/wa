@@ -1,11 +1,11 @@
 package wa.client;
 
-import wa.block.BlockSusuki;
-import wa.block.Blocks;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
+import wa.block.BlockSusuki;
+import wa.block.Blocks;
 
 public class RenderSusuki extends RenderingBase {
 	
