@@ -2,13 +2,15 @@ package wa;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.item.*;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.oredict.OreDictionary;
 import wa.block.Blocks;
 
 public class Items extends net.minecraft.init.Items {
 
-	public static Item.ToolMaterial tamahagane = EnumHelper.addToolMaterial("tamahagane", Config.玉鋼強度 < 5 ? 2 : 3, 57 + Config.玉鋼強度 * 40, Config.玉鋼強度 * 0.3F + 4.0F, 3, 18);
+    public static Item.ToolMaterial tamahagane = EnumHelper.addToolMaterial("tamahagane", Config.玉鋼強度 < 5 ? 2 : 3, 57 + Config.玉鋼強度 * 40, Config.玉鋼強度 * 0.3F + 4.0F, 3, 18);
 	public static Item 刀 = new ItemSword(tamahagane).setUnlocalizedName("wa:katana").setTextureName("wa:katana").setCreativeTab(Wa.creativeTab);
 	public static Item 太刀 = new ItemTachi(tamahagane).setUnlocalizedName("wa:tachi").setTextureName("wa:tachi").setCreativeTab(Wa.creativeTab);
 	public static Item 玉鋼 = new Item().setUnlocalizedName("wa:tamahagane").setTextureName("wa:tamahagane").setCreativeTab(Wa.creativeTab);
@@ -36,7 +38,6 @@ public class Items extends net.minecraft.init.Items {
 	public static Item 左下鉄 = new Item().setUnlocalizedName("wa:sagegane").setTextureName("wa:sagegane").setCreativeTab(Wa.creativeTab);
 	public static Item 梅の実 = new ItemUmenomi().setUnlocalizedName("wa:umenomi").setTextureName("wa:umenomi").setCreativeTab(Wa.creativeTab);
 	public static Item 梅干し = new ItemUmeboshi().setUnlocalizedName("wa:umeboshi").setTextureName("wa:umeboshi").setCreativeTab(Wa.creativeTab);
-	public static Item 梅酒 = new ItemUmeshu().setUnlocalizedName("wa:umeshu").setTextureName("wa:umeshu").setCreativeTab(Wa.creativeTab);
 	public static Item 茶碗 = new Item().setUnlocalizedName("wa:teaEmpty").setTextureName("wa:teaEmpty").setCreativeTab(Wa.creativeTab);
 	public static Item お茶 = new ItemTea().setUnlocalizedName("wa:tea").setTextureName("wa:tea").setCreativeTab(Wa.creativeTab);
 
@@ -44,8 +45,30 @@ public class Items extends net.minecraft.init.Items {
     public static Item 磁石 = new ItemMagnet().setUnlocalizedName("wa:magnet").setTextureName("wa:magnet").setCreativeTab(Wa.creativeTab);
 
 	static Item 家紋;// = new 家紋(Config.家紋ID).setUnlocalizedName("wa:kamon").setCreativeTab(Wa.creativeTab);
+    public static Item 梅酒 = new ItemRequor().addPotionEffect(Potion.confusion.id, 120, 0).addPotionEffect(Potion.digSpeed.id, 240, 0).addPotionEffect(Potion.moveSpeed.id, 240, 0)
+            .setUnlocalizedName("wa:umeshu").setTextureName("wa:umeshu").setCreativeTab(Wa.creativeTab);
+    public static Item シードル = new ItemRequor().addPotionEffect(Potion.confusion.id, 60, 0).addPotionEffect(Potion.regeneration.id, 400, 0)
+            .setUnlocalizedName("wa:cider").setTextureName("wa:cider").setCreativeTab(Wa.creativeTab);
+    public static Item 金のシードル = new ItemRequor().addPotionEffect(Potion.confusion.id, 60, 0).addPotionEffect(Potion.heal.id, 400, 0)
+            .setUnlocalizedName("wa:goldenCider").setTextureName("wa:goldenCider").setCreativeTab(Wa.creativeTab);
+    public static Item ひれ酒 = new ItemRequor().addPotionEffect(Potion.confusion.id, 180, 0).addPotionEffect(Potion.waterBreathing.id, 400, 0)
+            .setUnlocalizedName("wa:finSake").setTextureName("wa:finSake").setCreativeTab(Wa.creativeTab);
+    public static Item スライムゼリーソーダ = new ItemRequor().addPotionEffect(Potion.confusion.id, 60, 0).addPotionEffect(Potion.jump.id, 400, 0)
+            .setUnlocalizedName("wa:slimeJellySoda").setTextureName("wa:slimeJellySoda").setCreativeTab(Wa.creativeTab);
+    public static Item 高麗人参酒 = new ItemRequor().addPotionEffect(Potion.confusion.id, 180, 0).addPotionEffect(Potion.nightVision.id, 400, 0)
+            .setUnlocalizedName("wa:ginsengLiquor").setTextureName("wa:ginsengLiquor").setCreativeTab(Wa.creativeTab);
+    public static Item 馬乳酒 = new ItemRequor().addPotionEffect(Potion.confusion.id, 180, 0).addPotionEffect(Potion.moveSpeed.id, 400, 0)
+            .setUnlocalizedName("wa:kumis").setTextureName("wa:kumis").setCreativeTab(Wa.creativeTab);
+    public static Item かぼちゃエール = new ItemRequor().addPotionEffect(Potion.confusion.id, 120, 0).addPotionEffect(Potion.resistance.id, 400, 0)
+            .setUnlocalizedName("wa:pumpkinAle").setTextureName("wa:pumpkinAle").setCreativeTab(Wa.creativeTab);
+    public static Item ヘルリカー = new ItemRequor().addPotionEffect(Potion.confusion.id, 240, 0).addPotionEffect(Potion.digSpeed.id, 400, 0)
+            .setUnlocalizedName("wa:hellLiquor").setTextureName("wa:hellLiquor").setCreativeTab(Wa.creativeTab);
+    public static Item マグマクリームサワー = new ItemRequor().addPotionEffect(Potion.confusion.id, 240, 0).addPotionEffect(Potion.fireResistance.id, 400, 0)
+            .setUnlocalizedName("wa:magmaCreamSour").setTextureName("wa:magmaCreamSour").setCreativeTab(Wa.creativeTab);
+    public static Item 日本酒 = new ItemRequor().addPotionEffect(Potion.confusion.id, 180, 0).addPotionEffect(Potion.damageBoost.id, 400, 0)
+            .setUnlocalizedName("wa:sake").setTextureName("wa:sake").setCreativeTab(Wa.creativeTab);
 
-	//static Item 陣笠;
+    //static Item 陣笠;
 	//static Item 提灯;
 	//static Item クナイ;
 
@@ -95,9 +118,20 @@ public class Items extends net.minecraft.init.Items {
         GameRegistry.registerItem(左下鉄, "sagegane");
         GameRegistry.registerItem(梅の実, "umenomi");
         GameRegistry.registerItem(梅干し, "umeboshi");
-        GameRegistry.registerItem(梅酒, "umeshu");
         GameRegistry.registerItem(茶碗, "chawan");
         GameRegistry.registerItem(お茶, "ocha");
+
+        GameRegistry.registerItem(梅酒, "umeshu");
+        GameRegistry.registerItem(シードル, "cider");
+        GameRegistry.registerItem(金のシードル, "goldenCider");
+        GameRegistry.registerItem(ひれ酒, "finSake");
+        GameRegistry.registerItem(スライムゼリーソーダ, "slimeJellySoda");
+        GameRegistry.registerItem(高麗人参酒, "ginsengLiquor");
+        GameRegistry.registerItem(馬乳酒, "kumis");
+        GameRegistry.registerItem(かぼちゃエール, "pumpkinAle");
+        GameRegistry.registerItem(ヘルリカー, "hellLiquor");
+        GameRegistry.registerItem(マグマクリームサワー, "magmaCreamSour");
+        GameRegistry.registerItem(日本酒, "sake");
 
         GameRegistry.registerItem(磁鉄鉱インゴット, "magnetite_ingot");
         GameRegistry.registerItem(磁石, "magnet");

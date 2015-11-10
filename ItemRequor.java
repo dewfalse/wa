@@ -7,9 +7,14 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.world.World;
 
-public class ItemUmeshu extends ItemLiquorBase {
+import java.util.LinkedList;
+import java.util.List;
 
-	public ItemUmeshu() {
+public class ItemRequor extends ItemLiquorBase {
+
+    List<PotionEffect> potionEffects = new LinkedList<PotionEffect>();
+
+	public ItemRequor() {
 		super();
 	}
 
@@ -27,11 +32,21 @@ public class ItemUmeshu extends ItemLiquorBase {
 		return par1ItemStack.stackSize <= 0 ? null : par1ItemStack;
 	}
 
-	private void addPotionEffects(ItemStack par1ItemStack,
+    public ItemRequor addPotionEffect(int potionID, int duration, int amplifier) {
+        potionEffects.add(new PotionEffect(potionID, duration, amplifier));
+        return this;
+    }
+
+    public ItemRequor addPotionEffect(PotionEffect potionEffect) {
+        potionEffects.add(potionEffect);
+        return this;
+    }
+
+    public void addPotionEffects(ItemStack par1ItemStack,
 			EntityPlayer par3EntityPlayer) {
-		par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.confusion.id, 180, 0));
-		par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.damageBoost.id, 400, 0));
-		par3EntityPlayer.addPotionEffect(new PotionEffect(Potion.resistance.id, 400, 0));
+        for(PotionEffect potionEffect : potionEffects) {
+            par3EntityPlayer.addPotionEffect(potionEffect);
+        }
 	}
 
 	@Override
