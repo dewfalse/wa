@@ -4,6 +4,7 @@ import cpw.mods.fml.common.IFuelHandler;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import wa.block.Blocks;
+import wa.item.Items;
 
 public class FuelHandler implements IFuelHandler {
 

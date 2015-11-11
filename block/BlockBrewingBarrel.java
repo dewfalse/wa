@@ -10,7 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import wa.TileEntityBrewingBarrel;
 
 public class BlockBrewingBarrel extends BlockContainer {
 

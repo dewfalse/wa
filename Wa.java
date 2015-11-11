@@ -20,7 +20,18 @@ import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import wa.block.Blocks;
+import wa.entity.*;
+import wa.event.BonemealEventHandler;
+import wa.event.GetVillageBlockIDEventHandler;
+import wa.event.LivingDeathEventHandler;
+import wa.event.SaplingGrowTreeEventHandler;
+import wa.item.Items;
 import wa.recipe.RecipeRegisterWa;
+import wa.recipe.Recipes;
+import wa.world.WorldChunkManagerWa;
+import wa.world.WorldGenTakenoko;
+import wa.world.WorldGenTorii;
+import wa.world.WorldProviderWa;
 
 @Mod(modid = Wa.modid, name = Wa.modid, version = "1.7.10.14")
 public class Wa {

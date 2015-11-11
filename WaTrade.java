@@ -6,6 +6,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 import wa.block.Blocks;
+import wa.item.EnumFood;
+import wa.item.Items;
 
 import java.util.Random;
 

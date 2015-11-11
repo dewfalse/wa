@@ -11,7 +11,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import wa.Config;
-import wa.TileEntityBrewingBarrelII;
 import wa.Wa;
 
 public class BlockBrewingBarrelII extends BlockContainer {

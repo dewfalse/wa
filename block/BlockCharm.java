@@ -18,8 +18,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import wa.Enchantments;
-import wa.EntityJoinWorldEventHandler;
-import wa.TileEntityCharm;
+import wa.entity.EntityJoinWorldEventHandler;
 
 import java.util.Set;
 

@@ -4,7 +4,7 @@ import net.minecraft.item.ItemFishFood;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 import wa.FluidInit;
-import wa.Items;
+import wa.item.Items;
 import wa.api.RecipeManagerWa;
 import wa.block.Blocks;
 

@@ -3,6 +3,7 @@ package wa;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;
+import wa.item.Items;
 
 public class Achievements {
 

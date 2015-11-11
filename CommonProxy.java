@@ -6,6 +6,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.stats.Achievement;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+import wa.block.ContainerBrewingBarrelII;
+import wa.block.TileEntityBrewingBarrelII;
+import wa.block.TileEntityKoto;
+import wa.block.TileEntityZabuton;
+import wa.client.GuiBrewingBarrelII;
 
 public class CommonProxy implements IGuiHandler {
 

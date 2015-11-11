@@ -4,7 +4,7 @@ import net.minecraft.block.BlockCrops;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.util.IIcon;
-import wa.Items;
+import wa.item.Items;
 
 public class BlockIne extends BlockCrops {
 	private IIcon[] iconArray;

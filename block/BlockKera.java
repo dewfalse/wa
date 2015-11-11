@@ -7,6 +7,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import wa.*;
+import wa.item.Items;
+import wa.recipe.RecipeDifficulty;
 
 import java.util.Random;
 

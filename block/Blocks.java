@@ -11,6 +11,7 @@ import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
 import wa.*;
+import wa.item.*;
 
 public class Blocks extends net.minecraft.init.Blocks {
 	public static Material keraMaterial = (new MaterialKera(MapColor.stoneColor));

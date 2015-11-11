@@ -7,7 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import wa.Items;
+import wa.item.Items;
 
 public class BlockTaiko extends Block {
 	private IIcon[] icons;

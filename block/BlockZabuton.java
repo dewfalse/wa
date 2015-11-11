@@ -15,8 +15,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import wa.EntityZabuton;
-import wa.TileEntityZabuton;
+import wa.entity.EntityZabuton;
 
 import java.util.List;
 import java.util.Random;

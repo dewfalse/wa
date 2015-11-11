@@ -12,7 +12,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
-import wa.TileEntityKoto;
+import wa.block.TileEntityKoto;
 import wa.block.Blocks;
 
 @SideOnly(Side.CLIENT)

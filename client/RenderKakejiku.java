@@ -8,8 +8,8 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
-import wa.EntityKakejiku;
-import wa.EnumKakejiku;
+import wa.entity.EntityKakejiku;
+import wa.item.EnumKakejiku;
 
 public class RenderKakejiku extends Render {
 

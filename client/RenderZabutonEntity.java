@@ -5,7 +5,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
-import wa.EntityZabuton;
+import wa.entity.EntityZabuton;
 
 /**
  * 何も描画しない透明Entityのためのクラス

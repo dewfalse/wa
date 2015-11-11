@@ -9,7 +9,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
-import wa.TileEntityZabuton;
+import wa.block.TileEntityZabuton;
 
 @SideOnly(Side.CLIENT)
 public class RenderZabutonBlock extends TileEntitySpecialRenderer {

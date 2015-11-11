@@ -8,7 +8,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
-import wa.EntityCoin;
+import wa.entity.EntityCoin;
 
 public class RenderCoin extends Render {
 
