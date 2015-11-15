@@ -5,7 +5,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 import java.util.ArrayList;
 
-public interface IBrewingRegister {
+public interface IBrewingRegistry {
 	
 	ArrayList<? extends IWaBrewingRecipe> getRecipeList();
 	

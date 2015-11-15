@@ -150,12 +150,34 @@ public class Recipes {
 		GameRegistry.addShapelessRecipe(new ItemStack(Items.梅干し, 1, 0),
 				Items.梅の実);
 		//醸造樽
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.brewingBarrel, 1, 0),
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.brewingBarrelII, 1, 0),
 				"ABA",
 				"A A",
 				"ABA",
 				'A', "logWood",
 				'B', "slabWood"));
+
+        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.brewingBarrelII, 1, 0),
+                Blocks.brewingBarrel);
+
+        //蒸留器
+        GameRegistry.addShapelessRecipe(new ItemStack(Blocks.still, 1, 0),
+                Items.bucket, Items.glass_bottle);
+        //圧搾機
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.squeezer, 1, 0),
+                "A",
+                "B",
+                'A', Blocks.piston,
+                'B', Blocks.cauldron));
+        //アルコールランプ
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.spiritLamp, 1, 0),
+                "ABA",
+                "A A",
+                "AAA",
+                'A', "blockGlass",
+                'B', Items.string));
+
+
         GameRegistry.addShapedRecipe(new ItemStack(Blocks.kawara, 3, 0),
                 "  A",
                 " AA",

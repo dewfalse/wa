@@ -10,7 +10,10 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidRegistry;
 import wa.*;
+import wa.FluidInit;
 import wa.block.*;
 import wa.entity.*;
 
@@ -41,13 +44,16 @@ public class ClientProxy extends CommonProxy {
 		BlockSusuki.renderID = RenderingRegistry.getNextAvailableRenderId();
 		RenderingRegistry.registerBlockHandler(new RenderSusuki());
 
+        BlockSpiritLamp.renderID = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new RenderSpiritLampBlock());
+
 		// defeatedcrow追加物
 		RenderingRegistry.registerEntityRenderingHandler(EntityZabuton.class, new RenderZabutonEntity());
 		
 		ClientRegistry.registerTileEntity(TileEntityZabuton.class, "wa.tileentityZabuton", new RenderZabutonBlock());
-		ClientRegistry.registerTileEntity(TileEntityKoto.class, "wa.tileentityKoto", new RenderKotoBlock());
-		
-		MinecraftForge.EVENT_BUS.register(new Particles());
+        ClientRegistry.registerTileEntity(TileEntityKoto.class, "wa.tileentityKoto", new RenderKotoBlock());
+
+        MinecraftForge.EVENT_BUS.register(new Particles());
 
 		VillagerRegistry.instance().registerVillagerSkin(Config.町人ID, new ResourceLocation("wa", "textures/villager.png"));
 		VillagerRegistry.instance().registerVillagerSkin(Config.刀鍛冶ID, new ResourceLocation("wa", "textures/swordsmith.png"));
@@ -114,6 +120,35 @@ public class ClientProxy extends CommonProxy {
 	
 	@SubscribeEvent
 	public void onTextureStitch(TextureStitchEvent.Post event) {
-		FluidInit.umesyuFluid.setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.apple_juice").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.golden_apple_juice").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.potato_essence").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.carrot_juice").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.golden_carrot_juice").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.syrup").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.wort").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.cactus_essence").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.cider").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.golden_cider").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.potato_ferment_essence").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.ginseng_liquor").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.golden_ginseng_liquor").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.syrup_ferment_essence").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.wash").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.kumis").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.calvados").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.golden_calvados").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.spirytus").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.rum").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.whisky").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.tequila").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.alcohol").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.fin_sake").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.slime_jelly_soda").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.pumpkin_ale").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.infernal_liquor").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.magma_cream_sour").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.umesyu").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        FluidRegistry.getFluid("wa.fluid.sake").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
 	}
 }

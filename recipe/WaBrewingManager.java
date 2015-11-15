@@ -7,7 +7,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
-import wa.api.IBrewingRegister;
+import wa.api.IBrewingRegistry;
 import wa.api.IWaBrewingRecipe;
 import wa.api.RecipeManagerWa;
 
@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-public class WaBrewingManager implements IBrewingRegister {
+public class WaBrewingManager implements IBrewingRegistry {
 
 	private static ArrayList<WaBrewingRecipe> recipes;
 	private static Map<Integer, WaBrewingRecipe> recipeMap;
@@ -27,8 +27,8 @@ public class WaBrewingManager implements IBrewingRegister {
 		this.recipeMap = new HashMap<Integer, WaBrewingRecipe>();
 	}
 
-	public IBrewingRegister instance() {
-		return RecipeManagerWa.brewingRegister;
+	public IBrewingRegistry instance() {
+		return RecipeManagerWa.brewingRegistry;
 	}
 
 	@Override

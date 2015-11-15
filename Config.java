@@ -25,8 +25,10 @@ public class Config {
 	public static int 茶人ID;
 	public static int echantmentBaseID;
 	public static int 神官ID;
+    public static int 圧搾機GUIID;
+    public static int 蒸留器GUIID;
 
-	public static void preInit(File file) {
+    public static void preInit(File file) {
 		Configuration cfg = new Configuration(file);
 		try {
 			cfg.load();
@@ -47,6 +49,8 @@ public class Config {
 			玉鋼強度 = cfg.get(Configuration.CATEGORY_GENERAL, "玉鋼強度", 10).getInt();
 			醸造樽GUIID = cfg.get(Configuration.CATEGORY_GENERAL, "醸造樽GUIID", 17).getInt();
 			echantmentBaseID = cfg.get(Configuration.CATEGORY_GENERAL, "echantmentBaseID", 70).getInt();
+            圧搾機GUIID = cfg.get(Configuration.CATEGORY_GENERAL, "圧搾機GUIID", 18).getInt();
+            蒸留器GUIID = cfg.get(Configuration.CATEGORY_GENERAL, "蒸留器GUIID", 19).getInt();
 			cfg.save();
 		} catch (Exception e) {
 			FMLLog.log(Level.ERROR, e, Wa.modid + " load config exception");

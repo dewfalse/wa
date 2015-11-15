@@ -26,7 +26,7 @@ import wa.event.GetVillageBlockIDEventHandler;
 import wa.event.LivingDeathEventHandler;
 import wa.event.SaplingGrowTreeEventHandler;
 import wa.item.Items;
-import wa.recipe.RecipeRegisterWa;
+import wa.recipe.RecipeRegistryWa;
 import wa.recipe.Recipes;
 import wa.world.WorldChunkManagerWa;
 import wa.world.WorldGenTakenoko;
@@ -51,7 +51,7 @@ public class Wa {
 	public void preInit(FMLPreInitializationEvent event) {
 		
 		// APIの初期化
-		RecipeRegisterWa.registerInstance();
+		RecipeRegistryWa.registerInstance();
 
 		Config.preInit(event.getSuggestedConfigurationFile());
 		Blocks.preInit();
@@ -60,7 +60,7 @@ public class Wa {
 		proxy.preInit();
 		
 		// defeatedcrow作成、液体追加
-		FluidInit.preInit();
+		wa.FluidInit.preInit();
 
 	}
 
@@ -152,6 +152,6 @@ public class Wa {
 	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 		Recipes.postInit();
-		RecipeRegisterWa.registerRecipe();
+		RecipeRegistryWa.registerRecipe();
 	}
 }

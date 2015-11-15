@@ -44,7 +44,8 @@ public class Blocks extends net.minecraft.init.Blocks {
 	public static Block umeLog = (new BlockUmeWood()).setHardness(2.0F).setStepSound(Block.soundTypeWood).setBlockName("wa:umeLog").setCreativeTab(Wa.creativeTab);
 	public static Block umeSapling = (new BlockUmeSapling()).setHardness(0.0F).setStepSound(Block.soundTypeGrass).setBlockName("wa:umeSapling").setCreativeTab(Wa.creativeTab);
 
-	public static Block brewingBarrel = new BlockBrewingBarrel(Material.wood).setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("wa:brewingBarrel").setCreativeTab(Wa.creativeTab);
+    public static Block brewingBarrel = new BlockBrewingBarrel(Material.wood).setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("wa:brewingBarrel").setCreativeTab(Wa.creativeTab);
+
 	public static Block kawara = (new BlockKawara(Material.rock)).setHardness(1.0F).setStepSound(Block.soundTypeStone).setBlockName("wa:kawara").setCreativeTab(Wa.creativeTab);
 
 	public static Block charm = (new BlockCharm(Material.cloth)).setHardness(1.0F).setStepSound(Block.soundTypeStone).setBlockName("wa:ofuda").setBlockTextureName("wa:ofuda").setCreativeTab(Wa.creativeTab);
@@ -65,6 +66,14 @@ public class Blocks extends net.minecraft.init.Blocks {
     /* defeatedcrow作成物 */
     public static Block zabuton = (new BlockZabuton(Material.sponge)).setHardness(0.2F).setStepSound(Block.soundTypeCloth).setBlockName("wa:zabuton").setBlockTextureName("wa:zabuton").setCreativeTab(Wa.creativeTab);
     public static Block brewingBarrelII = new BlockBrewingBarrelII().setBlockName("wa:brewingBarrelII").setCreativeTab(Wa.creativeTab);
+
+
+    // 蒸留器
+    public static Block still = new BlockStill(Material.iron).setHardness(0.5F).setStepSound(Block.soundTypeMetal).setBlockName("wa:still").setCreativeTab(Wa.creativeTab);
+    // 圧搾機
+    public static Block squeezer = new BlockSqueezer().setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("wa:squeezer").setCreativeTab(Wa.creativeTab);
+    // アルコールランプ
+    public static Block spiritLamp = new BlockSpiritLamp(Material.glass).setHardness(0.3F).setStepSound(Block.soundTypeGlass).setBlockName("wa:spiritLamp").setBlockTextureName("wa:spiritLamp").setCreativeTab(Wa.creativeTab);
 
 	//TODO 入手方法を実装
 
@@ -129,7 +138,7 @@ public class Blocks extends net.minecraft.init.Blocks {
 		GameRegistry.registerTileEntity(TileEntityTatara.class, "wa.tatara");
 
         GameRegistry.registerBlock(brewingBarrel, "brewingBarrel");
-		GameRegistry.registerTileEntity(TileEntityBrewingBarrel.class, "wa.BrewingBarrel");
+        GameRegistry.registerTileEntity(TileEntityBrewingBarrel.class, "wa.BrewingBarrel");
 
         GameRegistry.registerBlock(kawara, "kawara");
         GameRegistry.registerBlock(oreMagnetite, "oreMagnetite");
@@ -152,6 +161,21 @@ public class Blocks extends net.minecraft.init.Blocks {
 		GameRegistry.registerBlock(zabuton, ItemZabuton.class, "zabuton");
 		GameRegistry.registerBlock(brewingBarrelII, "brewingBarrelII");
 		GameRegistry.registerTileEntity(TileEntityBrewingBarrelII.class, "wa.BrewingBarrelII");
+
+
+
+        // 蒸留器
+        GameRegistry.registerBlock(still, "still");
+        GameRegistry.registerTileEntity(TileEntityStill.class, "wa.still");
+
+        // 圧搾機
+        GameRegistry.registerBlock(squeezer, "squeezer");
+        GameRegistry.registerTileEntity(TileEntitySqueezer.class, "wa.squeezer");
+
+        // アルコールランプ
+        GameRegistry.registerBlock(spiritLamp, "spiritLamp");
+        GameRegistry.registerTileEntity(TileEntitySpiritLamp.class, "wa.spiritLamp");
+
 
 		//ケラは金槌が対応ツールになる
 		//MinecraftForge.removeBlockEffectiveness(kera, 0, "pickaxe");

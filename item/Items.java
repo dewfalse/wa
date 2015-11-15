@@ -48,26 +48,61 @@ public class Items extends net.minecraft.init.Items {
 	public static Item 家紋;// = new 家紋(Config.家紋ID).setUnlocalizedName("wa:kamon").setCreativeTab(Wa.creativeTab);
     public static Item 梅酒 = new ItemRequor().addPotionEffect(Potion.confusion.id, 120, 0).addPotionEffect(Potion.digSpeed.id, 240, 0).addPotionEffect(Potion.moveSpeed.id, 240, 0)
             .setUnlocalizedName("wa:umeshu").setTextureName("wa:umeshu").setCreativeTab(Wa.creativeTab);
+
+    // エキス
+    public static Item りんごジュース = new ItemRequor().setUnlocalizedName("wa:appleJuice").setTextureName("wa:appleJuice").setCreativeTab(Wa.creativeTab);
+    public static Item 金のりんごジュース = new ItemRequor().setUnlocalizedName("wa:goldenAppleJuice").setTextureName("wa:goldenAppleJuice").setCreativeTab(Wa.creativeTab);
+    public static Item じゃがいもエキス = new ItemRequor().setUnlocalizedName("wa:potatoEssence").setTextureName("wa:potatoEssence").setCreativeTab(Wa.creativeTab);
+    public static Item にんじんジュース = new ItemRequor().setUnlocalizedName("wa:carrotJuice").setTextureName("wa:carrotJuice").setCreativeTab(Wa.creativeTab);
+    public static Item 金のにんじんジュース = new ItemRequor().setUnlocalizedName("wa:goldenCarrotJuice").setTextureName("wa:goldenCarrotJuice").setCreativeTab(Wa.creativeTab);
+    public static Item 糖蜜 = new ItemRequor().setUnlocalizedName("wa:syrup").setTextureName("wa:syrup").setCreativeTab(Wa.creativeTab);
+    public static Item 麦汁 = new ItemRequor().setUnlocalizedName("wa:wort").setTextureName("wa:wort").setCreativeTab(Wa.creativeTab);
+    public static Item サボテンエキス = new ItemRequor().setUnlocalizedName("wa:cactusEssence").setTextureName("wa:cactusEssence").setCreativeTab(Wa.creativeTab);
+
+    // 蒸留酒
+    public static Item カルヴァドス = new ItemRequor().setUnlocalizedName("wa:calvados").setTextureName("wa:calvados").setCreativeTab(Wa.creativeTab);
+    public static Item 金のカルヴァドス = new ItemRequor().setUnlocalizedName("wa:goldenCalvados").setTextureName("wa:goldenCalvados").setCreativeTab(Wa.creativeTab);
+    public static Item スピリタス = new ItemRequor().setUnlocalizedName("wa:spirytus").setTextureName("wa:spirytus").setCreativeTab(Wa.creativeTab);
+    public static Item ラム酒 = new ItemRequor().setUnlocalizedName("wa:rum").setTextureName("wa:rum").setCreativeTab(Wa.creativeTab);
+    public static Item ウィスキー = new ItemRequor().setUnlocalizedName("wa:whisky").setTextureName("wa:whisky").setCreativeTab(Wa.creativeTab);
+    public static Item テキーラ = new ItemRequor().setUnlocalizedName("wa:tequila").setTextureName("wa:tequila").setCreativeTab(Wa.creativeTab);
+    public static Item アルコール = new ItemRequor().addPotionEffect(Potion.confusion.id, 400, 0).addPotionEffect(Potion.blindness.id, 400, 0)
+            .setUnlocalizedName("wa:alcohol").setTextureName("wa:alcohol").setCreativeTab(Wa.creativeTab);
+
+    // 蒸留酒（レシピなし）
+    public static Item 日本酒 = new ItemRequor().addPotionEffect(Potion.confusion.id, 180, 0).addPotionEffect(Potion.damageBoost.id, 400, 0)
+            .setUnlocalizedName("wa:sake").setTextureName("wa:sake").setCreativeTab(Wa.creativeTab);
+
+    // 醸造酒
     public static Item シードル = new ItemRequor().addPotionEffect(Potion.confusion.id, 60, 0).addPotionEffect(Potion.regeneration.id, 400, 0)
             .setUnlocalizedName("wa:cider").setTextureName("wa:cider").setCreativeTab(Wa.creativeTab);
-    public static Item 金のシードル = new ItemRequor().addPotionEffect(Potion.confusion.id, 60, 0).addPotionEffect(Potion.heal.id, 400, 0)
+    public static Item 金のシードル = new ItemRequor().addPotionEffect(Potion.confusion.id, 60, 0).addPotionEffect(Potion.regeneration.id, 400, 0).addPotionEffect(Potion.heal.id, 400, 0)
             .setUnlocalizedName("wa:goldenCider").setTextureName("wa:goldenCider").setCreativeTab(Wa.creativeTab);
+    public static Item 高麗人参酒 = new ItemRequor().addPotionEffect(Potion.confusion.id, 180, 0).addPotionEffect(Potion.nightVision.id, 400, 0)
+            .setUnlocalizedName("wa:ginsengLiquor").setTextureName("wa:ginsengLiquor").setCreativeTab(Wa.creativeTab);
+    public static Item 金の高麗人参酒 = new ItemRequor().addPotionEffect(Potion.confusion.id, 180, 0).addPotionEffect(Potion.nightVision.id, 400, 0).addPotionEffect(Potion.heal.id, 400, 0)
+            .setUnlocalizedName("wa:goldenGinsengLiquor").setTextureName("wa:goldenGinsengLiquor").setCreativeTab(Wa.creativeTab);
+    public static Item 馬乳酒 = new ItemRequor().addPotionEffect(Potion.confusion.id, 180, 0).addPotionEffect(Potion.moveSpeed.id, 400, 0)
+            .setUnlocalizedName("wa:kumis").setTextureName("wa:kumis").setCreativeTab(Wa.creativeTab);
+    public static Item ウォッシュ = new ItemRequor().setUnlocalizedName("wa:wash").setTextureName("wa:wash").setCreativeTab(Wa.creativeTab);
+    public static Item プルケ = new ItemRequor().setUnlocalizedName("wa:pulque").setTextureName("wa:pulque").setCreativeTab(Wa.creativeTab);
+
+    // 発酵エキス（醸造樽）
+    public static Item じゃがいも発酵エキス = new ItemRequor().setUnlocalizedName("wa:potato_ferment_essence").setTextureName("wa:potato_ferment_essence").setCreativeTab(Wa.creativeTab);
+    public static Item 糖蜜発酵エキス = new ItemRequor().setUnlocalizedName("wa:syrup_ferment_essence").setTextureName("wa:syrup_ferment_essence").setCreativeTab(Wa.creativeTab);
+
+
+    // 混合醸造酒
     public static Item ひれ酒 = new ItemRequor().addPotionEffect(Potion.confusion.id, 180, 0).addPotionEffect(Potion.waterBreathing.id, 400, 0)
             .setUnlocalizedName("wa:finSake").setTextureName("wa:finSake").setCreativeTab(Wa.creativeTab);
     public static Item スライムゼリーソーダ = new ItemRequor().addPotionEffect(Potion.confusion.id, 60, 0).addPotionEffect(Potion.jump.id, 400, 0)
             .setUnlocalizedName("wa:slimeJellySoda").setTextureName("wa:slimeJellySoda").setCreativeTab(Wa.creativeTab);
-    public static Item 高麗人参酒 = new ItemRequor().addPotionEffect(Potion.confusion.id, 180, 0).addPotionEffect(Potion.nightVision.id, 400, 0)
-            .setUnlocalizedName("wa:ginsengLiquor").setTextureName("wa:ginsengLiquor").setCreativeTab(Wa.creativeTab);
-    public static Item 馬乳酒 = new ItemRequor().addPotionEffect(Potion.confusion.id, 180, 0).addPotionEffect(Potion.moveSpeed.id, 400, 0)
-            .setUnlocalizedName("wa:kumis").setTextureName("wa:kumis").setCreativeTab(Wa.creativeTab);
     public static Item かぼちゃエール = new ItemRequor().addPotionEffect(Potion.confusion.id, 120, 0).addPotionEffect(Potion.resistance.id, 400, 0)
             .setUnlocalizedName("wa:pumpkinAle").setTextureName("wa:pumpkinAle").setCreativeTab(Wa.creativeTab);
     public static Item ヘルリカー = new ItemRequor().addPotionEffect(Potion.confusion.id, 240, 0).addPotionEffect(Potion.digSpeed.id, 400, 0)
             .setUnlocalizedName("wa:hellLiquor").setTextureName("wa:hellLiquor").setCreativeTab(Wa.creativeTab);
     public static Item マグマクリームサワー = new ItemRequor().addPotionEffect(Potion.confusion.id, 240, 0).addPotionEffect(Potion.fireResistance.id, 400, 0)
             .setUnlocalizedName("wa:magmaCreamSour").setTextureName("wa:magmaCreamSour").setCreativeTab(Wa.creativeTab);
-    public static Item 日本酒 = new ItemRequor().addPotionEffect(Potion.confusion.id, 180, 0).addPotionEffect(Potion.damageBoost.id, 400, 0)
-            .setUnlocalizedName("wa:sake").setTextureName("wa:sake").setCreativeTab(Wa.creativeTab);
 
     //static Item 陣笠;
 	//static Item 提灯;
@@ -123,16 +158,43 @@ public class Items extends net.minecraft.init.Items {
         GameRegistry.registerItem(お茶, "ocha");
 
         GameRegistry.registerItem(梅酒, "umeshu");
+
+        GameRegistry.registerItem(りんごジュース, "appleJuice");
+        GameRegistry.registerItem(金のりんごジュース, "goldenAppleJuice");
+        GameRegistry.registerItem(じゃがいもエキス, "potatoEssence");
+        GameRegistry.registerItem(にんじんジュース, "carrotJuice");
+        GameRegistry.registerItem(金のにんじんジュース, "goldenCarrotJuice");
+        GameRegistry.registerItem(糖蜜, "syrup");
+        GameRegistry.registerItem(麦汁, "wort");
+        GameRegistry.registerItem(サボテンエキス, "cactusEssence");
+
+        GameRegistry.registerItem(カルヴァドス, "calvados");
+        GameRegistry.registerItem(金のカルヴァドス, "goldenCalvados");
+        GameRegistry.registerItem(スピリタス, "spirytus");
+        GameRegistry.registerItem(ラム酒, "rum");
+        GameRegistry.registerItem(ウィスキー, "whisky");
+        GameRegistry.registerItem(テキーラ, "tequila");
+
+        GameRegistry.registerItem(アルコール, "alcohol");
+
+        GameRegistry.registerItem(日本酒, "sake");
+
         GameRegistry.registerItem(シードル, "cider");
         GameRegistry.registerItem(金のシードル, "goldenCider");
+        GameRegistry.registerItem(高麗人参酒, "ginsengLiquor");
+        GameRegistry.registerItem(金の高麗人参酒, "goldenGinsengLiquor");
+        GameRegistry.registerItem(馬乳酒, "kumis");
+        GameRegistry.registerItem(ウォッシュ, "wash");
+        GameRegistry.registerItem(プルケ, "pulque");
+
+        GameRegistry.registerItem(じゃがいも発酵エキス, "potato_ferment_essence");
+        GameRegistry.registerItem(糖蜜発酵エキス, "syrup_ferment_essence");
+
         GameRegistry.registerItem(ひれ酒, "finSake");
         GameRegistry.registerItem(スライムゼリーソーダ, "slimeJellySoda");
-        GameRegistry.registerItem(高麗人参酒, "ginsengLiquor");
-        GameRegistry.registerItem(馬乳酒, "kumis");
         GameRegistry.registerItem(かぼちゃエール, "pumpkinAle");
         GameRegistry.registerItem(ヘルリカー, "hellLiquor");
         GameRegistry.registerItem(マグマクリームサワー, "magmaCreamSour");
-        GameRegistry.registerItem(日本酒, "sake");
 
         GameRegistry.registerItem(磁鉄鉱インゴット, "magnetite_ingot");
         GameRegistry.registerItem(磁石, "magnet");

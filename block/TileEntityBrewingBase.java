@@ -19,7 +19,7 @@ import wa.api.RecipeManagerWa;
 
 public abstract class TileEntityBrewingBase extends TileEntity implements ISidedInventory{
 	
-	public FluidTankBrewing productTank = new FluidTankBrewing(1000);
+	public FluidTankEx productTank = new FluidTankEx(1000);
 	
 	// 材料投下後の日数。
 	private int age = 0;
@@ -117,7 +117,7 @@ public abstract class TileEntityBrewingBase extends TileEntity implements ISided
 	 * 取り出してしまったなど、適合しなくなったときにパラメータをリセットする。
 	 */
 	protected boolean onProgress(){
-		IWaBrewingRecipe recipe = RecipeManagerWa.brewingRegister.getRecipeFromID(recipeID);
+		IWaBrewingRecipe recipe = RecipeManagerWa.brewingRegistry.getRecipeFromID(recipeID);
 		if (recipe == null) return false;
 		
 		ItemStack input = this.getStackInSlot(0);
@@ -132,7 +132,7 @@ public abstract class TileEntityBrewingBase extends TileEntity implements ISided
 	 * ageが規定数に達したかを見ているが、オーバーライドして条件を追加しても良いと思う。
 	 */
 	protected boolean completeBrewing(){
-		IWaBrewingRecipe recipe = RecipeManagerWa.brewingRegister.getRecipeFromID(recipeID);
+		IWaBrewingRecipe recipe = RecipeManagerWa.brewingRegistry.getRecipeFromID(recipeID);
 		if (recipe == null) return false;
 		
 		ItemStack input = this.getStackInSlot(0);
@@ -150,7 +150,7 @@ public abstract class TileEntityBrewingBase extends TileEntity implements ISided
 	 * 変化成功時にtrueを返す
 	 */
 	protected boolean onBrewing(){
-		IWaBrewingRecipe recipe = RecipeManagerWa.brewingRegister.getRecipeFromID(recipeID);
+		IWaBrewingRecipe recipe = RecipeManagerWa.brewingRegistry.getRecipeFromID(recipeID);
 		if (recipe == null || !this.productTank.isEmpty()) return false;
 		
 		FluidStack output = recipe.getOutput();
@@ -179,7 +179,7 @@ public abstract class TileEntityBrewingBase extends TileEntity implements ISided
 		ItemStack second = this.getStackInSlot(1);
 		if (input == null) return -1;
 		
-		int id = RecipeManagerWa.brewingRegister.getRecipeID(input, second);
+		int id = RecipeManagerWa.brewingRegistry.getRecipeID(input, second);
 		return id;
 	}
 	
@@ -268,7 +268,7 @@ public abstract class TileEntityBrewingBase extends TileEntity implements ISided
 		this.recipeID = par1NBTTagCompound.getInteger("ID");
 		this.isAged = par1NBTTagCompound.getBoolean("IsAged");
 
-		this.productTank = new FluidTankBrewing(1000);
+		this.productTank = new FluidTankEx(1000);
 		if (par1NBTTagCompound.hasKey("productTank")) {
 			this.productTank.readFromNBT(par1NBTTagCompound.getCompoundTag("productTank"));
 		}
@@ -334,7 +334,7 @@ public abstract class TileEntityBrewingBase extends TileEntity implements ISided
 	}
 	
 	public int getAgingProgress(int i) {
-		IWaBrewingRecipe recipe = RecipeManagerWa.brewingRegister.getRecipeFromID(recipeID);
+		IWaBrewingRecipe recipe = RecipeManagerWa.brewingRegistry.getRecipeFromID(recipeID);
 		if (recipe == null) return 0;
 		int ret = this.age * i / recipe.getBrewingTime();
 		return ret;
@@ -426,7 +426,7 @@ public abstract class TileEntityBrewingBase extends TileEntity implements ISided
 
 		FluidStack current = this.productTank.getFluid();
 		FluidStack resourceCopy = resource.copy();
-		if (current != null && current.amount > 0 && current.isFluidEqual(resourceCopy)) {
+		if (current != null && current.amount > 0 && !current.isFluidEqual(resourceCopy)) {
 			return 0;
 		}
 
@@ -533,7 +533,7 @@ public abstract class TileEntityBrewingBase extends TileEntity implements ISided
 	// 多言語対応かどうか
 	@Override
 	public boolean hasCustomInventoryName() {
-		return true;
+		return false;
 	}
 
 	// インベントリ内のスタック限界値

@@ -7,17 +7,17 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidTank;
 
-public class FluidTankBrewing extends FluidTank {
+public class FluidTankEx extends FluidTank {
 
-	public FluidTankBrewing(int capacity) {
+	public FluidTankEx(int capacity) {
 		super(capacity);
 	}
 
-	public FluidTankBrewing(FluidStack stack, int capacity) {
+	public FluidTankEx(FluidStack stack, int capacity) {
 		super(stack, capacity);
 	}
 
-	public FluidTankBrewing(Fluid fluid, int amount, int capacity) {
+	public FluidTankEx(Fluid fluid, int amount, int capacity) {
 		super(fluid, amount, capacity);
 	}
 
