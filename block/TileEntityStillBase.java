@@ -15,10 +15,10 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
-import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import wa.api.IWaDistillingRecipe;
 import wa.api.RecipeManagerWa;
+
 // 蒸留器
 // マルチブロックで加熱用のブロックと冷却用のブロックの２ブロックからなる
 // 動作するには加熱用のブロックの下に炎が必要
@@ -29,7 +29,7 @@ import wa.api.RecipeManagerWa;
  */
 public abstract class TileEntityStillBase extends TileEntity implements ISidedInventory {
 
-    public FluidTankEx productTank = new FluidTankEx(1000);
+    public FluidTankEx productTank = new FluidTankEx(10000);
 
     // 材料投下後の日数。
     private int age = 0;
@@ -130,7 +130,7 @@ public abstract class TileEntityStillBase extends TileEntity implements ISidedIn
             this.recipeID = id;
 
             // 最初はグレード1000で固定
-            this.setGrade(1000);
+            this.setGrade(100);
 
             return true;
         }
@@ -226,34 +226,33 @@ public abstract class TileEntityStillBase extends TileEntity implements ISidedIn
         IWaDistillingRecipe recipe = RecipeManagerWa.distillingRegistry.getRecipeFromID(recipeID);
         if (recipe == null) return false;
 
-        for(int i : new int[]{0,1}) {
-            ItemStack input = this.getStackInSlot(i);
+        // 0は材料スロット
+        ItemStack input = this.getStackInSlot(0);
 
-            FluidStack fluid = FluidContainerRegistry.getFluidForFilledItem(input);
+        FluidStack fluid = FluidContainerRegistry.getFluidForFilledItem(input);
 
-            // レシピに適合する液体コンテナなアイテムなら液体素材に追加
-            if(recipe.getInput().isFluidEqual(input)) {
-                if(productTank.getCapacity() - productTank.getFluidAmount() >= fluid.amount) {
-                    this.fill(ForgeDirection.UNKNOWN, fluid, true);
-                    input.stackSize -= 1;
-                    if(input.stackSize == 0) {
-                        this.setInventorySlotContents(i, null);
-                    }
-                    else {
-                        this.setInventorySlotContents(i, input);
-                    }
+        // レシピに適合する液体コンテナなアイテムなら液体素材に追加
+        if(recipe.getInput().isFluidEqual(input)) {
+            if(productTank.getCapacity() - productTank.getFluidAmount() >= fluid.amount) {
+                this.fill(ForgeDirection.UNKNOWN, fluid, true);
+                input.stackSize -= 1;
+                if(input.stackSize == 0) {
+                    this.setInventorySlotContents(0, null);
+                }
+                else {
+                    this.setInventorySlotContents(0, input);
+                }
 
-                    // 材料のグレード＝蒸留液のグレード
-                    // グレードの低い材料を追加すると蒸留液のグレードも下がる
-                    int grade = 0;
-                    if(input.hasTagCompound()) {
-                        NBTTagCompound nbt = input.getTagCompound();
-                        if(nbt != null) {
-                            grade = nbt.getShort("Grade");
-                            this.setGrade(Math.min(this.getGrade(), grade));
-                        }
+                // 材料のグレード＝蒸留液のグレード
+                // グレードの低い材料を追加すると蒸留液のグレードも下がる
+                int grade = 100;
+                if(input.hasTagCompound()) {
+                    NBTTagCompound nbt = input.getTagCompound();
+                    if(nbt != null) {
+                        grade = nbt.getShort("Grade");
                     }
                 }
+                this.setGrade(Math.min(this.getGrade(), grade));
             }
         }
 
@@ -269,7 +268,7 @@ public abstract class TileEntityStillBase extends TileEntity implements ISidedIn
         IWaDistillingRecipe recipe = RecipeManagerWa.distillingRegistry.getRecipeFromID(recipeID);
         if (recipe == null) return false;
 
-        return this.age > recipe.getDistillTime();
+        return this.age > recipe.getDistillingTime();
     }
 
     /*
@@ -282,6 +281,7 @@ public abstract class TileEntityStillBase extends TileEntity implements ISidedIn
         IWaDistillingRecipe recipe = RecipeManagerWa.distillingRegistry.getRecipeFromID(recipeID);
         if(recipe == null) return false;
 
+        int outputGrade = recipe.getOutputGrade(this, this.productTank.getFluid(), this.getGrade());
         // 液体素材消費
         this.drain(ForgeDirection.UNKNOWN, recipe.getInputRequire(), true);
 
@@ -296,6 +296,7 @@ public abstract class TileEntityStillBase extends TileEntity implements ISidedIn
                 output.amount = output.amount / 2;
             }
             tile.fill(pairDir.getOpposite(), output, true);
+            tile.setGrade(outputGrade);
         }
 
         this.setAgingTime(0);
@@ -308,17 +309,14 @@ public abstract class TileEntityStillBase extends TileEntity implements ISidedIn
      * 一致したレシピがあったら、レシピIDを取得して醸造開始。
      */
     protected int getCurrentRecipeID(){
-        for(int i : new int[]{0,1}) {
-            ItemStack input = this.getStackInSlot(i);
-            if (input == null) continue;
+        // 0は材料スロット
+        ItemStack input = this.getStackInSlot(0);
+        if (input == null) return -1;
 
-            // 液体コンテナなアイテム以外はNG
-            FluidStack fluid = FluidContainerRegistry.getFluidForFilledItem(input);
-            if(fluid == null) continue;
-            return RecipeManagerWa.distillingRegistry.getRecipeID(fluid, null);
-        }
-
-        return -1;
+        // 液体コンテナなアイテム以外はNG
+        FluidStack fluid = FluidContainerRegistry.getFluidForFilledItem(input);
+        if(fluid == null) return -1;
+        return RecipeManagerWa.distillingRegistry.getRecipeID(fluid);
     }
 
     // 樽を空にして、ブロック更新をする
@@ -338,25 +336,25 @@ public abstract class TileEntityStillBase extends TileEntity implements ISidedIn
             return false;
         }
 
-        ItemStack in = this.getStackInSlot(2);
-        ItemStack current = this.getStackInSlot(3);
+        ItemStack emptyContainer = this.getStackInSlot(2);
+        ItemStack output = this.getStackInSlot(3);
 
         // 隣接した蒸留器ブロック（受けフラスコ扱い）に蒸留液は保存されている
         TileEntityStill tile = (TileEntityStill)this.worldObj.getTileEntity(this.xCoord + pairDir.offsetX, this.yCoord + pairDir.offsetY, this.zCoord + pairDir.offsetZ);
         FluidStack fluid = tile.productTank.getFluid();
-        if (in == null || fluid == null){
+        if (emptyContainer == null || fluid == null){
             return false;
         }
 
         // 空容器かの判定
-        if (FluidContainerRegistry.isEmptyContainer(in)) {
+        if (FluidContainerRegistry.isEmptyContainer(emptyContainer)) {
             // 充填
-            ItemStack ret = FluidContainerRegistry.fillFluidContainer(fluid, in);
+            ItemStack ret = FluidContainerRegistry.fillFluidContainer(fluid, emptyContainer);
 
             boolean flag1 = ret != null;
             boolean flag2 = false;
-            if (current == null) flag2 = true;
-            else if (this.isItemStackable(ret, current)) flag2 = true;
+            if (output == null) flag2 = true;
+            else if (this.isItemStackable(ret, output)) flag2 = true;
 
             if (flag1 && flag2) {
                 // 充填アイテムにグレードを付与
@@ -428,7 +426,7 @@ public abstract class TileEntityStillBase extends TileEntity implements ISidedIn
         this.recipeID = par1NBTTagCompound.getInteger("ID");
         this.isAged = par1NBTTagCompound.getBoolean("IsAged");
 
-        this.productTank = new FluidTankEx(1000);
+        this.productTank = new FluidTankEx(10000);
         if (par1NBTTagCompound.hasKey("productTank")) {
             this.productTank.readFromNBT(par1NBTTagCompound.getCompoundTag("productTank"));
         }
@@ -507,7 +505,7 @@ public abstract class TileEntityStillBase extends TileEntity implements ISidedIn
     public int getAgingProgress(int i) {
         IWaDistillingRecipe recipe = RecipeManagerWa.distillingRegistry.getRecipeFromID(recipeID);
         if (recipe == null) return 0;
-        int ret = this.age * i / recipe.getDistillTime();
+        int ret = this.age * i / recipe.getDistillingTime();
         return ret;
     }
 
@@ -588,7 +586,7 @@ public abstract class TileEntityStillBase extends TileEntity implements ISidedIn
 
     @SideOnly(Side.CLIENT)
     public int getFluidAmountScaled(int par1) {
-        return this.productTank.getFluidAmount() * par1 / 1000;
+        return this.productTank.getFluidAmount() * par1 / 10000;
     }
 
 	/* Fluidの取扱い */
@@ -663,26 +661,27 @@ public abstract class TileEntityStillBase extends TileEntity implements ISidedIn
 	/* ISidedInventory */
 
     /*
-     * 0,1 : 材料
-     * 2,3 : タンクから液体を取り出すためのスロット
+     * 0 : 材料
+     * 1 : 空容器
+     * 2 : 完成品
      */
     protected int[] slotsTop(){
-        return new int[] {0,1,2};
+        return new int[] {0,1};
     }
 
     protected int[] slotsBottom(){
-        return new int[] {3};
+        return new int[] {2};
     }
 
     protected int[] slotsSides(){
-        return new int[] {0,1,2,3};
+        return new int[] {0,1,2};
     }
 
     public ItemStack[] itemstacks = new ItemStack[getSizeInventory()];
 
     @Override
     public int getSizeInventory() {
-        return 4;
+        return 3;
     }
 
     // インベントリ内の任意のスロットにあるアイテムを取得
@@ -777,11 +776,12 @@ public abstract class TileEntityStillBase extends TileEntity implements ISidedIn
     // 材料スロットは液体のみOK。取り出しスロットは空容器のみOK。
     @Override
     public boolean isItemValidForSlot(int i, ItemStack stack) {
-        if (i == 0 || i == 1) {
+        if (i == 0) {
             return FluidContainerRegistry.isFilledContainer(stack);
-        } else {
-            return i == 2 ? FluidContainerRegistry.isEmptyContainer(stack) : false;
+        } else if (i == 1) {
+            return  FluidContainerRegistry.isEmptyContainer(stack);
         }
+        return false;
     }
 
     // ホッパーにアイテムの受け渡しをする際の優先度

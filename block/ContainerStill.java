@@ -31,14 +31,12 @@ public class ContainerStill extends Container {
         this.tile = par2TileEntity;
         this.inventory = par2TileEntity;
 
-        // 材料1
+        // 材料
         this.addSlotToContainer(new Slot(this.inventory, 0, 22, 26));
-        // 材料2
-        this.addSlotToContainer(new Slot(this.inventory, 1, 22, 47));
 
         // 液体用
-        this.addSlotToContainer(new Slot(this.inventory, 2, 136, 16));
-        this.addSlotToContainer(new SlotFurnace(player, this.inventory, 3, 136, 56));
+        this.addSlotToContainer(new Slot(this.inventory, 1, 136, 16));
+        this.addSlotToContainer(new SlotFurnace(player, this.inventory, 2, 136, 56));
 
         int i;
 
@@ -189,28 +187,28 @@ public class ContainerStill extends Container {
             itemstack = itemstack1.copy();
 
             // カーソルを排出スロットにあわせているとき
-            if (par2 == 3) {
-                // アイテムの移動(スロット6～42へ)
+            if (par2 == 2) {
+                // アイテムの移動(スロット3～38へ)
                 if (!this.mergeItemStack(itemstack1, 3, 39, true))
                     return null;
 
                 slot.onSlotChange(itemstack1, itemstack);
             }
             // カーソルをプレイヤーのインベントリにあわせている
-            else if (par2 > 5) {
+            else if (par2 > 2) {
                 // 液体容器である
                 if (FluidContainerRegistry.isEmptyContainer(itemstack1)) {
-                    // アイテムの移動(スロット2へ)
-                    if (!this.mergeItemStack(itemstack1, 2, 3, false))
+                    // アイテムの移動(スロット1へ)
+                    if (!this.mergeItemStack(itemstack1, 1, 2, false))
                         return null;
                 } else// それ以外のアイテムはすべて材料欄に飛ばす
                 {
-                    // アイテムの移動(スロット2へ)
+                    // アイテムの移動(スロット0へ)
                     if (!this.mergeItemStack(itemstack1, 0, 1, false))
                         return null;
                 }
             }
-            // アイテムの移動(スロット6～42へ)
+            // アイテムの移動(スロット3～39へ)
             else if (!this.mergeItemStack(itemstack1, 3, 39, false))
                 return null;
 

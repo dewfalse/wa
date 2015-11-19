@@ -30,9 +30,11 @@ public class CommonProxy implements IGuiHandler {
             }
         }
         if(ID == Config.蒸留器GUIID) {
-            TileEntity e = world.getTileEntity(x, y, z);
-            if(e instanceof TileEntityStill) {
-                return new ContainerStill(player, (TileEntityStill) e);
+            if(world.getBlockMetadata(x, y, z) > 0) {
+                TileEntity e = world.getTileEntity(x, y, z);
+                if (e instanceof TileEntityStill) {
+                    return new ContainerStill(player, (TileEntityStill) e);
+                }
             }
         }
 		return null;
@@ -54,12 +56,14 @@ public class CommonProxy implements IGuiHandler {
             }
         }
         if(ID == Config.蒸留器GUIID) {
-            TileEntity e = world.getTileEntity(x, y, z);
-            if(e instanceof TileEntityStill) {
-                TileEntityStill still = (TileEntityStill)e;
-                ForgeDirection dir = still.getPairDir();
-                TileEntityStill connected = dir == ForgeDirection.UNKNOWN ? null : (TileEntityStill) world.getTileEntity(x + dir.offsetX, y + dir.offsetY, z + dir.offsetZ);
-                return new GuiStill(player, still, connected);
+            if(world.getBlockMetadata(x, y, z) > 0) {
+                TileEntity e = world.getTileEntity(x, y, z);
+                if (e instanceof TileEntityStill) {
+                    TileEntityStill still = (TileEntityStill) e;
+                    ForgeDirection dir = still.getPairDir();
+                    TileEntityStill connected = dir == ForgeDirection.UNKNOWN ? null : (TileEntityStill) world.getTileEntity(x + dir.offsetX, y + dir.offsetY, z + dir.offsetZ);
+                    return new GuiStill(player, still, connected);
+                }
             }
         }
 		return null;

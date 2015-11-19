@@ -19,12 +19,14 @@ import net.minecraftforge.fluids.FluidStack;
 import wa.api.IWaSqueezingRecipe;
 import wa.api.RecipeManagerWa;
 
+import java.util.Arrays;
+
 /**
  * Created by dew on 2015/11/11.
  */
 public abstract class TileEntitySqueezerBase extends TileEntity implements ISidedInventory {
 
-    public FluidTankEx productTank = new FluidTankEx(1000);
+    public FluidTankEx productTank = new FluidTankEx(10000);
 
     // 材料投下後の日数。
     private int age = 0;
@@ -108,11 +110,10 @@ public abstract class TileEntitySqueezerBase extends TileEntity implements ISide
         IWaSqueezingRecipe recipe = RecipeManagerWa.squeezingRegistry.getRecipeFromID(recipeID);
         if (recipe == null) return false;
 
-        for(int i : new int[]{0,1}) {
+        // 0-8が材料スロット
+        for(int i = 0; i < 9; i++) {
             ItemStack input = this.getStackInSlot(i);
-            // 片方しか使わない
-            ItemStack[] checks = {input, null};
-            boolean a = recipe.matches(checks);
+            boolean a = recipe.matches(input);
             if (a) {
                 // 材料があれば消費する
                 input.stackSize -= 1;
@@ -138,15 +139,15 @@ public abstract class TileEntitySqueezerBase extends TileEntity implements ISide
         if (recipe == null) return false;
 
         // 燃料がなく燃焼中でもないならNG
-        if(this.furnaceBurnTime == 0 && TileEntityFurnace.getItemBurnTime(this.itemstacks[4]) <= 0) return false;
+        if(this.furnaceBurnTime == 0 && TileEntityFurnace.getItemBurnTime(this.itemstacks[getFuelSlotIndex()]) <= 0) return false;
 
         // 材料スロットに材料があるか
         boolean resource = false;
-        for(int i : new int[]{0,1}) {
+
+        // 0-8が材料スロット
+        for(int i : getInputSlotIndex()) {
             ItemStack input = this.getStackInSlot(i);
-            // 片方しか使わない
-            ItemStack[] checks = {input, null};
-            boolean a = recipe.matches(checks);
+            boolean a = recipe.matches(input);
             if (a) {
                 resource = true;
                 break;
@@ -162,14 +163,15 @@ public abstract class TileEntitySqueezerBase extends TileEntity implements ISide
         if(this.productTank.isFull()) return false;
 
         // 未着火だが燃料がある
-        if(this.furnaceBurnTime == 0 && TileEntityFurnace.getItemBurnTime(this.itemstacks[4]) > 0) {
+        if(this.furnaceBurnTime == 0 && TileEntityFurnace.getItemBurnTime(this.itemstacks[getFuelSlotIndex()]) > 0) {
             this.burnFuelItem();
         }
 
         this.recipeID = id;
+        consumeIngredient();
 
         // グレード設定
-        this.setGrade(recipe.getOutputGrade(this, 1, 1));
+        this.setGrade(recipe.getOutputGrade(this, 1));
         return true;
     }
 
@@ -178,13 +180,13 @@ public abstract class TileEntitySqueezerBase extends TileEntity implements ISide
         // 未着火
         if(this.furnaceBurnTime == 0) {
             // 燃焼時間を更新
-            this.currentItemBurnTime = this.furnaceBurnTime = TileEntityFurnace.getItemBurnTime(this.itemstacks[4]);
+            this.currentItemBurnTime = this.furnaceBurnTime = TileEntityFurnace.getItemBurnTime(this.itemstacks[getFuelSlotIndex()]);
 
             // 燃料を減らす
-            if (this.itemstacks[4] != null) {
-                --this.itemstacks[4].stackSize;
-                if (this.itemstacks[4].stackSize == 0) {
-                    this.itemstacks[4] = itemstacks[4].getItem().getContainerItem(itemstacks[4]);
+            if (this.itemstacks[getFuelSlotIndex()] != null) {
+                --this.itemstacks[getFuelSlotIndex()].stackSize;
+                if (this.itemstacks[getFuelSlotIndex()].stackSize == 0) {
+                    this.itemstacks[getFuelSlotIndex()] = itemstacks[getFuelSlotIndex()].getItem().getContainerItem(itemstacks[getFuelSlotIndex()]);
                 }
             }
         }
@@ -228,7 +230,7 @@ public abstract class TileEntitySqueezerBase extends TileEntity implements ISide
         IWaSqueezingRecipe recipe = RecipeManagerWa.squeezingRegistry.getRecipeFromID(recipeID);
         if (recipe == null) return false;
 
-        return this.age > recipe.getSqueezeTime();
+        return this.age > recipe.getSqueezingTime();
     }
 
     /*
@@ -253,11 +255,14 @@ public abstract class TileEntitySqueezerBase extends TileEntity implements ISide
      * 一致したレシピがあったら、レシピIDを取得して醸造開始。
      */
     protected int getCurrentRecipeID(){
-        ItemStack input = this.getStackInSlot(0);
-        ItemStack second = this.getStackInSlot(1);
-        if (input == null) return -1;
+        int id = -1;
+        for(int i : getInputSlotIndex()) {
+            ItemStack input = this.getStackInSlot(i);
+            if (input == null) continue;
 
-        int id = RecipeManagerWa.squeezingRegistry.getRecipeID(input, second);
+            id = RecipeManagerWa.squeezingRegistry.getRecipeID(input);
+            if(id != -1) break;
+        }
         return id;
     }
 
@@ -272,22 +277,22 @@ public abstract class TileEntitySqueezerBase extends TileEntity implements ISide
 
     // タンク用のスロットの処理
     protected boolean fillFluidContainerItem(){
-        ItemStack in = this.getStackInSlot(2);
-        ItemStack current = this.getStackInSlot(3);
+        ItemStack emptyContainer = this.getStackInSlot(getEmptyContainerSlotIndex());
+        ItemStack output = this.getStackInSlot(getOutputSlotIndex());
         FluidStack fluid = this.productTank.getFluid();
-        if (in == null || fluid == null){
+        if (emptyContainer == null || fluid == null){
             return false;
         }
 
         // 空容器かの判定
-        if (FluidContainerRegistry.isEmptyContainer(in)) {
+        if (FluidContainerRegistry.isEmptyContainer(emptyContainer)) {
             // 充填
-            ItemStack ret = FluidContainerRegistry.fillFluidContainer(fluid, in);
+            ItemStack ret = FluidContainerRegistry.fillFluidContainer(fluid, emptyContainer);
 
             boolean flag1 = ret != null;
             boolean flag2 = false;
-            if (current == null) flag2 = true;
-            else if (this.isItemStackable(ret, current)) flag2 = true;
+            if (output == null) flag2 = true;
+            else if (this.isItemStackable(ret, output)) flag2 = true;
 
             if (flag1 && flag2) {
                 // 充填アイテムにグレードを付与
@@ -300,8 +305,8 @@ public abstract class TileEntitySqueezerBase extends TileEntity implements ISide
 
                 // 液体タンク、インベントリの増減処理
                 this.drain(ForgeDirection.UNKNOWN, FluidContainerRegistry.getContainerCapacity(ret), true);
-                this.incrStackInSlot(3, ret);
-                if (this.decrStackSize(2, 1) == null) {
+                this.incrStackInSlot(getOutputSlotIndex(), ret);
+                if (this.decrStackSize(getEmptyContainerSlotIndex(), 1) == null) {
                     this.markDirty();
                 }
                 return true;
@@ -361,7 +366,7 @@ public abstract class TileEntitySqueezerBase extends TileEntity implements ISide
         this.recipeID = par1NBTTagCompound.getInteger("ID");
         this.isAged = par1NBTTagCompound.getBoolean("IsAged");
 
-        this.productTank = new FluidTankEx(1000);
+        this.productTank = new FluidTankEx(10000);
         if (par1NBTTagCompound.hasKey("productTank")) {
             this.productTank.readFromNBT(par1NBTTagCompound.getCompoundTag("productTank"));
         }
@@ -442,7 +447,7 @@ public abstract class TileEntitySqueezerBase extends TileEntity implements ISide
     public int getAgingProgress(int i) {
         IWaSqueezingRecipe recipe = RecipeManagerWa.squeezingRegistry.getRecipeFromID(recipeID);
         if (recipe == null) return 0;
-        int ret = this.age * i / recipe.getSqueezeTime();
+        int ret = this.age * i / recipe.getSqueezingTime();
         return ret;
     }
 
@@ -513,7 +518,7 @@ public abstract class TileEntitySqueezerBase extends TileEntity implements ISide
 
     @SideOnly(Side.CLIENT)
     public int getFluidAmountScaled(int par1) {
-        return this.productTank.getFluidAmount() * par1 / 1000;
+        return this.productTank.getFluidAmount() * par1 / 10000;
     }
 
 	/* Fluidの取扱い */
@@ -568,29 +573,46 @@ public abstract class TileEntitySqueezerBase extends TileEntity implements ISide
         return this.isAged;
     }
 
+    int[] getInputSlotIndex() {
+        return new int[] {0,1,2,3,4,5,6,7,8};
+    }
+    int getFuelSlotIndex() {
+        return 9;
+    }
+
+    int getEmptyContainerSlotIndex() {
+        return 10;
+    }
+
+    int getOutputSlotIndex() {
+        return 11;
+    }
+
 	/* ISidedInventory */
 
     /*
-     * 0,1 : 材料
-     * 2,3 : タンクから液体を取り出すためのスロット
+     * 0-8 : 材料
+     * 9   : 燃料
+     * 10  : 空容器
+     * 11  : 完成品
      */
     protected int[] slotsTop(){
-        return new int[] {0,1,2};
+        return new int[] {0,1,2,3,4,5,6,7,8,10};
     }
 
     protected int[] slotsBottom(){
-        return new int[] {3};
+        return new int[] {11};
     }
 
     protected int[] slotsSides(){
-        return new int[] {0,1,2,3};
+        return new int[] {9};
     }
 
     public ItemStack[] itemstacks = new ItemStack[getSizeInventory()];
 
     @Override
     public int getSizeInventory() {
-        return 5;
+        return 12;
     }
 
     // インベントリ内の任意のスロットにあるアイテムを取得
@@ -685,13 +707,18 @@ public abstract class TileEntitySqueezerBase extends TileEntity implements ISide
     // 材料スロットは何でもOK。液体タンク用のスロットは制限を掛ける。
     @Override
     public boolean isItemValidForSlot(int i, ItemStack stack) {
-        if (i == 0 || i == 1) {
+        if(Arrays.asList(getInputSlotIndex()).contains(i)) {
+            // 材料スロットは何でもOK
             return true;
-        } else if (i == 4){
+        } else if (i == getFuelSlotIndex()) {
+            // 燃料スロットは燃料のみ
             return TileEntityFurnace.isItemFuel(stack);
-        } else {
-            return i == 2 ? FluidContainerRegistry.isEmptyContainer(stack) : false;
+        } else if (i == getEmptyContainerSlotIndex()) {
+            // 空容器スロットは空容器のみ
+            return FluidContainerRegistry.isEmptyContainer(stack);
         }
+
+        return false;
     }
 
     // ホッパーにアイテムの受け渡しをする際の優先度

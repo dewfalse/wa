@@ -31,7 +31,12 @@ public class WaBrewingManager implements IBrewingRegistry {
 		return RecipeManagerWa.brewingRegistry;
 	}
 
-	@Override
+    @Override
+    public String getVersion() {
+        return "1.0";
+    }
+
+    @Override
 	public ArrayList<? extends IWaBrewingRecipe> getRecipeList() {
 		return this.recipes;
 	}

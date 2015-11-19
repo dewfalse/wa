@@ -17,11 +17,6 @@ public interface IWaSqueezingRecipe {
     Object getInput();
 
     /*
-     * 副材料。これも何かしらは入れる
-     */
-    Object getSecondInput();
-
-    /*
      * できたエキスの液体
      */
     FluidStack getOutput();
@@ -31,27 +26,24 @@ public interface IWaSqueezingRecipe {
      */
     List<ItemStack> getProcessedInput();
 
-    List<ItemStack> getSecondProcessedInput();
-
     /*
      * 必要個数
      */
     int getInputRequire();
 
-    int getSecondRequire();
 
     /*
      * 圧搾可能判定
      */
-    boolean matches(ItemStack[] items);
+    boolean matches(ItemStack itemStack);
 
     /*
      * 必要Tick
      */
-    int getSqueezeTime();
+    int getSqueezingTime();
 
     /*
      * グレードの判定メソッド
      */
-    int getOutputGrade(TileEntity tile, int inputNum, int secondNum);
+    int getOutputGrade(TileEntity tile, int inputNum);
 }

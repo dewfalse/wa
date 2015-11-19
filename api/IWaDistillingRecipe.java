@@ -17,11 +17,6 @@ public interface IWaDistillingRecipe {
     FluidStack getInput();
 
     /*
-     * 副材料。これも何かしらは入れる
-     */
-    FluidStack getSecondInput();
-
-    /*
      * できた酒の液体
      */
     FluidStack getOutput();
@@ -31,20 +26,18 @@ public interface IWaDistillingRecipe {
      */
     int getInputRequire();
 
-    int getSecondRequire();
-
     /*
      * 蒸留可能判定
      */
-    boolean matches(FluidStack[] items);
+    boolean matches(FluidStack input);
 
     /*
      * 必要Tick
      */
-    int getDistillTime();
+    int getDistillingTime();
 
     /*
      * グレードの判定メソッド
      */
-    int getOutputGrade(TileEntity tile, int inputNum, int secondNum);
+    int getOutputGrade(TileEntity tile, FluidStack input, int inputGrade);
 }

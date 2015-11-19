@@ -100,20 +100,21 @@ public class BlockSpiritLamp extends BlockContainer {
             ItemStack itemStack = par5EntityPlayer.getHeldItem();
             FluidStack fluidStack = FluidContainerRegistry.getFluidForFilledItem(itemStack);
 
-            if(fluidStack != null && fluidStack.getFluid() == FluidRegistry.getFluid("wa.fluid.alcohol")) {
+            if(itemStack == null ) {
+                // 素手なら消火
+                if(tileEntitySpiritLamp.getIgnited()) {
+                    tileEntitySpiritLamp.setIgnited(!tileEntitySpiritLamp.getIgnited());
+                }
+            }
+            else if(itemStack.getItem() == Items.flint_and_steel) {
+                if(!tileEntitySpiritLamp.getIgnited()) {
+                    // 火打ち石と打ち金なら着火
+                    tileEntitySpiritLamp.setIgnited(!tileEntitySpiritLamp.getIgnited());
+                }
+            }
+            else if(fluidStack != null && fluidStack.getFluid() == FluidRegistry.getFluid("wa.fluid.alcohol")) {
                 // 手持ちのアイテムがアルコールなら投入する
                 tileEntitySpiritLamp.fill(ForgeDirection.UNKNOWN, fluidStack, true);
-            }
-            else if(itemStack.getItem() == Items.flint_and_steel && !tileEntitySpiritLamp.getIgnited()) {
-                // 火打ち石と打ち金なら着火
-                tileEntitySpiritLamp.setIgnited(!tileEntitySpiritLamp.getIgnited());
-            }
-            else if(itemStack == null && tileEntitySpiritLamp.getIgnited() ) {
-                // 素手なら消火
-                tileEntitySpiritLamp.setIgnited(!tileEntitySpiritLamp.getIgnited());
-            }
-            else {
-                return true;
             }
             par1World.markBlockForUpdate(par2, par3, par4);
         }

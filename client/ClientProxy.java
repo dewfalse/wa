@@ -129,37 +129,5 @@ public class ClientProxy extends CommonProxy {
         for(Fluid fluid : FluidInit.fluids) {
             fluid.setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
         }
-        /*
-        FluidRegistry.getFluid("wa.fluid.apple_juice").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.golden_apple_juice").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.potato_essence").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.carrot_juice").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.golden_carrot_juice").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.syrup").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.wort").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.cactus_essence").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.cider").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.golden_cider").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.potato_ferment_essence").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.ginseng_liquor").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.golden_ginseng_liquor").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.syrup_ferment_essence").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.wash").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.kumis").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.calvados").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.golden_calvados").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.spirytus").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.rum").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.whisky").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.tequila").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.alcohol").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.fin_sake").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.slime_jelly_soda").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.pumpkin_ale").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.infernal_liquor").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.magma_cream_sour").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.umesyu").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        FluidRegistry.getFluid("wa.fluid.sake").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        */
-	}
+ 	}
 }

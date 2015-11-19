@@ -32,17 +32,19 @@ public class ContainerSqueezer extends Container {
         this.tile = par2TileEntity;
         this.inventory = par2TileEntity;
 
-        // 材料1
-        this.addSlotToContainer(new Slot(this.inventory, 0, 51, 26));
-        // 材料2
-        this.addSlotToContainer(new Slot(this.inventory, 1, 51, 47));
-
-        // 液体用
-        this.addSlotToContainer(new Slot(this.inventory, 2, 136, 16));
-        this.addSlotToContainer(new SlotFurnace(player, this.inventory, 3, 136, 56));
+        // 材料
+        for(int i = 0; i < 3; i++) {
+            for(int j = 0; j < 3; j++) {
+                this.addSlotToContainer(new Slot(this.inventory, i*3+j, 15+j*18, 19+i*18));
+            }
+        }
 
         // 燃料
-        this.addSlotToContainer(new Slot(this.inventory, 4, 79, 59));
+        this.addSlotToContainer(new Slot(this.inventory, 9, 79, 59));
+
+        // 液体用
+        this.addSlotToContainer(new Slot(this.inventory, 10, 136, 16));
+        this.addSlotToContainer(new SlotFurnace(player, this.inventory, 11, 136, 56));
 
         int i;
 
@@ -180,33 +182,33 @@ public class ContainerSqueezer extends Container {
             itemstack = itemstack1.copy();
 
             // カーソルを排出スロットにあわせているとき
-            if (par2 == 3) {
-                // アイテムの移動(スロット6～42へ)
-                if (!this.mergeItemStack(itemstack1, 5, 41, true))
+            if (par2 == 11) {
+                // アイテムの移動(プレイヤーのインベントリへ)
+                if (!this.mergeItemStack(itemstack1, 12, 48, true))
                     return null;
 
                 slot.onSlotChange(itemstack1, itemstack);
             }
             // カーソルをプレイヤーのインベントリにあわせている
-            else if (par2 > 5) {
+            else if (par2 > 11) {
                 // 液体容器である
                 if (FluidContainerRegistry.isEmptyContainer(itemstack1)) {
                     // アイテムの移動(スロット2へ)
-                    if (!this.mergeItemStack(itemstack1, 2, 3, false))
+                    if (!this.mergeItemStack(itemstack1, 10, 11, false))
                         return null;
                 }
                 else if(TileEntityFurnace.isItemFuel(itemstack1)) {
-                    if (!this.mergeItemStack(itemstack1, 4, 5, false))
+                    if (!this.mergeItemStack(itemstack1, 9, 10, false))
                         return null;
                 } else// それ以外のアイテムはすべて材料欄に飛ばす
                 {
-                    // アイテムの移動(スロット2へ)
-                    if (!this.mergeItemStack(itemstack1, 0, 2, false))
+                    // アイテムの移動(材料スロットへ)
+                    if (!this.mergeItemStack(itemstack1, 0, 9, false))
                         return null;
                 }
             }
-            // アイテムの移動(スロット6～42へ)
-            else if (!this.mergeItemStack(itemstack1, 5, 41, false))
+            // アイテムの移動(プレイヤーのインベントリへ)
+            else if (!this.mergeItemStack(itemstack1, 12, 48, false))
                 return null;
 
             if (itemstack1.stackSize == 0) {

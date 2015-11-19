@@ -9,6 +9,7 @@ import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 import wa.api.*;
+import wa.block.TileEntityStill;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,15 +34,19 @@ public class WaDistillingManager  implements IDistillingRegistry {
     }
 
     @Override
+    public String getVersion() {
+        return "1.0";
+    }
+
+    @Override
     public ArrayList<? extends IWaDistillingRecipe> getRecipeList() {
         return this.recipes;
     }
 
     @Override
-    public IWaDistillingRecipe getRecipe(FluidStack input, FluidStack second) {
+    public IWaDistillingRecipe getRecipe(FluidStack input) {
         for (WaDistillingRecipe recipe : recipes){
-            FluidStack[] checks = {input, second};
-            if (recipe.matches(checks)){
+            if (recipe.matches(input)){
                 return recipe;
             }
         }
@@ -49,19 +54,15 @@ public class WaDistillingManager  implements IDistillingRegistry {
     }
 
     @Override
-    public void addRecipe(Fluid input, int inputRequire, Fluid secondary,
-                          int secondRequire, FluidStack output, int distillingTime) {
-        FluidStack fluid1 = new FluidStack(input, inputRequire);
-        FluidStack fluid2 = (secondary != null) ? new FluidStack(secondary, secondRequire) : null;
-        addRecipe(fluid1, inputRequire, fluid2, secondRequire, output, distillingTime);
+    public void addRecipe(Fluid input, int inputRequire, FluidStack output, int distillingTime) {
+        FluidStack fluid = new FluidStack(input, inputRequire);
+        addRecipe(fluid, inputRequire, output, distillingTime);
     }
 
     @Override
-    public void addRecipe(FluidStack input, int inputRequire, FluidStack secondary,
-                          int secondRequire, FluidStack output, int distillingTime) {
+    public void addRecipe(FluidStack input, int inputRequire, FluidStack output, int distillingTime) {
         if (input != null && output != null && inputRequire > 0){
-            WaDistillingRecipe add = new WaDistillingRecipe(output, input, secondary,
-                    inputRequire, secondRequire, distillingTime);
+            WaDistillingRecipe add = new WaDistillingRecipe(output, input, inputRequire, distillingTime);
             int id = recipeMap.isEmpty() ? 1 : recipeMap.size() + 1;
             recipes.add(add);
             recipeMap.put(id, add);
@@ -69,15 +70,14 @@ public class WaDistillingManager  implements IDistillingRegistry {
     }
 
     @Override
-    public void addRecipe(FluidStack input, FluidStack secondary, FluidStack output, int distillingTime) {
-        addRecipe(input, input.amount, secondary, secondary.amount, output, distillingTime);
+    public void addRecipe(FluidStack input, FluidStack output, int distillingTime) {
+        addRecipe(input, input.amount, output, distillingTime);
     }
 
     @Override
-    public int getRecipeID(FluidStack input, FluidStack second) {
+    public int getRecipeID(FluidStack input) {
         for (Map.Entry<Integer, WaDistillingRecipe> entry : recipeMap.entrySet()){
-            FluidStack[] checks = {input, second};
-            if (entry.getValue().matches(checks)){
+            if (entry.getValue().matches(input)){
                 return entry.getKey();
             }
         }
@@ -98,17 +98,13 @@ public class WaDistillingManager  implements IDistillingRegistry {
     public class WaDistillingRecipe implements IWaDistillingRecipe {
 
         private final FluidStack input;
-        private final FluidStack second;
         private final int require1;
-        private final int require2;
         private final int day;
         private final FluidStack output;
 
-        public WaDistillingRecipe(FluidStack out, FluidStack in, FluidStack sec, int r1, int r2, int d){
+        public WaDistillingRecipe(FluidStack out, FluidStack in, int r1, int d){
             input = in;
-            second = sec;
             require1 = r1;
-            require2 = r2;
             day = d;
             output = out;
         }
@@ -116,11 +112,6 @@ public class WaDistillingManager  implements IDistillingRegistry {
         @Override
         public FluidStack getInput() {
             return input;
-        }
-
-        @Override
-        public FluidStack getSecondInput() {
-            return second;
         }
 
         @Override
@@ -133,10 +124,6 @@ public class WaDistillingManager  implements IDistillingRegistry {
             return require1;
         }
 
-        @Override
-        public int getSecondRequire() {
-            return require2;
-        }
 
         /*
          * 注: matchingでは個数は問わない。
@@ -144,51 +131,23 @@ public class WaDistillingManager  implements IDistillingRegistry {
          * ただし、グレードが大きく下がる仕組み。
          */
         @Override
-        public boolean matches(FluidStack[] items) {
-            if (items.length != 2) return false;
-            boolean fst = false;
-            boolean sec = false;
-            for (FluidStack check : items){
-                // second
-                if (check == null){
-                    if (second == null) sec = true;
-                } else {
-                    // input
-                    if (check.isFluidEqual(this.getInput())){
-                        fst = true;
-                    }
-                    // second
-                    if (check.isFluidEqual(this.getSecondInput())){
-                        sec = true;
-                    }
-                }
-            }
-            return fst && sec;
+        public boolean matches(FluidStack fluidStack) {
+            if (fluidStack == null) return false;
+            return fluidStack.isFluidEqual(this.getInput());
         }
 
         @Override
-        public int getDistillTime() {
+        public int getDistillingTime() {
             return day;
         }
 
         /*
-         * とりあえず、inputとoutputの数から生成。
-         * 条件を足しても良いと思う。
+         * とりあえず、蒸留元の液体と同じグレードで生成
          */
         @Override
-        public int getOutputGrade(TileEntity tile, int inputNum, int secondNum) {
-            int grade = 100;
-            int i1 = 100 - Math.abs((require1 - inputNum));
-            float f1 = i1 / 80.0F;
-            int i2 = 100 + secondNum - require2;
-            float f2 = i2 / 100.0F;
-            if (tile.getWorldObj().rand.nextInt(10) == 0){
-                grade += 50;
-            }
-            int ret = MathHelper.ceiling_float_int(grade * f1 * f2);
-            return ret;
+        public int getOutputGrade(TileEntity tile, FluidStack input, int inputGrade) {
+            return inputGrade;
         }
-
     }
 
 }

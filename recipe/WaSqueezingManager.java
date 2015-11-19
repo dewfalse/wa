@@ -34,15 +34,19 @@ public class WaSqueezingManager  implements ISqueezingRegistry {
     }
 
     @Override
+    public String getVersion() {
+        return "1.0";
+    }
+
+    @Override
     public ArrayList<? extends IWaSqueezingRecipe> getRecipeList() {
         return this.recipes;
     }
 
     @Override
-    public IWaSqueezingRecipe getRecipe(ItemStack input, ItemStack second) {
+    public IWaSqueezingRecipe getRecipe(ItemStack input) {
         for (WaSqueezingRecipe recipe : recipes){
-            ItemStack[] checks = {input, second};
-            if (recipe.matches(checks)){
+            if (recipe.matches(input)){
                 return recipe;
             }
         }
@@ -50,11 +54,9 @@ public class WaSqueezingManager  implements ISqueezingRegistry {
     }
 
     @Override
-    public void addRecipe(Object input, int inputRequire, Object secondary,
-                          int secondRequire, FluidStack output, int squeezingTime) {
+    public void addRecipe(Object input, int inputRequire, FluidStack output, int squeezingTime) {
         if (input != null && output != null && inputRequire > 0){
-            WaSqueezingRecipe add = new WaSqueezingRecipe(output, input, secondary,
-                    inputRequire, secondRequire, squeezingTime);
+            WaSqueezingRecipe add = new WaSqueezingRecipe(output, input, inputRequire, squeezingTime);
             int id = recipeMap.isEmpty() ? 1 : recipeMap.size() + 1;
             recipes.add(add);
             recipeMap.put(id, add);
@@ -62,10 +64,9 @@ public class WaSqueezingManager  implements ISqueezingRegistry {
     }
 
     @Override
-    public int getRecipeID(ItemStack input, ItemStack second) {
+    public int getRecipeID(ItemStack input) {
         for (Map.Entry<Integer, WaSqueezingRecipe> entry : recipeMap.entrySet()){
-            ItemStack[] checks = {input, second};
-            if (entry.getValue().matches(checks)){
+            if (entry.getValue().matches(input)){
                 return entry.getKey();
             }
         }
@@ -103,17 +104,13 @@ public class WaSqueezingManager  implements ISqueezingRegistry {
     public class WaSqueezingRecipe implements IWaSqueezingRecipe {
 
         private final Object input;
-        private final Object second;
         private final int require1;
-        private final int require2;
         private final int day;
         private final FluidStack output;
 
-        public WaSqueezingRecipe(FluidStack out, Object in, Object sec, int r1, int r2, int d){
+        public WaSqueezingRecipe(FluidStack out, Object in, int r1, int d){
             input = in;
-            second = sec;
             require1 = r1;
-            require2 = r2;
             day = d;
             output = out;
         }
@@ -123,10 +120,6 @@ public class WaSqueezingManager  implements ISqueezingRegistry {
             return input;
         }
 
-        @Override
-        public Object getSecondInput() {
-            return second;
-        }
 
         @Override
         public FluidStack getOutput() {
@@ -149,28 +142,8 @@ public class WaSqueezingManager  implements ISqueezingRegistry {
         }
 
         @Override
-        public List<ItemStack> getSecondProcessedInput() {
-            ArrayList<ItemStack> processedSecond = new ArrayList<ItemStack>();
-            if (second instanceof String) {
-                processedSecond.addAll(OreDictionary.getOres((String) second));
-            } else if (second instanceof ItemStack) {
-                processedSecond.add(((ItemStack) second).copy());
-            } else if (second instanceof Item) {
-                processedSecond.add(new ItemStack((Item) second, 1, 0));
-            } else if (second instanceof Block) {
-                processedSecond.add(new ItemStack((Block) second, 1, 0));
-            }
-            return processedSecond;
-        }
-
-        @Override
         public int getInputRequire() {
             return require1;
-        }
-
-        @Override
-        public int getSecondRequire() {
-            return require2;
         }
 
         /*
@@ -179,34 +152,19 @@ public class WaSqueezingManager  implements ISqueezingRegistry {
          * ただし、グレードが大きく下がる仕組み。
          */
         @Override
-        public boolean matches(ItemStack[] items) {
-            if (items.length != 2) return false;
-            boolean fst = false;
-            boolean sec = false;
-            for (ItemStack check : items){
-                // second
-                if (check == null){
-                    if (second == null) sec = true;
-                } else {
-                    // input
-                    for (ItemStack target : this.getProcessedInput()){
-                        if (isItemEqual(check, target)){
-                            fst = true;
-                        }
-                    }
-                    // second
-                    for (ItemStack target : this.getSecondProcessedInput()){
-                        if (isItemEqual(check, target)){
-                            sec = true;
-                        }
-                    }
+        public boolean matches(ItemStack itemStack) {
+            if (itemStack == null) return false;
+            // input
+            for (ItemStack target : this.getProcessedInput()){
+                if (isItemEqual(itemStack, target)){
+                    return true;
                 }
             }
-            return fst && sec;
+            return false;
         }
 
         @Override
-        public int getSqueezeTime() {
+        public int getSqueezingTime() {
             return day;
         }
 
@@ -214,7 +172,7 @@ public class WaSqueezingManager  implements ISqueezingRegistry {
          * とりあえず、100固定
          */
         @Override
-        public int getOutputGrade(TileEntity tile, int inputNum, int secondNumm) {
+        public int getOutputGrade(TileEntity tile, int inputNum) {
             return 100;
         }
 

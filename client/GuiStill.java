@@ -78,10 +78,8 @@ public class GuiStill extends GuiContainer {
         i1 = this.tile.getAgingProgress(33);
         this.drawTexturedModalRect(k + 71, l + 32, 176, 0, i1, 33);
 
-        drawFluid(this.tile.productTank.getFluid(), this.tile.getFluidAmountScaled(41), k + 51, l + 24,
-                16, 41);
-        drawFluid(this.tileConnected.productTank.getFluid(), this.tileConnected.getFluidAmountScaled(41), k + 107, l + 24,
-                16, 41);
+        drawFluid(this.tile.productTank.getFluid(), this.tile.getFluidAmountScaled(41), k + 51, l + 24, 16, 41);
+        drawFluid(this.tileConnected.productTank.getFluid(), this.tileConnected.getFluidAmountScaled(41), k + 107, l + 24, 16, 41);
     }
 
     /**

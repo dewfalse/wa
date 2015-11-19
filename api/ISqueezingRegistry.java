@@ -9,7 +9,7 @@ import java.util.ArrayList;
  * Created by dew on 2015/11/12.
  */
 public interface ISqueezingRegistry {
-    // 使い道があるかもしれないので醸造レシピと同じインターフェースにしておく
+    String getVersion();
 
     ArrayList<? extends IWaSqueezingRecipe> getRecipeList();
 
@@ -20,20 +20,15 @@ public interface ISqueezingRegistry {
      *            主材料のItemStack または String(OreDicName)
      * @param inputRequire
      *            主材料の必要量
-     * @param secondary
-     *            副材料のItemStack または String(OreDicName) こちらはnullでもOKなように
-     * @param secondRequire
-     *            副材料の必要量
      * @param output
      *            得られるエキスの液体
      * @param squeezingTime
      *            最低限の必要Tick。これを超えるとエキスが完成する
      *
      */
-    void addRecipe(Object input, int inputRequire, Object secondary, int secondRequire,
-                   FluidStack output, int squeezingTime);
+    void addRecipe(Object input, int inputRequire,  FluidStack output, int squeezingTime);
 
-    IWaSqueezingRecipe getRecipe(ItemStack input, ItemStack second);
+    IWaSqueezingRecipe getRecipe(ItemStack input);
 
 	/*
 	 * 以下は暫定仕様
@@ -42,7 +37,7 @@ public interface ISqueezingRegistry {
 	 * IDで照会できるようにしてみる
 	 */
 
-    int getRecipeID(ItemStack input, ItemStack second);
+    int getRecipeID(ItemStack input);
 
     IWaSqueezingRecipe getRecipeFromID(int id);
 }
