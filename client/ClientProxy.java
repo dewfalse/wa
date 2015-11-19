@@ -47,6 +47,12 @@ public class ClientProxy extends CommonProxy {
         BlockSpiritLamp.renderID = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(new RenderSpiritLampBlock());
 
+        BlockStill.renderID = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new RenderStillBlock());
+
+        BlockSqueezer.renderID = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new RenderSqueezerBlock());
+
 		// defeatedcrow追加物
 		RenderingRegistry.registerEntityRenderingHandler(EntityZabuton.class, new RenderZabutonEntity());
 		
@@ -120,6 +126,10 @@ public class ClientProxy extends CommonProxy {
 	
 	@SubscribeEvent
 	public void onTextureStitch(TextureStitchEvent.Post event) {
+        for(Fluid fluid : FluidInit.fluids) {
+            fluid.setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        }
+        /*
         FluidRegistry.getFluid("wa.fluid.apple_juice").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
         FluidRegistry.getFluid("wa.fluid.golden_apple_juice").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
         FluidRegistry.getFluid("wa.fluid.potato_essence").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
@@ -150,5 +160,6 @@ public class ClientProxy extends CommonProxy {
         FluidRegistry.getFluid("wa.fluid.magma_cream_sour").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
         FluidRegistry.getFluid("wa.fluid.umesyu").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
         FluidRegistry.getFluid("wa.fluid.sake").setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
+        */
 	}
 }

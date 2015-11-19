@@ -69,9 +69,9 @@ public class Blocks extends net.minecraft.init.Blocks {
 
 
     // 蒸留器
-    public static Block still = new BlockStill(Material.iron).setHardness(0.5F).setStepSound(Block.soundTypeMetal).setBlockName("wa:still").setCreativeTab(Wa.creativeTab);
+    public static Block still = new BlockStill(Material.iron).setHardness(0.5F).setStepSound(Block.soundTypeMetal).setBlockName("wa:still").setBlockTextureName("wa:still").setCreativeTab(Wa.creativeTab);
     // 圧搾機
-    public static Block squeezer = new BlockSqueezer().setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("wa:squeezer").setCreativeTab(Wa.creativeTab);
+    public static Block squeezer = new BlockSqueezer().setHardness(0.5F).setStepSound(Block.soundTypeWood).setBlockName("wa:squeezer").setBlockTextureName("wa:squeezer").setCreativeTab(Wa.creativeTab);
     // アルコールランプ
     public static Block spiritLamp = new BlockSpiritLamp(Material.glass).setHardness(0.3F).setStepSound(Block.soundTypeGlass).setBlockName("wa:spiritLamp").setBlockTextureName("wa:spiritLamp").setCreativeTab(Wa.creativeTab);
 
@@ -173,7 +173,7 @@ public class Blocks extends net.minecraft.init.Blocks {
         GameRegistry.registerTileEntity(TileEntitySqueezer.class, "wa.squeezer");
 
         // アルコールランプ
-        GameRegistry.registerBlock(spiritLamp, "spiritLamp");
+        GameRegistry.registerBlock(spiritLamp, ItemBlockSpiritLamp.class, "spiritLamp");
         GameRegistry.registerTileEntity(TileEntitySpiritLamp.class, "wa.spiritLamp");
 
 

@@ -18,14 +18,10 @@ public class ItemTachi extends ItemSword {
 		setMaxDamage(par2EnumToolMaterial.getMaxUses() * 2);
 	}
 
-	@Override
-	public int getDamage(ItemStack itemStack) {
-		if(itemStack.hasDisplayName() && itemStack.getDisplayName().equals("無銘の太刀") == false) {
-			// 銘刀ならダメージ補正あり
-			return super.getDamage(itemStack) + 2;
-		}
-		return super.getDamage(itemStack);
-	}
+    @Override
+    public boolean onItemUse(ItemStack p_77648_1_, EntityPlayer p_77648_2_, World p_77648_3_, int p_77648_4_, int p_77648_5_, int p_77648_6_, int p_77648_7_, float p_77648_8_, float p_77648_9_, float p_77648_10_) {
+        return super.onItemUse(p_77648_1_, p_77648_2_, p_77648_3_, p_77648_4_, p_77648_5_, p_77648_6_, p_77648_7_, p_77648_8_, p_77648_9_, p_77648_10_);
+    }
 
     @SubscribeEvent
     public void onItemCrafted(PlayerEvent.ItemCraftedEvent event) {

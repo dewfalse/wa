@@ -167,7 +167,7 @@ public class WaDistillingManager  implements IDistillingRegistry {
         }
 
         @Override
-        public int getDistillingTime() {
+        public int getDistillTime() {
             return day;
         }
 

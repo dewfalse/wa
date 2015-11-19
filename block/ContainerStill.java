@@ -32,13 +32,13 @@ public class ContainerStill extends Container {
         this.inventory = par2TileEntity;
 
         // 材料1
-        this.addSlotToContainer(new Slot(this.inventory, 0, 32, 26));
+        this.addSlotToContainer(new Slot(this.inventory, 0, 22, 26));
         // 材料2
-        this.addSlotToContainer(new Slot(this.inventory, 1, 32, 47));
+        this.addSlotToContainer(new Slot(this.inventory, 1, 22, 47));
 
         // 液体用
-        this.addSlotToContainer(new Slot(this.inventory, 2, 126, 16));
-        this.addSlotToContainer(new SlotFurnace(player, this.inventory, 3, 126, 56));
+        this.addSlotToContainer(new Slot(this.inventory, 2, 136, 16));
+        this.addSlotToContainer(new SlotFurnace(player, this.inventory, 3, 136, 56));
 
         int i;
 
@@ -201,7 +201,7 @@ public class ContainerStill extends Container {
                 // 液体容器である
                 if (FluidContainerRegistry.isEmptyContainer(itemstack1)) {
                     // アイテムの移動(スロット2へ)
-                    if (!this.mergeItemStack(itemstack1, 1, 2, false))
+                    if (!this.mergeItemStack(itemstack1, 2, 3, false))
                         return null;
                 } else// それ以外のアイテムはすべて材料欄に飛ばす
                 {

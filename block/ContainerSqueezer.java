@@ -8,6 +8,8 @@ import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnace;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.FurnaceRecipes;
+import net.minecraft.tileentity.TileEntityFurnace;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 
 /**
@@ -23,19 +25,24 @@ public class ContainerSqueezer extends Container {
     private int upperProgress;
     private int lastFluidAmount;
     private int lastFluidID;
+    private int lastBurnTime;
+    private int lastItemBurnTime;
 
     public ContainerSqueezer(EntityPlayer player, TileEntitySqueezer par2TileEntity) {
         this.tile = par2TileEntity;
         this.inventory = par2TileEntity;
 
         // 材料1
-        this.addSlotToContainer(new Slot(this.inventory, 0, 61, 26));
+        this.addSlotToContainer(new Slot(this.inventory, 0, 51, 26));
         // 材料2
-        this.addSlotToContainer(new Slot(this.inventory, 1, 61, 47));
+        this.addSlotToContainer(new Slot(this.inventory, 1, 51, 47));
 
         // 液体用
-        this.addSlotToContainer(new Slot(this.inventory, 2, 126, 16));
-        this.addSlotToContainer(new SlotFurnace(player, this.inventory, 3, 126, 56));
+        this.addSlotToContainer(new Slot(this.inventory, 2, 136, 16));
+        this.addSlotToContainer(new SlotFurnace(player, this.inventory, 3, 136, 56));
+
+        // 燃料
+        this.addSlotToContainer(new Slot(this.inventory, 4, 79, 59));
 
         int i;
 
@@ -65,6 +72,9 @@ public class ContainerSqueezer extends Container {
             par1ICrafting.sendProgressBarUpdate(this, 2, 0);
             par1ICrafting.sendProgressBarUpdate(this, 3, 0);
         }
+        par1ICrafting.sendProgressBarUpdate(this, 4, tile.furnaceBurnTime);
+        par1ICrafting.sendProgressBarUpdate(this, 5, tile.currentItemBurnTime);
+        //par1ICrafting.sendProgressBarUpdate(this, 6, tile.getAgingTime());
 
     }
 
@@ -76,6 +86,7 @@ public class ContainerSqueezer extends Container {
         for (int i = 0; i < this.crafters.size(); ++i) {
             ICrafting icrafting = (ICrafting) this.crafters.get(i);
 
+            //icrafting.sendProgressBarUpdate(this, 6, tile.getAgingTime());
             if (tile.getAgingTime() > 0) {
                 if (this.lowerProgress != tile.getUnder()) {
                     icrafting.sendProgressBarUpdate(this, 0, tile.getUnder());
@@ -117,8 +128,20 @@ public class ContainerSqueezer extends Container {
                 this.lastFluidAmount = 0;
                 this.lastFluidID = 0;
             }
+
+            if (this.lastBurnTime != this.tile.furnaceBurnTime)
+            {
+                icrafting.sendProgressBarUpdate(this, 4, this.tile.furnaceBurnTime);
+            }
+
+            if (this.lastItemBurnTime != this.tile.currentItemBurnTime)
+            {
+                icrafting.sendProgressBarUpdate(this, 5, this.tile.currentItemBurnTime);
+            }
         }
 
+        this.lastBurnTime = this.tile.furnaceBurnTime;
+        this.lastItemBurnTime = this.tile.currentItemBurnTime;
     }
 
     // 更新する
@@ -129,8 +152,14 @@ public class ContainerSqueezer extends Container {
             tile.setUnder(par2);
         } else if (par1 == 1) {
             tile.setUpper(par2);
-        } else {
+        } else if (par1 == 2 || par1 == 3) {
             this.tile.getGuiFluidUpdate(par1, par2);
+        } else if (par1 == 4) {
+            tile.furnaceBurnTime = par2;
+        } else if (par1 == 5) {
+            tile.currentItemBurnTime = par2;
+        } else if (par1 == 6) {
+            tile.setAgingTime(par2);
         }
     }
 
@@ -153,7 +182,7 @@ public class ContainerSqueezer extends Container {
             // カーソルを排出スロットにあわせているとき
             if (par2 == 3) {
                 // アイテムの移動(スロット6～42へ)
-                if (!this.mergeItemStack(itemstack1, 3, 39, true))
+                if (!this.mergeItemStack(itemstack1, 5, 41, true))
                     return null;
 
                 slot.onSlotChange(itemstack1, itemstack);
@@ -163,17 +192,21 @@ public class ContainerSqueezer extends Container {
                 // 液体容器である
                 if (FluidContainerRegistry.isEmptyContainer(itemstack1)) {
                     // アイテムの移動(スロット2へ)
-                    if (!this.mergeItemStack(itemstack1, 1, 2, false))
+                    if (!this.mergeItemStack(itemstack1, 2, 3, false))
+                        return null;
+                }
+                else if(TileEntityFurnace.isItemFuel(itemstack1)) {
+                    if (!this.mergeItemStack(itemstack1, 4, 5, false))
                         return null;
                 } else// それ以外のアイテムはすべて材料欄に飛ばす
                 {
                     // アイテムの移動(スロット2へ)
-                    if (!this.mergeItemStack(itemstack1, 0, 1, false))
+                    if (!this.mergeItemStack(itemstack1, 0, 2, false))
                         return null;
                 }
             }
             // アイテムの移動(スロット6～42へ)
-            else if (!this.mergeItemStack(itemstack1, 3, 39, false))
+            else if (!this.mergeItemStack(itemstack1, 5, 41, false))
                 return null;
 
             if (itemstack1.stackSize == 0) {

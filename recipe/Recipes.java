@@ -164,11 +164,11 @@ public class Recipes {
         GameRegistry.addShapelessRecipe(new ItemStack(Blocks.still, 1, 0),
                 Items.bucket, Items.glass_bottle);
         //圧搾機
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.squeezer, 1, 0),
+        GameRegistry.addRecipe(new ItemStack(Blocks.squeezer, 1, 0),
                 "A",
                 "B",
                 'A', Blocks.piston,
-                'B', Blocks.cauldron));
+                'B', Items.cauldron);
         //アルコールランプ
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.spiritLamp, 1, 0),
                 "ABA",

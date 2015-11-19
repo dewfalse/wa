@@ -90,20 +90,44 @@ public class RecipeRegistryWa {
         // スピリタスレシピ
         RecipeManagerWa.distillingRegistry.addRecipe(FluidRegistry.getFluid("wa.fluid.potato_ferment_essence"), 100, null, 0,
                 new FluidStack(FluidRegistry.getFluid("wa.fluid.spirytus"), 10), 200);
-        // ラム酒レシピ
+        // 若いラムレシピ
         RecipeManagerWa.distillingRegistry.addRecipe(FluidRegistry.getFluid("wa.fluid.syrup_ferment_essence"), 100, null, 0,
-                new FluidStack(FluidRegistry.getFluid("wa.fluid.rum"), 10), 200);
-        // ウィスキーレシピ
+                new FluidStack(FluidRegistry.getFluid("wa.fluid.young_rum"), 10), 200);
+        // 若いウィスキーレシピ
         RecipeManagerWa.distillingRegistry.addRecipe(FluidRegistry.getFluid("wa.fluid.wash"), 100, null, 0,
-                new FluidStack(FluidRegistry.getFluid("wa.fluid.whisky"), 10), 200);
-        // テキーラレシピ
+                new FluidStack(FluidRegistry.getFluid("wa.fluid.young_whisky"), 10), 200);
+        // 若いテキーラレシピ
         RecipeManagerWa.distillingRegistry.addRecipe(FluidRegistry.getFluid("wa.fluid.pulque"), 100, null, 0,
-                new FluidStack(FluidRegistry.getFluid("wa.fluid.tequila"), 10), 200);
+                new FluidStack(FluidRegistry.getFluid("wa.fluid.young_tequila"), 10), 200);
+        // アルヒレシピ
+        RecipeManagerWa.distillingRegistry.addRecipe(FluidRegistry.getFluid("wa.fluid.kumis"), 100, null, 0,
+                new FluidStack(FluidRegistry.getFluid("wa.fluid.arkhi"), 10), 200);
+        // 日本酒レシピ
+        RecipeManagerWa.distillingRegistry.addRecipe(FluidRegistry.getFluid("wa.fluid.unrefined_sake"), 100, null, 0,
+                new FluidStack(FluidRegistry.getFluid("wa.fluid.sake"), 10), 200);
 
         // アルコールレシピ
         RecipeManagerWa.distillingRegistry.addRecipe(FluidRegistry.getFluid("wa.fluid.spirytus"), 100, null, 0,
                 new FluidStack(FluidRegistry.getFluid("wa.fluid.alcohol"), 90), 200);
+        RecipeManagerWa.distillingRegistry.addRecipe(FluidRegistry.getFluid("wa.fluid.rum"), 100, null, 0,
+                new FluidStack(FluidRegistry.getFluid("wa.fluid.alcohol"), 30), 200);
+        RecipeManagerWa.distillingRegistry.addRecipe(FluidRegistry.getFluid("wa.fluid.whisky"), 100, null, 0,
+                new FluidStack(FluidRegistry.getFluid("wa.fluid.alcohol"), 30), 200);
+        RecipeManagerWa.distillingRegistry.addRecipe(FluidRegistry.getFluid("wa.fluid.tequila"), 100, null, 0,
+                new FluidStack(FluidRegistry.getFluid("wa.fluid.alcohol"), 30), 200);
+        RecipeManagerWa.distillingRegistry.addRecipe(FluidRegistry.getFluid("wa.fluid.tequila"), 100, null, 0,
+                new FluidStack(FluidRegistry.getFluid("wa.fluid.sake"), 30), 200);
 
+        // 醸造樽レシピ（蒸留酒を再醸造）
+        // ラムレシピ
+        RecipeManagerWa.brewingRegistry.addRecipe(new ItemStack(Items.若いラム), 24, new ItemStack(Items.若いラム), 24,
+                new FluidStack(FluidRegistry.getFluid("wa.fluid.rum"), 1000), 200);
+        // ウィスキーレシピ
+        RecipeManagerWa.brewingRegistry.addRecipe(new ItemStack(Items.若いウィスキー), 24, new ItemStack(Items.若いウィスキー), 24,
+                new FluidStack(FluidRegistry.getFluid("wa.fluid.whisky"), 1000), 200);
+        // テキーラレシピ
+        RecipeManagerWa.brewingRegistry.addRecipe(new ItemStack(Items.若いテキーラ), 24, new ItemStack(Items.若いテキーラ), 24,
+                new FluidStack(FluidRegistry.getFluid("wa.fluid.tequila"), 1000), 200);
 
         // 混合醸造酒レシピ
         // 梅酒レシピ
@@ -124,6 +148,9 @@ public class RecipeRegistryWa {
         // マグマクリームサワーレシピ
         RecipeManagerWa.brewingRegistry.addRecipe(new ItemStack(Items.magma_cream), 24, new ItemStack(Items.fermented_spider_eye), 24,
                 new FluidStack(FluidRegistry.getFluid("wa.fluid.magma_cream_sour"), 1000), 200);
+        // どぶろくレシピ
+        RecipeManagerWa.brewingRegistry.addRecipe(new ItemStack(Items.米), 24, new ItemStack(Items.米), 24,
+                new FluidStack(FluidRegistry.getFluid("wa.fluid.unrefined_sake"), 1000), 200);
     }
 
 }

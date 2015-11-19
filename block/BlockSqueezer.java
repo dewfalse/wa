@@ -18,6 +18,7 @@ import wa.Wa;
  */
 public class BlockSqueezer extends BlockContainer {
 
+    public static int renderID;
     IIcon[] icons;
 
     public BlockSqueezer() {
@@ -27,23 +28,25 @@ public class BlockSqueezer extends BlockContainer {
     }
 
     @Override
-    public IIcon getIcon(int par1, int par2) {
-        if(par1 == 0 || par1 == 1) {
-            return icons[0];
-        }
-        return icons[1];
-    }
-
-    @Override
-    public void registerBlockIcons(IIconRegister par1IconRegister) {
-        icons = new IIcon[2];
-        icons[0] = par1IconRegister.registerIcon("wa:squeezer_top");
-        icons[1] = par1IconRegister.registerIcon("wa:squeezer_side");
-    }
-
-    @Override
     public TileEntity createNewTileEntity(World world, int var2) {
         return new TileEntitySqueezer();
+    }
+
+    @Override
+    public boolean isOpaqueCube()
+    {
+        return false;
+    }
+
+    @Override
+    public boolean renderAsNormalBlock()
+    {
+        return false;
+    }
+
+    @Override
+    public int getRenderType() {
+        return renderID;
     }
 
     @Override

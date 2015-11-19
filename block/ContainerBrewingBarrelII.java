@@ -161,7 +161,7 @@ public class ContainerBrewingBarrelII extends Container {
 				// 液体容器である
 				if (FluidContainerRegistry.isEmptyContainer(itemstack1)) {
 					// アイテムの移動(スロット2へ)
-					if (!this.mergeItemStack(itemstack1, 1, 2, false))
+					if (!this.mergeItemStack(itemstack1, 2, 3, false))
 						return null;
 				} else// それ以外のアイテムはすべて材料欄に飛ばす
 				{

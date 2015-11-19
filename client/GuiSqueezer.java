@@ -64,10 +64,15 @@ public class GuiSqueezer extends GuiContainer {
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
         int i1;
 
-        i1 = this.tile.getAgingProgress(37);
-        this.drawTexturedModalRect(k + 81, l + 63 - i1, 176, 37 - i1, 12, i1);
+        i1 = this.tile.getAgingProgress(22);
+        this.drawTexturedModalRect(k + 76, l + 25, 176, 14, i1, 22);
+        //this.drawTexturedModalRect(k + 81, l + 63 - i1, 176, 37 - i1, 12, i1);
+        if (this.tile.isBurning()) {
+            i1 = this.tile.getBurnTimeRemainingScaled(13);
+            this.drawTexturedModalRect(k + 80, l + 43 + 12 - i1, 176, 12 - i1, 14, i1 + 1);
+        }
 
-        drawFluid(this.tile.productTank.getFluid(), this.tile.getFluidAmountScaled(41), k + 97, l + 24,
+        drawFluid(this.tile.productTank.getFluid(), this.tile.getFluidAmountScaled(41), k + 107, l + 24,
                 16, 41);
     }
 

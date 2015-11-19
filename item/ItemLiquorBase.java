@@ -21,7 +21,7 @@ public class ItemLiquorBase extends Item {
 	public void addInformation(ItemStack par1ItemStack, EntityPlayer par2EntityPlayer, List par3List, boolean par4) {
 		super.addInformation(par1ItemStack, par2EntityPlayer, par3List, par4);
 		NBTTagCompound nbt = par1ItemStack.getTagCompound();
-		int grade = 0;
+		int grade = 100;
 		if (nbt != null && nbt.hasKey("Grade")) {
 			grade = nbt.getInteger("Grade");
 		}

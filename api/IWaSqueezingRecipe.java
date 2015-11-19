@@ -48,7 +48,7 @@ public interface IWaSqueezingRecipe {
     /*
      * 必要Tick
      */
-    int getSqueezingTime();
+    int getSqueezeTime();
 
     /*
      * グレードの判定メソッド

@@ -107,6 +107,10 @@ public class TileEntitySpiritLamp extends TileEntity {
         return this.fuelTank.getFluidAmount();
     }
 
+    public void setAmount(int amount) {
+        this.fuelTank.setAmount(amount);
+    }
+
     public int getCapacity() {
         return this.fuelTank.getCapacity();
     }

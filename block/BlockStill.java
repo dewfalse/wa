@@ -7,17 +7,45 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import wa.Config;
 import wa.Wa;
 
+import java.util.ArrayList;
+
 /**
  * Created by dew on 2015/11/11.
  */
 public class BlockStill extends BlockContainer {
+    public static int renderID;
+
     public BlockStill(Material material) {
         super(material);
+    }
+
+    @Override
+    public boolean isOpaqueCube()
+    {
+        return false;
+    }
+
+    @Override
+    public boolean renderAsNormalBlock()
+    {
+        return false;
+    }
+
+    @Override
+    public boolean canHarvestBlock(EntityPlayer player, int meta) {
+        // 鉄製だけど素手で回収可
+        return true;
+    }
+
+    @Override
+    public int getRenderType() {
+        return renderID;
     }
 
     @Override
@@ -50,6 +78,7 @@ public class BlockStill extends BlockContainer {
     @Override
     public void breakBlock(World par1World, int par2, int par3, int par4,
                            Block par5, int par6) {
+
         TileEntity tile = par1World.getTileEntity(par2, par3, par4);
         if(tile instanceof TileEntityStill) {
             TileEntityStill still = (TileEntityStill)tile;
@@ -65,6 +94,37 @@ public class BlockStill extends BlockContainer {
             }
         }
         super.breakBlock(par1World, par2, par3, par4, par5, par6);
+        // 自分が受けフラスコ側なら蒸留元を壊す
+        int metadata = par6;
+        if(metadata == 1) {
+            for(ForgeDirection d : new ForgeDirection[]{ForgeDirection.NORTH, ForgeDirection.EAST, ForgeDirection.SOUTH, ForgeDirection.WEST}) {
+                Block block = par1World.getBlock(par2+d.offsetX, par3+d.offsetY, par4+d.offsetZ);
+                int meta = par1World.getBlockMetadata(par2+d.offsetX, par3+d.offsetY, par4+d.offsetZ);
+                if(block != null && Blocks.still == block && meta >= 2) {
+                    boolean isPair = false;
+                    if(meta == 2 && d == ForgeDirection.SOUTH) isPair = true;
+                    if(meta == 3 && d == ForgeDirection.WEST) isPair = true;
+                    if(meta == 4 && d == ForgeDirection.NORTH) isPair = true;
+                    if(meta == 5 && d == ForgeDirection.EAST) isPair = true;
+                    if(isPair) {
+                        block.dropBlockAsItem(par1World, par2+d.offsetX, par3+d.offsetY, par4+d.offsetZ, meta, 0);
+                        par1World.setBlockToAir(par2 + d.offsetX, par3 + d.offsetY, par4 + d.offsetZ);
+                        break;
+                    }
+                }
+            }
+        }
+        if(metadata >= 2) {
+            ForgeDirection d = new ForgeDirection[]{ForgeDirection.NORTH, ForgeDirection.EAST, ForgeDirection.SOUTH, ForgeDirection.WEST}[metadata-2];
+            Block block = par1World.getBlock(par2+d.offsetX, par3+d.offsetY, par4+d.offsetZ);
+            int meta = par1World.getBlockMetadata(par2+d.offsetX, par3+d.offsetY, par4+d.offsetZ);
+            if(block != null && block == Blocks.still) {
+                //block.breakBlock(par1World, par2 + d.offsetX, par3 + d.offsetY, par4 + d.offsetZ, block, meta);
+                block.dropBlockAsItem(par1World, par2+d.offsetX, par3+d.offsetY, par4+d.offsetZ, meta, 0);
+                par1World.setBlockToAir(par2 + d.offsetX, par3 + d.offsetY, par4 + d.offsetZ);
+            }
+        }
+
     }
 
     @Override

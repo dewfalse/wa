@@ -6,6 +6,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
@@ -33,7 +34,7 @@ public abstract class TileEntityBrewingBase extends TileEntity implements ISided
 	// Blockの更新チェック用
 	private int lastDay = 0;
 	private int lastAmount = 0;
-	
+
 	/* メイン処理部分 */
 	
 	@Override
@@ -263,6 +264,17 @@ public abstract class TileEntityBrewingBase extends TileEntity implements ISided
 	@Override
 	public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
 		super.readFromNBT(par1NBTTagCompound);
+        NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items", 10);
+        this.itemstacks = new ItemStack[this.getSizeInventory()];
+        for (int i = 0; i < nbttaglist.tagCount(); ++i) {
+            NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+            byte b0 = nbttagcompound1.getByte("Slot");
+
+            if (b0 >= 0 && b0 < this.itemstacks.length) {
+                this.itemstacks[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+            }
+        }
+
 		this.age = par1NBTTagCompound.getInteger("Age");
 		this.grade = par1NBTTagCompound.getInteger("Grade");
 		this.recipeID = par1NBTTagCompound.getInteger("ID");
@@ -285,6 +297,17 @@ public abstract class TileEntityBrewingBase extends TileEntity implements ISided
 		NBTTagCompound tank = new NBTTagCompound();
 		this.productTank.writeToNBT(tank);
 		par1NBTTagCompound.setTag("productTank", tank);
+
+        NBTTagList nbttaglist = new NBTTagList();
+        for (int i = 0; i < this.itemstacks.length; ++i) {
+            if (this.itemstacks[i] != null) {
+                NBTTagCompound nbttagcompound1 = new NBTTagCompound();
+                nbttagcompound1.setByte("Slot", (byte)i);
+                this.itemstacks[i].writeToNBT(nbttagcompound1);
+                nbttaglist.appendTag(nbttagcompound1);
+            }
+        }
+        par1NBTTagCompound.setTag("Items", nbttaglist);
 	}
 
 	@Override

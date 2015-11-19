@@ -7,6 +7,7 @@ import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -16,6 +17,8 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import wa.FluidInit;
 import wa.item.Items;
+
+import java.util.ArrayList;
 
 /**
  * Created by dew on 2015/11/11.
@@ -48,6 +51,23 @@ public class BlockSpiritLamp extends BlockContainer {
     @Override
     public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
         return new TileEntitySpiritLamp();
+    }
+
+    @Override
+    public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
+        ArrayList<ItemStack> ret = new ArrayList<ItemStack>();
+
+        ItemStack itemStack = new ItemStack(Blocks.spiritLamp);
+        TileEntity tile = world.getTileEntity(x, y, z);
+
+        if (tile != null) {
+            TileEntitySpiritLamp tileEntitySpiritLamp = (TileEntitySpiritLamp) tile;
+            NBTTagCompound nbt = new NBTTagCompound();
+            nbt.setInteger("amount", tileEntitySpiritLamp.getAmount());
+            itemStack.setTagCompound(nbt);
+        }
+        ret.add(itemStack);
+        return ret;
     }
 
     @Override

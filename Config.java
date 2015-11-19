@@ -45,7 +45,7 @@ public class Config {
 			鳥居出現率 = cfg.get(Configuration.CATEGORY_GENERAL, "鳥居出現率", 1.0D).getDouble(1.0D);
 			筍成長確率 = cfg.get(Configuration.CATEGORY_GENERAL, "筍成長確率", 1.0D).getDouble(1.0D);
 			鍛練回数 = cfg.get(Configuration.CATEGORY_GENERAL, "鍛練回数", 2).getInt();
-			レシピ難易度 = cfg.get(Configuration.CATEGORY_GENERAL, "レシピ難易度", 0).getInt();
+			レシピ難易度 = cfg.get(Configuration.CATEGORY_GENERAL, "レシピ難易度", 0, "0:UltraHard, 1:Hard, 2:Normal, 3:Vanilla").getInt();
 			玉鋼強度 = cfg.get(Configuration.CATEGORY_GENERAL, "玉鋼強度", 10).getInt();
 			醸造樽GUIID = cfg.get(Configuration.CATEGORY_GENERAL, "醸造樽GUIID", 17).getInt();
 			echantmentBaseID = cfg.get(Configuration.CATEGORY_GENERAL, "echantmentBaseID", 70).getInt();

@@ -7,6 +7,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.NBTTagList;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
@@ -53,7 +54,6 @@ public abstract class TileEntityStillBase extends TileEntity implements ISidedIn
 
             if (!this.worldObj.isRemote) {
                 boolean update = false;
-                // 完成後の処理
                 if (this.isConfortablePlace()){
                     // レシピ処理中である
                     if (this.recipeID > 0){
@@ -226,33 +226,32 @@ public abstract class TileEntityStillBase extends TileEntity implements ISidedIn
         IWaDistillingRecipe recipe = RecipeManagerWa.distillingRegistry.getRecipeFromID(recipeID);
         if (recipe == null) return false;
 
-        ItemStack input = this.getStackInSlot(0);
-        ItemStack second = this.getStackInSlot(1);
-        ItemStack[] checks = {input, second};
+        for(int i : new int[]{0,1}) {
+            ItemStack input = this.getStackInSlot(i);
 
-        FluidStack fluid1 = FluidContainerRegistry.getFluidForFilledItem(input);
-        FluidStack fluid2 = FluidContainerRegistry.getFluidForFilledItem(second);
+            FluidStack fluid = FluidContainerRegistry.getFluidForFilledItem(input);
 
-        // レシピに適合する液体コンテナなアイテムなら液体素材に追加
-        if(recipe.getInput().isFluidEqual(input)) {
-            if(productTank.getCapacity() - productTank.getFluidAmount() >= fluid1.amount) {
-                this.fill(ForgeDirection.UNKNOWN, fluid1, true);
-                input.stackSize -= 1;
-                if(input.stackSize == 0) {
-                    this.setInventorySlotContents(0, null);
-                }
-                else {
-                    this.setInventorySlotContents(0, input);
-                }
+            // レシピに適合する液体コンテナなアイテムなら液体素材に追加
+            if(recipe.getInput().isFluidEqual(input)) {
+                if(productTank.getCapacity() - productTank.getFluidAmount() >= fluid.amount) {
+                    this.fill(ForgeDirection.UNKNOWN, fluid, true);
+                    input.stackSize -= 1;
+                    if(input.stackSize == 0) {
+                        this.setInventorySlotContents(i, null);
+                    }
+                    else {
+                        this.setInventorySlotContents(i, input);
+                    }
 
-                // 材料のグレード＝蒸留液のグレード
-                // グレードの低い材料を追加すると蒸留液のグレードも下がる
-                int grade = 0;
-                if(input.hasTagCompound()) {
-                    NBTTagCompound nbt = input.getTagCompound();
-                    if(nbt != null) {
-                        grade = nbt.getShort("Grade");
-                        this.setGrade(Math.min(this.getGrade(), grade));
+                    // 材料のグレード＝蒸留液のグレード
+                    // グレードの低い材料を追加すると蒸留液のグレードも下がる
+                    int grade = 0;
+                    if(input.hasTagCompound()) {
+                        NBTTagCompound nbt = input.getTagCompound();
+                        if(nbt != null) {
+                            grade = nbt.getShort("Grade");
+                            this.setGrade(Math.min(this.getGrade(), grade));
+                        }
                     }
                 }
             }
@@ -270,7 +269,7 @@ public abstract class TileEntityStillBase extends TileEntity implements ISidedIn
         IWaDistillingRecipe recipe = RecipeManagerWa.distillingRegistry.getRecipeFromID(recipeID);
         if (recipe == null) return false;
 
-        return this.age > recipe.getDistillingTime();
+        return this.age > recipe.getDistillTime();
     }
 
     /*
@@ -309,17 +308,17 @@ public abstract class TileEntityStillBase extends TileEntity implements ISidedIn
      * 一致したレシピがあったら、レシピIDを取得して醸造開始。
      */
     protected int getCurrentRecipeID(){
-        ItemStack input = this.getStackInSlot(0);
-        ItemStack second = this.getStackInSlot(1);
-        if (input == null) return -1;
+        for(int i : new int[]{0,1}) {
+            ItemStack input = this.getStackInSlot(i);
+            if (input == null) continue;
 
-        // 液体コンテナなアイテム以外はNG
-        FluidStack fluid1 = FluidContainerRegistry.getFluidForFilledItem(input);
-        FluidStack fluid2 = FluidContainerRegistry.getFluidForFilledItem(second);
-        if(fluid1 == null) return -1;
+            // 液体コンテナなアイテム以外はNG
+            FluidStack fluid = FluidContainerRegistry.getFluidForFilledItem(input);
+            if(fluid == null) continue;
+            return RecipeManagerWa.distillingRegistry.getRecipeID(fluid, null);
+        }
 
-        int id = RecipeManagerWa.distillingRegistry.getRecipeID(fluid1, fluid2);
-        return id;
+        return -1;
     }
 
     // 樽を空にして、ブロック更新をする
@@ -413,6 +412,17 @@ public abstract class TileEntityStillBase extends TileEntity implements ISidedIn
     @Override
     public void readFromNBT(NBTTagCompound par1NBTTagCompound) {
         super.readFromNBT(par1NBTTagCompound);
+        NBTTagList nbttaglist = par1NBTTagCompound.getTagList("Items", 10);
+        this.itemstacks = new ItemStack[this.getSizeInventory()];
+        for (int i = 0; i < nbttaglist.tagCount(); ++i) {
+            NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
+            byte b0 = nbttagcompound1.getByte("Slot");
+
+            if (b0 >= 0 && b0 < this.itemstacks.length) {
+                this.itemstacks[b0] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
+            }
+        }
+
         this.age = par1NBTTagCompound.getInteger("Age");
         this.grade = par1NBTTagCompound.getInteger("Grade");
         this.recipeID = par1NBTTagCompound.getInteger("ID");
@@ -435,6 +445,17 @@ public abstract class TileEntityStillBase extends TileEntity implements ISidedIn
         NBTTagCompound sink = new NBTTagCompound();
         this.productTank.writeToNBT(sink);
         par1NBTTagCompound.setTag("productTank", sink);
+
+        NBTTagList nbttaglist = new NBTTagList();
+        for (int i = 0; i < this.itemstacks.length; ++i) {
+            if (this.itemstacks[i] != null) {
+                NBTTagCompound nbttagcompound1 = new NBTTagCompound();
+                nbttagcompound1.setByte("Slot", (byte)i);
+                this.itemstacks[i].writeToNBT(nbttagcompound1);
+                nbttaglist.appendTag(nbttagcompound1);
+            }
+        }
+        par1NBTTagCompound.setTag("Items", nbttaglist);
     }
 
     @Override
@@ -486,7 +507,7 @@ public abstract class TileEntityStillBase extends TileEntity implements ISidedIn
     public int getAgingProgress(int i) {
         IWaDistillingRecipe recipe = RecipeManagerWa.distillingRegistry.getRecipeFromID(recipeID);
         if (recipe == null) return 0;
-        int ret = this.age * i / recipe.getDistillingTime();
+        int ret = this.age * i / recipe.getDistillTime();
         return ret;
     }
 

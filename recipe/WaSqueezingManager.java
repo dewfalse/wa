@@ -206,17 +206,16 @@ public class WaSqueezingManager  implements ISqueezingRegistry {
         }
 
         @Override
-        public int getSqueezingTime() {
+        public int getSqueezeTime() {
             return day;
         }
 
         /*
-         * 圧搾レシピのグレードは固定（仮）
+         * とりあえず、100固定
          */
         @Override
-        public int getOutputGrade(TileEntity tile, int inputNum, int secondNum) {
-            int grade = 100;
-            return grade;
+        public int getOutputGrade(TileEntity tile, int inputNum, int secondNumm) {
+            return 100;
         }
 
     }

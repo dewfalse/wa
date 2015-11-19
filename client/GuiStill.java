@@ -44,7 +44,7 @@ public class GuiStill extends GuiContainer {
         super.drawScreen(x, y, par3);
 
         // 液体情報
-        boolean b1 = this.func_146978_c(61, 24, 16, 41, x, y);
+        boolean b1 = this.func_146978_c(51, 24, 16, 41, x, y);
         if (b1) {
             ArrayList<String> list2 = new ArrayList<String>();
             list2.add("Fluid : " + this.tile.productTank.getFluidName());
@@ -52,7 +52,7 @@ public class GuiStill extends GuiContainer {
             list2.add("Grade : " + this.tile.getGrade());
             this.drawHoveringText(list2, x, y, fontRendererObj);
         }
-        boolean b2 = this.func_146978_c(97, 24, 16, 41, x, y);
+        boolean b2 = this.func_146978_c(107, 24, 16, 41, x, y);
         if (b2) {
             if(this.tile.connected()) {
                 ArrayList<String> list2 = new ArrayList<String>();
@@ -75,12 +75,12 @@ public class GuiStill extends GuiContainer {
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
         int i1;
 
-        i1 = this.tile.getAgingProgress(37);
-        this.drawTexturedModalRect(k + 81, l + 63 - i1, 176, 37 - i1, 12, i1);
+        i1 = this.tile.getAgingProgress(33);
+        this.drawTexturedModalRect(k + 71, l + 32, 176, 0, i1, 33);
 
-        drawFluid(this.tile.productTank.getFluid(), this.tile.getFluidAmountScaled(41), k + 61, l + 24,
+        drawFluid(this.tile.productTank.getFluid(), this.tile.getFluidAmountScaled(41), k + 51, l + 24,
                 16, 41);
-        drawFluid(this.tileConnected.productTank.getFluid(), this.tileConnected.getFluidAmountScaled(41), k + 97, l + 24,
+        drawFluid(this.tileConnected.productTank.getFluid(), this.tileConnected.getFluidAmountScaled(41), k + 107, l + 24,
                 16, 41);
     }
 

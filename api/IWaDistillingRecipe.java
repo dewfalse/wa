@@ -41,7 +41,7 @@ public interface IWaDistillingRecipe {
     /*
      * 必要Tick
      */
-    int getDistillingTime();
+    int getDistillTime();
 
     /*
      * グレードの判定メソッド
