@@ -174,7 +174,7 @@ public class Blocks extends net.minecraft.init.Blocks {
 
         // アルコールランプ
         GameRegistry.registerBlock(spiritLamp, ItemBlockSpiritLamp.class, "spiritLamp");
-        GameRegistry.registerTileEntity(TileEntitySpiritLamp.class, "wa.spiritLamp");
+        // GameRegistry.registerTileEntity(TileEntitySpiritLamp.class, "wa.spiritLamp");
 
 
 		//ケラは金槌が対応ツールになる

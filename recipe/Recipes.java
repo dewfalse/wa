@@ -114,6 +114,15 @@ public class Recipes {
 				"AAA",
 				"AAA",
 				'A', Blocks.wara);
+		
+		/**
+		 * @author defeatedcrow
+		 * ススキ→藁のレシピ追加
+		 */
+		GameRegistry.addShapedRecipe(new ItemStack(Blocks.wara, 1, 0),
+				"AA",
+				"AA",
+				'A', Blocks.susuki);
 
 		if(Config.レシピ難易度 == RecipeDifficulty.VERY_EASY) {
 			GameRegistry.addShapelessRecipe(new ItemStack(Blocks.tataraBlock),
@@ -188,7 +197,7 @@ public class Recipes {
                 "M M",
                 "MMM",
                 'M', Items.磁鉄鉱インゴット);
-        
+
         GameRegistry.addShapedRecipe(new ItemStack(Blocks.zabuton, 4),
                 "MM",
                 "MM",

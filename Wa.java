@@ -61,7 +61,7 @@ public class Wa {
 		
 		// defeatedcrow作成、液体追加
 		wa.FluidInit.preInit();
-
+		
 	}
 
 	@EventHandler

@@ -39,13 +39,22 @@ public class TileEntitySpiritLamp extends TileEntity {
                 if(tickCount == 0) {
                     // 残量ありなら残量を1減らす
                     this.drain(ForgeDirection.UNKNOWN, new FluidStack(fuelTank.getFluidType(), 1), true);
-                    update = true;
+                    // update = true;
                 }
             }
-
-            if (lastAmount != this.fuelTank.getFluidAmount()){
-                lastAmount = this.fuelTank.getFluidAmount();
-            }
+        }
+        
+        if (lastAmount != this.fuelTank.getFluidAmount()){
+        	if (Math.abs(lastAmount - this.fuelTank.getFluidAmount()) > 5){
+        		lastAmount = this.fuelTank.getFluidAmount();
+                /**
+                 * @author defeatedcrow
+                 * 液量変化がクライアント側に伝わってないので、lastAmountと現在量の差を検知して更新を伝える
+                 * 
+                 * 毎Tickだと重くなるので、5tickごと
+                 */
+                update = true;
+        	}
         }
 
         if(update) {

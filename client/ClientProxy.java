@@ -4,8 +4,11 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
+import mods.defeatedcrow.common.AMTLogger;
 import net.minecraft.stats.Achievement;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.TextureStitchEvent;
@@ -13,7 +16,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import wa.*;
-import wa.FluidInit;
 import wa.block.*;
 import wa.entity.*;
 
@@ -58,6 +60,11 @@ public class ClientProxy extends CommonProxy {
 		
 		ClientRegistry.registerTileEntity(TileEntityZabuton.class, "wa.tileentityZabuton", new RenderZabutonBlock());
         ClientRegistry.registerTileEntity(TileEntityKoto.class, "wa.tileentityKoto", new RenderKotoBlock());
+        /**
+		 * @author deteatedcrow
+		 * Renderを登録するTileEntityはプロキシを通す
+		 */
+        ClientRegistry.registerTileEntity(TileEntitySpiritLamp.class, "wa.spiritLamp", new RenderSpiritLampTile());
 
         MinecraftForge.EVENT_BUS.register(new Particles());
 
@@ -126,8 +133,15 @@ public class ClientProxy extends CommonProxy {
 	
 	@SubscribeEvent
 	public void onTextureStitch(TextureStitchEvent.Post event) {
-        for(Fluid fluid : FluidInit.fluids) {
-            fluid.setIcons(FluidInit.fluidDummyBlock.getIcon(0, 0));
-        }
+			for(Fluid fluid : FluidInit.fluids) {
+	        	String name = fluid.getName();
+	        	String sub = name.substring(9);
+        		AMTLogger.info("subString :" + sub);
+        		if (sub.contains("arkhi")){
+        			sub = "kumis";
+        		}
+            	IIcon ret = event.map.registerIcon("wa:fluid/" + sub + "_still");
+                fluid.setIcons(ret);
+	        }
  	}
 }

@@ -75,6 +75,12 @@ public class CommonProxy implements IGuiHandler {
 		// defeatedcrow追加物
 		GameRegistry.registerTileEntity(TileEntityZabuton.class, "wa.tileentityZabuton");
 		GameRegistry.registerTileEntity(TileEntityKoto.class, "wa.tileentityKoto");
+		
+		/**
+		 * @author deteatedcrow
+		 * Renderを登録するTileEntityはプロキシを通す
+		 */
+		GameRegistry.registerTileEntity(TileEntitySpiritLamp.class, "wa.spiritLamp");
 	}
 
 	public World getClientWorld() {
