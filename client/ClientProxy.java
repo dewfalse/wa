@@ -5,7 +5,6 @@ import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.registry.VillagerRegistry;
-import mods.defeatedcrow.common.AMTLogger;
 import net.minecraft.stats.Achievement;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
@@ -135,7 +134,6 @@ public class ClientProxy extends CommonProxy {
 			for(Fluid fluid : FluidInit.fluids) {
 	        	String name = fluid.getName();
 	        	String sub = name.substring(9);
-        		AMTLogger.info("subString :" + sub);
         		if (sub.contains("arkhi")){
         			sub = "kumis";
         		}

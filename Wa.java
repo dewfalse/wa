@@ -20,6 +20,7 @@ import net.minecraftforge.common.ChestGenHooks;
 import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.MinecraftForge;
 import wa.block.Blocks;
+import wa.block.FluidInit;
 import wa.entity.*;
 import wa.event.BonemealEventHandler;
 import wa.event.GetVillageBlockIDEventHandler;
@@ -60,7 +61,7 @@ public class Wa {
 		proxy.preInit();
 		
 		// defeatedcrow作成、液体追加
-		wa.FluidInit.preInit();
+		FluidInit.preInit();
 		
 	}
 

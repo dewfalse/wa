@@ -10,7 +10,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
-import wa.FluidInit;
 import wa.block.TileEntitySpiritLamp;
 
 @SideOnly(Side.CLIENT)
@@ -40,7 +39,7 @@ public class RenderSpiritLampTile extends TileEntitySpecialRenderer {
 		GL11.glScalef(1.0F, -1.0F, -1.0F);
 		GL11.glRotatef(0.0F, 0.0F, 0.0F, 0.0F);
 
-		IIcon iicon = FluidInit.fluidDummyBlock.getIcon(0, 21);
+		IIcon iicon = wa.block.FluidInit.fluidDummyBlock.getIcon(0, 21);
 		float fu = iicon.getMinU();
 		float fU = iicon.getMaxU();
 		float fv = iicon.getMinV();

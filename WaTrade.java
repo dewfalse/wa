@@ -53,6 +53,8 @@ public class WaTrade implements IVillageTradeHandler {
 			recipeList.add(new MerchantRecipe( new ItemStack(Items.貨幣, 5 + random.nextInt(8), 0), new ItemStack(Items.掛け軸)));
             //暖簾
             recipeList.add(new MerchantRecipe( new ItemStack(Items.貨幣, 5 + random.nextInt(8), 0), new ItemStack(Blocks.noren)));
+            //お酒
+            recipeList.add(new MerchantRecipe( new ItemStack(Items.貨幣, 20 + random.nextInt(40), 1), new ItemStack(Items.化粧箱入りのお酒)));
 		}
 		else if(villager.getProfession() == Config.刀鍛冶ID) {
 			//鉄インゴット→銀貨1～4

@@ -122,6 +122,8 @@ public class Items extends net.minecraft.init.Items {
     public static Item マグマクリームサワー = new ItemRequor().addPotionEffect(Potion.confusion.id, 400, 0).addPotionEffect(Potion.fireResistance.id, 800, 0)
             .setUnlocalizedName("wa:magmaCreamSour").setTextureName("wa:magmaCreamSour").setCreativeTab(Wa.creativeTab);
 
+    public static Item 化粧箱入りのお酒 = new ItemPackagedLiquor().setUnlocalizedName("wa:packagedLiquor").setTextureName("wa:packagedLiquor").setCreativeTab(Wa.creativeTab);
+
     //static Item 陣笠;
 	//static Item 提灯;
 	//static Item クナイ;
@@ -219,6 +221,8 @@ public class Items extends net.minecraft.init.Items {
         GameRegistry.registerItem(かぼちゃエール, "pumpkinAle");
         GameRegistry.registerItem(ヘルリカー, "hellLiquor");
         GameRegistry.registerItem(マグマクリームサワー, "magmaCreamSour");
+
+        GameRegistry.registerItem(化粧箱入りのお酒, "packagedLiquor");
 
         GameRegistry.registerItem(磁鉄鉱インゴット, "magnetite_ingot");
         GameRegistry.registerItem(磁石, "magnet");

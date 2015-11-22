@@ -19,6 +19,7 @@ import java.util.List;
 public class ItemRequor extends ItemLiquorBase {
 
     List<PotionEffect> potionEffects = new LinkedList<PotionEffect>();
+    boolean drinkable = true;
 
 	public ItemRequor() {
 		super();
@@ -136,4 +137,23 @@ public class ItemRequor extends ItemLiquorBase {
 	public ItemStack getContainerItem(ItemStack itemStack) {
 		return new ItemStack(Items.glass_bottle, itemStack.stackSize, 0);
 	}
+
+    public ItemRequor setDrinkable(boolean flag) {
+        drinkable = flag;
+        return this;
+    }
+
+    public boolean isDrinkable() {
+        return drinkable;
+    }
+
+    public boolean hasGoodPotionEffect() {
+        for(PotionEffect potionEffect : potionEffects) {
+            Potion potion = Potion.potionTypes[potionEffect.getPotionID()];
+            if (!potion.isBadEffect()) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
