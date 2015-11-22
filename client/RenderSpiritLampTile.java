@@ -1,23 +1,17 @@
 package wa.client;
 
-import mods.defeatedcrow.client.model.tileentity.TileEntityCardBoardRenderer;
-import mods.defeatedcrow.common.DCsAppleMilk;
-import mods.defeatedcrow.common.tile.TileCardBoard;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntityRendererDispatcher;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
-import net.minecraftforge.fluids.Fluid;
-
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
-
 import wa.FluidInit;
 import wa.block.TileEntitySpiritLamp;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class RenderSpiritLampTile extends TileEntitySpecialRenderer {

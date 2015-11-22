@@ -5,9 +5,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import wa.Config;
-import wa.item.Items;
 import wa.api.RecipeManagerWa;
 import wa.block.Blocks;
+import wa.item.Items;
 
 public class RecipeRegistryWa {
 	

@@ -7,7 +7,6 @@ import net.minecraft.inventory.ICrafting;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
-import wa.block.TileEntityBrewingBarrel;
 
 import java.util.List;
 

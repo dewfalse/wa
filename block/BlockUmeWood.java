@@ -13,9 +13,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import wa.client.Particles;
 import wa.entity.EntityUmeLeavesFX;
 import wa.item.Items;
-import wa.client.Particles;
 
 import java.util.List;
 import java.util.Random;

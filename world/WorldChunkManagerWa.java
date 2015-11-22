@@ -12,7 +12,6 @@ import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import wa.Config;
-import wa.world.*;
 
 import java.util.ArrayList;
 import java.util.Arrays;

@@ -1,13 +1,11 @@
-package wa;
+package wa.block;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
-import wa.block.FluidDummyBlock;
-import wa.block.FluidDummyItem;
-import wa.block.WaFluid;
+import wa.Wa;
 import wa.item.Items;
 
 import java.util.LinkedHashSet;

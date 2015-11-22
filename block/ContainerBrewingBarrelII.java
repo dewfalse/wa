@@ -9,7 +9,6 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnace;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidContainerRegistry;
-import wa.block.TileEntityBrewingBarrelII;
 
 public class ContainerBrewingBarrelII extends Container {
 

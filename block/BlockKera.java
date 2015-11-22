@@ -6,7 +6,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import wa.*;
+import wa.Achievements;
+import wa.Config;
+import wa.Wa;
 import wa.item.Items;
 import wa.recipe.RecipeDifficulty;
 

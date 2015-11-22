@@ -1,10 +1,7 @@
 package wa.api;
 
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fluids.FluidStack;
-
-import java.util.List;
 
 /**
  * Created by dew on 2015/11/12.

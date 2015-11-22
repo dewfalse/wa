@@ -1,6 +1,5 @@
 package wa.api;
 
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 

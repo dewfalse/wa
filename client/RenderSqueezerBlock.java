@@ -6,7 +6,6 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.world.IBlockAccess;
 import wa.block.BlockSqueezer;
 import wa.block.Blocks;
-import wa.block.TileEntitySqueezer;
 
 /**
  * Created by dew on 2015/11/19.
@@ -49,7 +48,7 @@ public class RenderSqueezerBlock implements ISimpleBlockRenderingHandler {
 
         float h = 2.0F;
 
-        block.setBlockBounds(7/16.0F, (h+6)/16.0F, 7/16.0F, 9/16.0F, (h+11)/16.0F, 9/16.0F);
+        block.setBlockBounds(7 / 16.0F, (h + 6) / 16.0F, 7 / 16.0F, 9 / 16.0F, (h + 11) / 16.0F, 9 / 16.0F);
         renderer.setRenderBoundsFromBlock(block);
         renderer.renderStandardBlock(block, x, y, z);
 

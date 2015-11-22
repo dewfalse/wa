@@ -9,8 +9,8 @@ import net.minecraft.item.crafting.ShapedRecipes;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import wa.Config;
-import wa.item.EnumFood;
 import wa.block.Blocks;
+import wa.item.EnumFood;
 import wa.item.Items;
 
 import java.util.List;

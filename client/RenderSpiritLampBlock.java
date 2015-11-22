@@ -4,13 +4,7 @@ import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.client.renderer.texture.TextureMap;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
-
-import org.lwjgl.opengl.GL11;
-
-import wa.FluidInit;
 import wa.block.BlockSpiritLamp;
 import wa.block.Blocks;
 import wa.block.TileEntitySpiritLamp;

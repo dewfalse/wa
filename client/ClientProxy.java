@@ -4,7 +4,6 @@ import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.common.registry.VillagerRegistry;
 import mods.defeatedcrow.common.AMTLogger;
 import net.minecraft.stats.Achievement;
@@ -14,8 +13,8 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.Fluid;
-import net.minecraftforge.fluids.FluidRegistry;
-import wa.*;
+import wa.CommonProxy;
+import wa.Config;
 import wa.block.*;
 import wa.entity.*;
 

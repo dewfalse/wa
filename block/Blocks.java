@@ -10,7 +10,8 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
-import wa.*;
+import wa.FuelHandler;
+import wa.Wa;
 import wa.item.*;
 
 public class Blocks extends net.minecraft.init.Blocks {

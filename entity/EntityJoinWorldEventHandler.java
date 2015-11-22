@@ -15,8 +15,8 @@ import net.minecraft.world.EnumDifficulty;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import wa.Achievements;
 import wa.Config;
-import wa.item.Items;
 import wa.block.TileEntityCharm;
+import wa.item.Items;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
