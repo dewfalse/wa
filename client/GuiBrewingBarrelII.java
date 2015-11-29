@@ -47,6 +47,12 @@ public class GuiBrewingBarrelII extends GuiContainer {
 			list2.add("Grade : " + this.tile.getGrade());
 			this.drawHoveringText(list2, x, y, fontRendererObj);
 		}
+        boolean b3 = this.func_146978_c(81, 26, 12, 37, x, y);
+        if (b3) {
+            ArrayList<String> list2 = new ArrayList<String>();
+            list2.add(this.tile.getAgingTime() + "/" + this.tile.getBrewingTime());
+            this.drawHoveringText(list2, x, y, fontRendererObj);
+        }
 	}
 
 	@Override

@@ -50,6 +50,12 @@ public class GuiSqueezer extends GuiContainer {
             list2.add("Grade : " + this.tile.getGrade());
             this.drawHoveringText(list2, x, y, fontRendererObj);
         }
+        boolean b3 = this.func_146978_c(86, 25, 22, 11, x, y);
+        if (b3) {
+            ArrayList<String> list2 = new ArrayList<String>();
+            list2.add(this.tile.getAgingTime() + "/" + this.tile.getSqueezingTime());
+            this.drawHoveringText(list2, x, y, fontRendererObj);
+        }
     }
 
     @Override

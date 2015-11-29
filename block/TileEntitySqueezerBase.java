@@ -451,6 +451,12 @@ public abstract class TileEntitySqueezerBase extends TileEntity implements ISide
         return ret;
     }
 
+    public int getSqueezingTime() {
+        IWaSqueezingRecipe recipe = RecipeManagerWa.squeezingRegistry.getRecipeFromID(recipeID);
+        if (recipe == null) return 0;
+        return recipe.getSqueezingTime();
+    }
+
     public int getMetadata() {
         return this.worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
     }

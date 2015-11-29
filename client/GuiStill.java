@@ -62,6 +62,12 @@ public class GuiStill extends GuiContainer {
                 this.drawHoveringText(list2, x, y, fontRendererObj);
             }
         }
+        boolean b3 = this.func_146978_c(71, 32, 32, 29, x, y);
+        if (b3) {
+            ArrayList<String> list2 = new ArrayList<String>();
+            list2.add(this.tile.getAgingTime() + "/" + this.tile.getDistillingTime());
+            this.drawHoveringText(list2, x, y, fontRendererObj);
+        }
     }
 
     @Override

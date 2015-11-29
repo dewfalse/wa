@@ -34,7 +34,7 @@ import wa.world.WorldGenTakenoko;
 import wa.world.WorldGenTorii;
 import wa.world.WorldProviderWa;
 
-@Mod(modid = Wa.modid, name = Wa.modid, version = "1.7.10.14")
+@Mod(modid = Wa.modid, name = Wa.modid, version = "1.7.10.15")
 public class Wa {
 	public static final String modid = "Wa";
 

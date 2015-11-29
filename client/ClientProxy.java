@@ -53,6 +53,9 @@ public class ClientProxy extends CommonProxy {
         BlockSqueezer.renderID = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(new RenderSqueezerBlock());
 
+        BlockWindChime.renderID = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new RenderWindChimeBlock());
+
 		// defeatedcrow追加物
 		RenderingRegistry.registerEntityRenderingHandler(EntityZabuton.class, new RenderZabutonEntity());
 		

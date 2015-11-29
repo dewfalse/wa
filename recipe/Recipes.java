@@ -185,6 +185,13 @@ public class Recipes {
                 "AAA",
                 'A', "blockGlass",
                 'B', Items.string));
+        //風鈴
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Blocks.windChime, 1, 0),
+                " B ",
+                "ABA",
+                "A A",
+                'A', "blockGlass",
+                'B', Items.string));
 
 
         GameRegistry.addShapedRecipe(new ItemStack(Blocks.kawara, 3, 0),

@@ -76,7 +76,11 @@ public class Blocks extends net.minecraft.init.Blocks {
     // アルコールランプ
     public static Block spiritLamp = new BlockSpiritLamp(Material.glass).setHardness(0.3F).setStepSound(Block.soundTypeGlass).setBlockName("wa:spiritLamp").setBlockTextureName("wa:spiritLamp").setCreativeTab(Wa.creativeTab);
 
-	//TODO 入手方法を実装
+    // 風鈴
+    public static Block windChime = new BlockWindChime(Material.glass).setHardness(0.3F).setStepSound(Block.soundTypeGlass).setBlockName("wa:wind_chime").setBlockTextureName("wa:wind_chime").setCreativeTab(Wa.creativeTab);
+
+
+    //TODO 入手方法を実装
 
 	static Block 蓮;
 	static Block 囲炉裏;
@@ -177,6 +181,8 @@ public class Blocks extends net.minecraft.init.Blocks {
         GameRegistry.registerBlock(spiritLamp, ItemBlockSpiritLamp.class, "spiritLamp");
         // GameRegistry.registerTileEntity(TileEntitySpiritLamp.class, "wa.spiritLamp");
 
+        // 風鈴
+        GameRegistry.registerBlock(windChime, "wind_chime");
 
 		//ケラは金槌が対応ツールになる
 		//MinecraftForge.removeBlockEffectiveness(kera, 0, "pickaxe");

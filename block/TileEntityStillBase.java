@@ -509,6 +509,12 @@ public abstract class TileEntityStillBase extends TileEntity implements ISidedIn
         return ret;
     }
 
+    public int getDistillingTime() {
+        IWaDistillingRecipe recipe = RecipeManagerWa.distillingRegistry.getRecipeFromID(recipeID);
+        if (recipe == null) return 0;
+        return recipe.getDistillingTime();
+    }
+
     public int getMetadata() {
         return this.worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
     }

@@ -362,7 +362,13 @@ public abstract class TileEntityBrewingBase extends TileEntity implements ISided
 		int ret = this.age * i / recipe.getBrewingTime();
 		return ret;
 	}
-	
+
+    public int getBrewingTime() {
+        IWaBrewingRecipe recipe = RecipeManagerWa.brewingRegistry.getRecipeFromID(recipeID);
+        if (recipe == null) return 0;
+        return recipe.getBrewingTime();
+    }
+
 	public int getMetadata() {
 		return this.worldObj.getBlockMetadata(xCoord, yCoord, zCoord);
 	}
@@ -612,5 +618,4 @@ public abstract class TileEntityBrewingBase extends TileEntity implements ISided
 	public boolean canExtractItem(int par1, ItemStack par2ItemStack, int par3) {
 		return true;
 	}
-
 }
