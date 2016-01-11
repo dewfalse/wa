@@ -3,7 +3,9 @@ package wa.block;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.block.Block;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -243,6 +245,34 @@ public abstract class TileEntityStillBase extends TileEntity implements ISidedIn
                     this.setInventorySlotContents(0, input);
                 }
 
+                // 空容器を返却
+                ItemStack emptyContainer = FluidContainerRegistry.drainFluidContainer(input);
+                ItemStack emptyContainerSlot = this.getStackInSlot(1);
+                if(emptyContainer != null) {
+                    if(emptyContainerSlot == null) {
+                        this.setInventorySlotContents(1, emptyContainer);
+                    }
+                    else if(emptyContainer.isItemEqual(emptyContainerSlot)) {
+                        emptyContainerSlot.stackSize++;
+                        this.setInventorySlotContents(1, emptyContainerSlot);
+                    }
+                    else {
+                        EntityItem entityItem = new EntityItem(worldObj, this.xCoord, this.yCoord, this.zCoord, emptyContainer);
+                        worldObj.spawnEntityInWorld(entityItem);
+                    }
+                }
+                else if(input != null && input.getItem() == Items.milk_bucket) {
+                    emptyContainer = new ItemStack(Items.bucket);
+                    if(emptyContainerSlot == null) {
+                        this.setInventorySlotContents(2, emptyContainer);
+                    }
+                    else {
+                        EntityItem entityItem = new EntityItem(worldObj, this.xCoord, this.yCoord, this.zCoord, emptyContainer);
+                        worldObj.spawnEntityInWorld(entityItem);
+                    }
+                }
+
+
                 // 材料のグレード＝蒸留液のグレード
                 // グレードの低い材料を追加すると蒸留液のグレードも下がる
                 int grade = 100;
@@ -336,8 +366,8 @@ public abstract class TileEntityStillBase extends TileEntity implements ISidedIn
             return false;
         }
 
-        ItemStack emptyContainer = this.getStackInSlot(2);
-        ItemStack output = this.getStackInSlot(3);
+        ItemStack emptyContainer = this.getStackInSlot(1);
+        ItemStack output = this.getStackInSlot(2);
 
         // 隣接した蒸留器ブロック（受けフラスコ扱い）に蒸留液は保存されている
         TileEntityStill tile = (TileEntityStill)this.worldObj.getTileEntity(this.xCoord + pairDir.offsetX, this.yCoord + pairDir.offsetY, this.zCoord + pairDir.offsetZ);
@@ -367,8 +397,8 @@ public abstract class TileEntityStillBase extends TileEntity implements ISidedIn
 
                 // 受けフラスコの液体タンク、インベントリの増減処理
                 tile.drain(pairDir.getOpposite(), FluidContainerRegistry.getContainerCapacity(ret), true);
-                this.incrStackInSlot(3, ret);
-                if (this.decrStackSize(2, 1) == null) {
+                this.incrStackInSlot(2, ret);
+                if (this.decrStackSize(1, 1) == null) {
                     this.markDirty();
                 }
                 tile.markDirty();

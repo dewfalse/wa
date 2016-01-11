@@ -31,6 +31,8 @@ public class RecipeRegistryWa {
             case 3: adjust =   1F; break;
             case 4: adjust = 0.5F; break;
             case 5: adjust = 0.1F; break;
+            case 6: adjust = 0.05F; break;
+            case 7: adjust = 0.01F; break;
         }
         // 圧搾機レシピ。原材料1個あたり200mB相場とする（FfMのリンゴ→ジュースの相場）
         // りんごジュースレシピ
@@ -125,8 +127,8 @@ public class RecipeRegistryWa {
                 new FluidStack(FluidRegistry.getFluid("wa.fluid.alcohol"), 30), (int) (8000*adjust));
         RecipeManagerWa.distillingRegistry.addRecipe(FluidRegistry.getFluid("wa.fluid.tequila"), 100,
                 new FluidStack(FluidRegistry.getFluid("wa.fluid.alcohol"), 30), (int) (8000*adjust));
-        RecipeManagerWa.distillingRegistry.addRecipe(FluidRegistry.getFluid("wa.fluid.tequila"), 100,
-                new FluidStack(FluidRegistry.getFluid("wa.fluid.sake"), 30), (int) (8000*adjust));
+        RecipeManagerWa.distillingRegistry.addRecipe(FluidRegistry.getFluid("wa.fluid.sake"), 100,
+                new FluidStack(FluidRegistry.getFluid("wa.fluid.alcohol"), 30), (int) (8000*adjust));
 
         // 醸造樽レシピ（蒸留酒を再醸造）
         // ラムレシピ

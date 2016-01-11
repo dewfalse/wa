@@ -12,6 +12,7 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraft.util.StringUtils;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.FluidContainerRegistry;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -36,7 +37,14 @@ public class ItemRequor extends ItemLiquorBase {
 			addPotionEffects(par1ItemStack, par3EntityPlayer);
 		}
 
-		return par1ItemStack.stackSize <= 0 ? null : par1ItemStack;
+        if (!par3EntityPlayer.capabilities.isCreativeMode) {
+            ItemStack emptyContainer = FluidContainerRegistry.drainFluidContainer(par1ItemStack);
+            if(par1ItemStack.stackSize <= 0) {
+                return emptyContainer;
+            }
+            par3EntityPlayer.inventory.addItemStackToInventory(emptyContainer);
+        }
+		return  par1ItemStack;
 	}
 
     public ItemRequor addPotionEffect(int potionID, int duration, int amplifier) {

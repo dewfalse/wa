@@ -2,7 +2,9 @@ package wa.block;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -17,6 +19,8 @@ import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import wa.api.IWaBrewingRecipe;
 import wa.api.RecipeManagerWa;
+
+import java.util.ArrayList;
 
 public abstract class TileEntityBrewingBase extends TileEntity implements ISidedInventory{
 	
@@ -168,6 +172,36 @@ public abstract class TileEntityBrewingBase extends TileEntity implements ISided
 		
 		this.setInventorySlotContents(0, null);
 		this.setInventorySlotContents(1, null);
+
+        // 空容器を返却
+        for(ItemStack input: new ItemStack[]{slot1, slot2}) {
+            ItemStack emptyContainer = FluidContainerRegistry.drainFluidContainer(input);
+            ItemStack emptyContainerSlot = this.getStackInSlot(1);
+            if(emptyContainer != null) {
+                if(emptyContainerSlot == null) {
+                    this.setInventorySlotContents(2, emptyContainer);
+                }
+                else if(emptyContainer.isItemEqual(emptyContainerSlot)) {
+                    emptyContainerSlot.stackSize++;
+                    this.setInventorySlotContents(2, emptyContainerSlot);
+                }
+                else {
+                    EntityItem entityItem = new EntityItem(worldObj, this.xCoord, this.yCoord, this.zCoord, emptyContainer);
+                    worldObj.spawnEntityInWorld(entityItem);
+                }
+            }
+            else if(input != null && input.getItem() == Items.milk_bucket) {
+                emptyContainer = new ItemStack(Items.bucket);
+                if(emptyContainerSlot == null) {
+                    this.setInventorySlotContents(2, emptyContainer);
+                }
+                else {
+                    EntityItem entityItem = new EntityItem(worldObj, this.xCoord, this.yCoord, this.zCoord, emptyContainer);
+                    worldObj.spawnEntityInWorld(entityItem);
+                }
+            }
+        }
+
 		return true;
 	}
 	

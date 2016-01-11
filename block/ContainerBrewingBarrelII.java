@@ -149,8 +149,8 @@ public class ContainerBrewingBarrelII extends Container {
 
 			// カーソルを排出スロットにあわせているとき
 			if (par2 == 3) {
-				// アイテムの移動(スロット6～42へ)
-				if (!this.mergeItemStack(itemstack1, 3, 39, true))
+				// アイテムの移動(スロット4～40へ)
+				if (!this.mergeItemStack(itemstack1, 4, 40, true))
 					return null;
 
 				slot.onSlotChange(itemstack1, itemstack);
@@ -169,8 +169,8 @@ public class ContainerBrewingBarrelII extends Container {
 						return null;
 				}
 			}
-			// アイテムの移動(スロット6～42へ)
-			else if (!this.mergeItemStack(itemstack1, 3, 39, false))
+			// アイテムの移動(スロット4～40へ)
+			else if (!this.mergeItemStack(itemstack1, 4, 40, false))
 				return null;
 
 			if (itemstack1.stackSize == 0) {
